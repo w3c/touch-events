@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Touch Events Specification</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <!-- 
+      === NOTA BENE ===
+      For the three scripts below, if your spec resides on dev.w3 you can check them
+      out in the same tree and use relative links so that they'll work offline,
+     -->
+    <script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script>
+    <script class='remove'>
+      var respecConfig = {
+          // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+          specStatus:           "ED",
+          
+          // the specification's short name, as in http://www.w3.org/TR/short-name/
+          shortName:            "touch-events",
+
+          // if your specification has a subtitle that goes below the main
+          // formal title, define it here
+          // subtitle   :  "an excellent document",
+
+          // if you wish the publication date to be other than today, set this
+          // publishDate:  "2009-08-06",
+
+          // if the specification's copyright date is a range of years, specify
+          // the start date here:
+          // copyrightStart: "2005"
+
+          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+          // and its maturity status
+          // previousPublishDate:  "1977-03-15",
+          // previousMaturity:  "WD",
+
+          // if there a publicly available Editor's Draft, this is the link
+          edDraftURI:           "http://dev.w3.org/2009/dap/ReSpec.js/documentation.html",
+
+          // if this is a LCWD, uncomment and set the end of its review period
+          // lcEnd: "2009-08-05",
+
+          // if you want to have extra CSS, append them to this list
+          // it is recommended that the respec.css stylesheet be kept
+          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
+
+          // editors, add as many as you like
+          // only "name" is required
+          editors:  [
+              { name: "Doug Schepers", url: "http://schepers.cc/",
+                company: "W3C", companyURL: "http://w3.org/" },
+          ],
+
+          // authors, add as many as you like. 
+          // This is optional, uncomment if you have authors as well as editors.
+          // only "name" is required. Same format as editors.
+
+          //authors:  [
+          //    { name: "Your Name", url: "http://example.org/",
+          //      company: "Your Company", companyURL: "http://example.com/" },
+          //],
+          
+          // name of the WG
+          wg:           "Web Events Working Group",
+          
+          // URI of the public WG page
+          wgURI:        "http://www.w3.org/2010/webevents/",
+          
+          // name (with the @w3c.org) of the public mailing to which comments are due
+          wgPublicList: "public-webevents",
+          
+          // URI of the patent status for this WG, for Rec-track documents
+          // !!!! IMPORTANT !!!!
+          // This is important for Rec-track documents, do not copy a patent URI from a random
+          // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+          // Team Contact.
+          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
+      };
+    </script>
+  </head>
+  <body>
+    <section id='abstract'>
+      This is a test of the new WebEvents WG Mercurial Repository and Respec.js spec template.
+    </section>
+    
+    <section>
+      <h2>Your Title</h2>
+      <p>
+        Your text...
+      </p>
+
+<!--       // Introduced in DOM Level 2:
+      interface UIEvent : Event {
+        readonly attribute views::AbstractView view;
+        readonly attribute long            detail;
+        void                               initUIEvent(in DOMString typeArg, 
+                                                       in boolean canBubbleArg, 
+                                                       in boolean cancelableArg, 
+                                                       in views::AbstractView viewArg, 
+                                                       in long detailArg);
+      };
+      <dt>readonly <code>views::AbstractView</code> view = <code>defaultView</code></dt>
+        <dt>readonly AbstractView view = defaultView</dt>
+
+       -->
+      <dl title='[Constructor] interface TouchEvent : Event' class='idl'>
+        <dt>readonly attribute views::AbstractView view</dt>
+        <dd>
+          The <code>view</code> attribute identifies the <code>AbstractView</code> from which the event was generated.
+        </dd>
+        <dt>readonly attribute DOMString chirality</dt>
+        <dd>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor (...)
+        </dd>
+        <dt>attribute unsigned long age</dt>
+        <dd>
+           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip (...)
+        </dd>
+        <dt>Dahut turnAround (in float angle, in boolean fall)</dt>
+        <dd>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat (...)
+        </dd>
+        <dt>unsigned long trip ()</dt>
+        <dd>
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit (...)
+        </dd>
+        <dt>void yell ([AllowAny] in unsigned long volume, [TreatNullAs=EmptyString] in DOMString sentence)</dt>
+        <dd>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt (...)
+        </dd>
+      </dl>
+    </section>
+    
+    <section class='appendix'>
+      <h2>Acknowledgements</h2>
+      <p>
+        Many thanks to Robin Berjon for making our lives so much easier with his cool tool.
+      </p>
+    </section>
+  </body>
+</html>
