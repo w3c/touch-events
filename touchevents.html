@@ -41,7 +41,7 @@
 
           // if you want to have extra CSS, append them to this list
           // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
+          extraCSS:             ["http://www.w3.org/StyleSheets/TR/W3C-TR.css", "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
 
           // editors, add as many as you like
           // only "name" is required
@@ -126,13 +126,17 @@
 
         <dt>readonly attribute float radiusX</dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels; <code>1</code> if no value is known
+          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
         </dd>
         <dt>readonly attribute float radiusY</dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the y-axis, in pixels; <code>1</code> if no value is known
+          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the y-axis, in pixels; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
         </dd>
 
+        <dt>readonly attribute float force</dt>
+        <dd>
+          a relative value of pressure applied, in the range <code>0</code> to <code>1</code>; <code>0</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+        </dd>
 
         <dt>readonly attribute boolean ctrlKey</dt>
         <dd>
@@ -147,6 +151,12 @@
           <code>true</code> if the alt (Alternate) key modifier is activated; otherwise <code>false</code>
         </dd>
       </dl>
+      
+      <p class="issue" id="issue-inkml"><strong>Issue:</strong> Consider aligning with "channels" and values from <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup Language (InkML)</a>.</p>
+      
+      <p class="issue" id="issue-timestamp"><strong>Issue:</strong> Should each touchpoint have its own timestamp?</p>
+
+      <p class="issue" id="issue-units"><strong>Issue:</strong> What are units of radiusX/radiusY?</p>
     </section>
 
     
@@ -193,6 +203,9 @@
           a list of <dfn>TouchPoint</dfn>s for every point of contact which contributed to the event
         </dd>
       </dl>
+
+      <p class="issue" id="issue-preventDefault"><strong>Issue:</strong> define behavior of preventDefault() method.</p>
+
       
       <section>
         <h3 id="event-touchstart">The <dfn>touchstart</dfn> event</h3>
