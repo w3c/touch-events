@@ -101,7 +101,7 @@
       <dl title='interface TouchPoint' class='idl'>
         <dt>readonly attribute long identifier</dt>
         <dd>
-          An identification number for each touch point, unique to that touch point per session.
+          An identification number for each <a>touch point</a>, unique to that <a>touch point</a> per session.
           
           <p>The algorithm for determining the <a>identifier</a> value is as follows:</p>
           <ol>
@@ -111,7 +111,7 @@
         </dd>
         <dt>readonly attribute EventTarget target</dt>
         <dd>
-          the original proximal event target for this touch point 
+          the original proximal event target for this <a>touch point</a> 
         </dd>
         <dt>readonly attribute DOMTimeStamp timestamp</dt>
         <dd>
@@ -231,32 +231,32 @@
       
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when the user places a touch point on the touch surface.</p>
+        <p>A user agent must dispatch this event type to indicate when the user places a <a>touch point</a> on the touch surface.</p>
       </section>
       
       <section>
         <h3 id="event-touchend">The <dfn class="event">touchend</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when the user removes a touch point from the touch surface.</p>
+        <p>A user agent must dispatch this event type to indicate when the user removes a <a>touch point</a> from the touch surface.</p>
       </section>
       
       <section>
         <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when the user moves a touch point along the touch surface, even outside the interactive area of the <a>target</a> element.</p>
+        <p>A user agent must dispatch this event type to indicate when the user moves a <a>touch point</a> along the touch surface, even outside the interactive area of the <a>target</a> element.</p>
       </section>
       
       <section>
         <h3 id="event-touchenter">The <dfn class="event">touchenter</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a touch point moves onto the interactive area defined by a DOM element on which it did not originate.  Events of this type must not bubble.</p>
+        <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves onto the interactive area defined by a DOM element on which it did not originate.  Events of this type must not bubble.</p>
       </section>
       
       <section>
         <h3 id="event-touchleave">The <dfn class="event">touchleave</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a touch point moves off the interactive area defined by a DOM element.  Events of this type must not bubble.</p>
+        <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves off the interactive area defined by a DOM element.  Events of this type must not bubble.</p>
       </section>
       
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchcancel</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a <a>TouchPoint</a> has been disrupted in an implementation-specific manner, such as by moving outside the bounds of the UA window.  A user agent may also dispatch this event type when the user places more touch points on the touch surface than the device or implementation is configured to store, in which case the earliest touch point in the list should be removed.</p>
+        <p>A user agent must dispatch this event type to indicate when a <a>TouchPoint</a> has been disrupted in an implementation-specific manner, such as by moving outside the bounds of the UA window.  A user agent may also dispatch this event type when the user places more <a>touch point</a>s on the touch surface than the device or implementation is configured to store, in which case the earliest <a>TouchPoint</a> object in the <a>TouchList</a> should be removed.</p>
       </section>
     </section>
     
@@ -270,6 +270,9 @@
             
           </pre> -->
         </dd>
+        
+        <dt><dfn>touch point</dfn></dt>
+        <dd>The coordinate point at which a pointer (e.g finger or stylus) intersects the target surface of an interface.  This may apply to a finger touching a touch-screen, or an digital pen writing on a piece of paper.</dd>
         
       </dl>
       
