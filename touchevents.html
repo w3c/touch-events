@@ -48,6 +48,10 @@
           editors:  [
               { name: "Doug Schepers", url: "http://schepers.cc/",
                 company: "W3C", companyURL: "http://w3.org/" },
+              { name: "Sangwhan Moon",
+                company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
+              { name: "Matt Brubeck",
+                company: "Mozilla", companyURL: "http://www.mozilla.org/" },
           ],
 
           // authors, add as many as you like. 
@@ -76,19 +80,26 @@
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
       };
     </script>
+    
+    <style>
+      .event {
+        font-family: monospace;
+        color: #459900;
+      }
+    </style>
   </head>
   <body>
     <section id='abstract'>
-      The Touch Interface specification defines a set of low-level events that represent one or more points of contact with a touch-sensitive surface, and changes of those points with respect to the surface and any DOM elements displayed upon it (e.g. for touch screens) or associated with it (e.g. for drawing tablets without displays).
+      The Touch Interface specification defines a set of low-level events that represent one or more points of contact with a touch-sensitive surface, and changes of those points with respect to the surface and any DOM elements displayed upon it (e.g. for touch screens) or associated with it (e.g. for drawing tablets without displays).  It also addresses pen-tablet devices, such as drawing tablets, with consideration toward stylus capabilities.
     </section>
 
     
     <section>
-      <h2><dfn>TouchPoint</dfn> Interface</h2>
+      <h2><a>TouchPoint</a> Interface</h2>
       <p>This interface defines an individual point of contact for a touch event.</p>
        
       <dl title='interface TouchPoint' class='idl'>
-        <dt>readonly attribute float identifier</dt>
+        <dt>readonly attribute long identifier</dt>
         <dd>
           an identification number unique to each touch point, per session
         </dd>
@@ -97,47 +108,51 @@
           the original proximal event target for this touch point 
         </dd>
 
-        <dt>readonly attribute float screenX</dt>
+        <dt>readonly attribute long screenX</dt>
         <dd>
           x-coordinate of point relative to the screen
         </dd>
-        <dt>readonly attribute float screenY</dt>
+        <dt>readonly attribute long screenY</dt>
         <dd>
           y-coordinate of point relative to the screen
         </dd>
 
-        <dt>readonly attribute float clientX</dt>
+        <dt>readonly attribute long clientX</dt>
         <dd>
           x-coordinate of point relative to the viewport, excluding any scroll offset
         </dd>
-        <dt>readonly attribute float clientY</dt>
+        <dt>readonly attribute long clientY</dt>
         <dd>
           y-coordinate of point relative to the viewport, excluding any scroll offset
         </dd>
 
-        <dt>readonly attribute float pageX</dt>
+        <dt>readonly attribute long pageX</dt>
         <dd>
           x-coordinate of point relative to the viewport, including any scroll offset
         </dd>
-        <dt>readonly attribute float pageY</dt>
+        <dt>readonly attribute long pageY</dt>
         <dd>
           y-coordinate of point relative to the viewport, including any scroll offset
         </dd>
 
-        <dt>readonly attribute float radiusX</dt>
+        <dt>readonly attribute long radiusX</dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels of the same scale as <a>screenX</a>; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
         </dd>
-        <dt>readonly attribute float radiusY</dt>
+        <dt>readonly attribute long radiusY</dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the y-axis, in pixels; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the y-axis, in pixels of the same scale as <a>screenY</a>; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
         </dd>
 
         <dt>readonly attribute float force</dt>
         <dd>
-          a relative value of pressure applied, in the range <code>0</code> to <code>1</code>; <code>0</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+          a relative value of pressure applied, in the range <code>0</code> to <code>1</code>, where <code>0</code> is no pressure, and <code>1</code> is the highest level of pressure the touch device is capable of sensing; <code>0</code> if no value is known.  This attribute may not be available on all user agents or platforms.  In environments where <a>force</a> is available, the absolute pressure represented by the <a>force</a> attribute, and the sensitivity in levels of pressure, may vary.
         </dd>
 
+        <dt>readonly attribute boolean altKey</dt>
+        <dd>
+          <code>true</code> if the alt (Alternate) key modifier is activated; otherwise <code>false</code>
+        </dd>
         <dt>readonly attribute boolean ctrlKey</dt>
         <dd>
           <code>true</code> if the ctrl (Control) key modifier is activated; otherwise <code>false</code>
@@ -146,22 +161,18 @@
         <dd>
           <code>true</code> if the shift (Shift) key modifier is activated; otherwise <code>false</code>
         </dd>
-        <dt>readonly attribute boolean altKey</dt>
-        <dd>
-          <code>true</code> if the alt (Alternate) key modifier is activated; otherwise <code>false</code>
-        </dd>
       </dl>
       
       <p class="issue" id="issue-inkml"><strong>Issue:</strong> Consider aligning with "channels" and values from <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup Language (InkML)</a>.</p>
       
       <p class="issue" id="issue-timestamp"><strong>Issue:</strong> Should each touchpoint have its own timestamp?</p>
 
-      <p class="issue" id="issue-units"><strong>Issue:</strong> What are units of radiusX/radiusY?</p>
+      <p class="issue" id="issue-units"><strong>Issue:</strong> What are units of radiusX/radiusY?  CSS Pixels?</p>
     </section>
 
     
     <section>
-      <h2><dfn>TouchList</dfn> Interface</h2>
+      <h2><a>TouchList</a> Interface</h2>
       <p>This interface defines a list of individual points of contact for a touch event.</p>
        
       <dl title='interface TouchList' class='idl'>
@@ -169,38 +180,38 @@
         <dd>
           returns the number of touchpoints in the list
         </dd>
-        <dt>caller getter TouchPoint item(in unsigned long <dfn>index</dfn>)</dt>
+        <dt>caller getter <a>TouchPoint</a> item (in unsigned long <a>index</a>)</dt>
         <dd>
-          returns the touchpoint with index <dfn>index</dfn> from the list, sorted in order from latest to earliest
+          returns the touchpoint with index <a>index</a> from the list, sorted in order from latest to earliest
         </dd>
-        <dt>caller getter object identifiedPoint(in float <dfn>identifier</dfn>)</dt>
+        <dt>caller getter object identifiedPoint (in long <a>identifier</a>)</dt>
         <dd>
-          returns the first touchpoint with float <dfn>identifier</dfn> from the list
+          returns the first touchpoint with long <a>identifier</a> from the list
         </dd>
       </dl>
     </section>
 
     
     <section>
-      <h2>Touch Interface</h2>
-      <p>This interface defines the <dfn>touchstart</dfn>, <dfn>touchend</dfn>, <dfn>touchmove</dfn>, <dfn>touchenter</dfn>, <dfn>touchleave</dfn>, and <dfn>touchcancel</dfn> event types.</p>
+      <h2><a>TouchEvent</a> Interface</h2>
+      <p>This interface defines the <a>touchstart</a>, <a>touchend</a>, <a>touchmove</a>, <a>touchenter</a>, <a>touchleave</a>, and <a>touchcancel</a> event types.</p>
 
       <dl title='interface TouchEvent : UIEvent' class='idl'>
         <!-- <dt>readonly attribute views::AbstractView view</dt>
         <dd>
           The <code>view</code> attribute identifies the <code>AbstractView</code> from which the event was generated.
         </dd> -->
-        <dt>readonly attribute TouchList touches</dt>
+        <dt>readonly attribute <a>TouchList</a> touches</dt>
         <dd>
-          a list of <dfn>TouchPoint</dfn>s for every point of contact currently touching the surface
+          a list of <a>TouchPoint</a>s for every point of contact currently touching the surface
         </dd>
-        <dt>readonly attribute TouchList targetTouches</dt>
+        <dt>readonly attribute <a>TouchList</a> targetTouches</dt>
         <dd>
-          a list of <dfn>TouchPoint</dfn>s for every point of contact currently touching the surface, which started on the same target
+          a list of <a>TouchPoint</a>s for every point of contact currently touching the surface, which started on the same target
         </dd>
-        <dt>readonly attribute TouchList changedTouches</dt>
+        <dt>readonly attribute <a>TouchList</a> changedTouches</dt>
         <dd>
-          a list of <dfn>TouchPoint</dfn>s for every point of contact which contributed to the event
+          a list of <a>TouchPoint</a>s for every point of contact which contributed to the event
         </dd>
       </dl>
 
@@ -208,40 +219,40 @@
 
       
       <section>
-        <h3 id="event-touchstart">The <dfn>touchstart</dfn> event</h3>
+        <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn> event</h3>
         <p>A user agent must dispatch this event type when the user places a touch point on the touch surface.</p>
       </section>
       
       <section>
-        <h3 id="event-touchstart">The <dfn>touchend</dfn> event</h3>
+        <h3 id="event-touchend">The <dfn class="event">touchend</dfn> event</h3>
         <p>A user agent must dispatch this event type when the user removes a touch point from the touch surface.</p>
       </section>
       
       <section>
-        <h3 id="event-touchstart">The <dfn>touchmove</dfn> event</h3>
-        <p>A user agent must dispatch this event type when the user moves a touch point along the touch surface.</p>
+        <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
+        <p>A user agent must dispatch this event type when the user moves a touch point along the touch surface, even outside the interactive area of the <a>target</a> element.</p>
       </section>
       
       <section>
-        <h3 id="event-touchstart">The <dfn>touchenter</dfn> event</h3>
+        <h3 id="event-touchenter">The <dfn class="event">touchenter</dfn> event</h3>
         <p>A user agent must dispatch this event type when a touch point moves onto the interactive area defined by a DOM element on which it did not originate.  Events of this type must not bubble.</p>
       </section>
       
       <section>
-        <h3 id="event-touchstart">The <dfn>touchleave</dfn> event</h3>
+        <h3 id="event-touchleave">The <dfn class="event">touchleave</dfn> event</h3>
         <p>A user agent must dispatch this event type when a touch point moves off the interactive area defined by a DOM element.  Events of this type must not bubble.</p>
       </section>
       
       <section>
-        <h3 id="event-touchstart">The <dfn>touchcancel</dfn> event</h3>
-        <p>A user agent must dispatch this event type when the user places a more touch points on the touch surface than the device or implementation is configured to store, in which case the earliest touch point in the list must be removed.</p>
+        <h3 id="event-touchstart">The <dfn class="event">touchcancel</dfn> event</h3>
+        <p>A user agent must dispatch this event type when a <a>TouchPoint</a> has been disrupted in an implementation-specific manner, such as by moving outside the bounds of the UA window.  A user agent may also dispatch this event type when the user places more touch points on the touch surface than the device or implementation is configured to store, in which case the earliest touch point in the list should be removed.</p>
       </section>
     </section>
     
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
-        Many thanks to Robin Berjon for making our lives so much easier with his cool tool, Neil Roberts (SitePen) for his summary of WebKit touch events, and Peter-Paul Koch (PPK) for his writeups and suggestions.
+        Many thanks to the WebKit engineers for developing the model used as a basis for this spec, Neil Roberts (SitePen) for his summary of WebKit touch events, Peter-Paul Koch (PPK) for his writeups and suggestions, Robin Berjon for developing the <a href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js spec authoring tool</a>, and the WebEvents WG for their many contributions.</a>
       </p>
     </section>
   </body>
