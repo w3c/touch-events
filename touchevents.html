@@ -101,12 +101,25 @@
       <dl title='interface TouchPoint' class='idl'>
         <dt>readonly attribute long identifier</dt>
         <dd>
-          an identification number unique to each touch point, per session
+          An identification number for each touch point, unique to that touch point per session.
+          
+          <p>The algorithm for determining the <a>identifier</a> value is as follows:</p>
+          <ol>
+            <li>if there are no other <a>active touch event session</a>s, the value of <a>identifier</a> must be <code>0</code></li>
+            <li>if there is at least one <a>active touch event session</a>, the value of <a>identifier</a> must be the lowest integer not currently used by any active <a>TouchPoint</a> object in any <a>active touch event session</a></li>
+          </ol> 
         </dd>
         <dt>readonly attribute EventTarget target</dt>
         <dd>
           the original proximal event target for this touch point 
         </dd>
+        <dt>readonly attribute DOMTimeStamp timestamp</dt>
+        <dd>
+          The <a>timestamp</a> attribute represents the time when the <a>TouchPoint</a> was initiated and is represented as a DOMTimeStamp [[!DOM-LEVEL-3-CORE]].
+          <p class="issue" id="issue-timestamp-format"><strong>Issue:</strong> should we align to timestamp as defined in the <a href="http://dev.w3.org/geo/api/#timestamp">Geolocation API spec</a> (as above), or with the datetime as defined in the <a href="http://dev.w3.org/html5/spec/edits.html#attr-mod-datetime">HTML5 spec</a> (attribute DOMString dateTime, where datetime is a <a href="http://dev.w3.org/html5/spec/common-microsyntaxes.html#valid-global-date-and-time-string">valid global date and time string</a>), or to something else (see <a href="http://lists.w3.org/Archives/Public/www-dom/2010OctDec/0069.html">this thread on Event.timeStamp</a>)?</p>
+      
+          <p class="issue" id="issue-timestamp"><strong>Issue:</strong> Should each touchpoint have its own timestamp?  Or should we leave timestamps up to script authors?  My feeling is that having implicit timestamps may be useful in defining an author-defined gesture-like mapping between low-level and high-level events (e.g. a swipe vs. drag speed threshold expressed as the difference in timestamps)</p>
+        </dd>        
 
         <dt>readonly attribute long screenX</dt>
         <dd>
@@ -138,6 +151,7 @@
         <dt>readonly attribute long radiusX</dt>
         <dd>
           the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels of the same scale as <a>screenX</a>; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+          <p class="issue" id="issue-units"><strong>Issue:</strong> What are units of radiusX/radiusY?  CSS Pixels?</p>
         </dd>
         <dt>readonly attribute long radiusY</dt>
         <dd>
@@ -147,6 +161,8 @@
         <dt>readonly attribute float force</dt>
         <dd>
           a relative value of pressure applied, in the range <code>0</code> to <code>1</code>, where <code>0</code> is no pressure, and <code>1</code> is the highest level of pressure the touch device is capable of sensing; <code>0</code> if no value is known.  This attribute may not be available on all user agents or platforms.  In environments where <a>force</a> is available, the absolute pressure represented by the <a>force</a> attribute, and the sensitivity in levels of pressure, may vary.
+
+          <p class="issue" id="issue-inkml"><strong>Issue:</strong> Consider aligning with other "channels" and values from <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup Language (InkML)</a>, in addition to <a>force</a>, e.g. adding <a>angle</a>, <a>clientZ</a>, <a>rotation</a>, etc.</p>
         </dd>
 
         <dt>readonly attribute boolean altKey</dt>
@@ -163,11 +179,6 @@
         </dd>
       </dl>
       
-      <p class="issue" id="issue-inkml"><strong>Issue:</strong> Consider aligning with "channels" and values from <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup Language (InkML)</a>.</p>
-      
-      <p class="issue" id="issue-timestamp"><strong>Issue:</strong> Should each touchpoint have its own timestamp?</p>
-
-      <p class="issue" id="issue-units"><strong>Issue:</strong> What are units of radiusX/radiusY?  CSS Pixels?</p>
     </section>
 
     
@@ -247,6 +258,21 @@
         <h3 id="event-touchstart">The <dfn class="event">touchcancel</dfn> event</h3>
         <p>A user agent must dispatch this event type when a <a>TouchPoint</a> has been disrupted in an implementation-specific manner, such as by moving outside the bounds of the UA window.  A user agent may also dispatch this event type when the user places more touch points on the touch surface than the device or implementation is configured to store, in which case the earliest touch point in the list should be removed.</p>
       </section>
+    </section>
+    
+    <section>
+      <h2>Glossary</h2>
+      
+      <dl>
+        <dt><dfn>active touch event session</dfn></dt>
+        <dd>A conceptual state in which there is at least one instance of a <a>TouchEvent</a> event with at least one non-empty <a>TouchList</a>.
+          <!-- <pre class='example'>
+            
+          </pre> -->
+        </dd>
+        
+      </dl>
+      
     </section>
     
     <section class='appendix'>
