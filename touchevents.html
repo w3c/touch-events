@@ -247,6 +247,8 @@
       <section>
         <h3 id="event-touchenter">The <dfn class="event">touchenter</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves onto the interactive area defined by a DOM element on which it did not originate.  Events of this type must not bubble.</p>
+        
+        <p class="issue" id="issue-touchenter-reenter"><strong>Issue:</strong> it's not clear if a touchenter event can occur when a touch re-enters the target of the touch start. It seems to say 'no' (Matthew Schinckel)</p>
       </section>
       
       <section>
@@ -281,8 +283,10 @@
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
-        Many thanks to the WebKit engineers for developing the model used as a basis for this spec, Neil Roberts (SitePen) for his summary of WebKit touch events, Peter-Paul Koch (PPK) for his writeups and suggestions, Robin Berjon for developing the <a href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js spec authoring tool</a>, and the WebEvents WG for their many contributions.</a>
+        Many thanks to the WebKit engineers for developing the model used as a basis for this spec, Neil Roberts (SitePen) for his summary of WebKit touch events, Peter-Paul Koch (PPK) for his writeups and suggestions, Robin Berjon for developing the <a href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js spec authoring tool</a>, and the WebEvents WG for their many contributions</a>.
       </p>
+      
+      <p>Many others have made additional comments as the spec developed, which have led to steady improvements.  Among them are Matthew Schinckel, . If I inadvertently omitted your name, please let me know.</p>
     </section>
   </body>
 </html>
