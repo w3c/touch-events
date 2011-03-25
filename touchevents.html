@@ -107,11 +107,11 @@
           <ol>
             <li>if there are no other <a>active touch event session</a>s, the value of <a>identifier</a> must be <code>0</code></li>
             <li>if there is at least one <a>active touch event session</a>, the value of <a>identifier</a> must be the lowest integer not currently used by any active <a>TouchPoint</a> object in any <a>active touch event session</a></li>
-          </ol> 
+          </ol>
         </dd>
         <dt>readonly attribute EventTarget target</dt>
         <dd>
-          the original proximal event target for this <a>touch point</a> 
+          the original proximal event target for this <a>touch point</a>.  The target must be an <a>Element</a>.
         </dd>
         <dt>readonly attribute DOMTimeStamp timestamp</dt>
         <dd>
