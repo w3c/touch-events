@@ -3,7 +3,7 @@
   <head>
     <title>Touch Events Specification</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
-    <!-- 
+    <!--
       === NOTA BENE ===
       For the three scripts below, if your spec resides on dev.w3 you can check them
       out in the same tree and use relative links so that they'll work offline,
@@ -13,7 +13,7 @@
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:           "ED",
-          
+
           // the specification's short name, as in http://www.w3.org/TR/short-name/
           shortName:            "touch-events",
 
@@ -54,7 +54,7 @@
                 company: "Mozilla", companyURL: "http://www.mozilla.org/" },
           ],
 
-          // authors, add as many as you like. 
+          // authors, add as many as you like.
           // This is optional, uncomment if you have authors as well as editors.
           // only "name" is required. Same format as editors.
 
@@ -62,16 +62,16 @@
           //    { name: "Your Name", url: "http://example.org/",
           //      company: "Your Company", companyURL: "http://example.com/" },
           //],
-          
+
           // name of the WG
           wg:           "Web Events Working Group",
-          
+
           // URI of the public WG page
           wgURI:        "http://www.w3.org/2010/webevents/",
-          
+
           // name (with the @w3c.org) of the public mailing to which comments are due
           wgPublicList: "public-webevents",
-          
+
           // URI of the patent status for this WG, for Rec-track documents
           // !!!! IMPORTANT !!!!
           // This is important for Rec-track documents, do not copy a patent URI from a random
@@ -80,7 +80,7 @@
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
       };
     </script>
-    
+
     <style>
       .event {
         font-family: monospace;
@@ -93,16 +93,16 @@
       The Touch Interface specification defines a set of low-level events that represent one or more points of contact with a touch-sensitive surface, and changes of those points with respect to the surface and any DOM elements displayed upon it (e.g. for touch screens) or associated with it (e.g. for drawing tablets without displays).  It also addresses pen-tablet devices, such as drawing tablets, with consideration toward stylus capabilities.
     </section>
 
-    
+
     <section>
       <h2><a>TouchPoint</a> Interface</h2>
       <p>This interface defines an individual point of contact for a touch event.</p>
-       
+
       <dl title='interface TouchPoint' class='idl'>
         <dt>readonly attribute long identifier</dt>
         <dd>
           An identification number for each <a>touch point</a>, unique to that <a>touch point</a> per session.
-          
+
           <p>The algorithm for determining the <a>identifier</a> value is as follows:</p>
           <ol>
             <li>if there are no other <a>active touch event session</a>s, the value of <a>identifier</a> must be <code>0</code></li>
@@ -117,9 +117,9 @@
         <dd>
           The <a>timestamp</a> attribute represents the time when the <a>TouchPoint</a> was initiated and is represented as a DOMTimeStamp [[!DOM-LEVEL-3-CORE]].
           <p class="issue" id="issue-timestamp-format"><strong>Issue:</strong> should we align to timestamp as defined in the <a href="http://dev.w3.org/geo/api/#timestamp">Geolocation API spec</a> (as above), or with the datetime as defined in the <a href="http://dev.w3.org/html5/spec/edits.html#attr-mod-datetime">HTML5 spec</a> (attribute DOMString dateTime, where datetime is a <a href="http://dev.w3.org/html5/spec/common-microsyntaxes.html#valid-global-date-and-time-string">valid global date and time string</a>), or to something else (see <a href="http://lists.w3.org/Archives/Public/www-dom/2010OctDec/0069.html">this thread on Event.timeStamp</a>)?</p>
-      
+
           <p class="issue" id="issue-timestamp"><strong>Issue:</strong> Should each touchpoint have its own timestamp?  Or should we leave timestamps up to script authors?  My feeling is that having implicit timestamps may be useful in defining an author-defined gesture-like mapping between low-level and high-level events (e.g. a swipe vs. drag speed threshold expressed as the difference in timestamps)</p>
-        </dd>        
+        </dd>
 
         <dt>readonly attribute long screenX</dt>
         <dd>
@@ -177,7 +177,7 @@
         <dt>readonly attribute boolean metaKey</dt>
         <dd>
           <code>true</code> if the meta (Meta) key modifier is activated; otherwise <code>false</code>
-          
+
           <p class="issue" id="issue-units"><strong>Issue:</strong> Should a exception be mentioned for platforms/user agents that are missing meta key support?</p>
         </dd>
         <dt>readonly attribute boolean ctrlKey</dt>
@@ -189,14 +189,14 @@
           <code>true</code> if the shift (Shift) key modifier is activated; otherwise <code>false</code>
         </dd>
       </dl>
-      
+
     </section>
 
-    
+
     <section>
       <h2><a>TouchList</a> Interface</h2>
       <p>This interface defines a list of individual points of contact for a touch event.</p>
-       
+
       <dl title='interface TouchList' class='idl'>
         <dt>readonly attribute unsigned long length</dt>
         <dd>
@@ -213,16 +213,12 @@
       </dl>
     </section>
 
-    
+
     <section>
       <h2><a>TouchEvent</a> Interface</h2>
       <p>This interface defines the <a>touchstart</a>, <a>touchend</a>, <a>touchmove</a>, <a>touchenter</a>, <a>touchleave</a>, and <a>touchcancel</a> event types.</p>
 
       <dl title='interface TouchEvent : UIEvent' class='idl'>
-        <!-- <dt>readonly attribute views::AbstractView view</dt>
-        <dd>
-          The <code>view</code> attribute identifies the <code>AbstractView</code> from which the event was generated.
-        </dd> -->
         <dt>readonly attribute <a>TouchList</a> touches</dt>
         <dd>
           a list of <a>TouchPoint</a>s for every point of contact currently touching the surface
@@ -239,64 +235,63 @@
 
       <p class="issue" id="issue-preventDefault"><strong>Issue:</strong> define behavior of preventDefault() method.</p>
 
-      
+
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user places a <a>touch point</a> on the touch surface.</p>
       </section>
-      
+
       <section>
         <h3 id="event-touchend">The <dfn class="event">touchend</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user removes a <a>touch point</a> from the touch surface.</p>
       </section>
-      
+
       <section>
         <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user moves a <a>touch point</a> along the touch surface, even outside the interactive area of the <a>target</a> element.</p>
       </section>
-      
+
       <section>
         <h3 id="event-touchenter">The <dfn class="event">touchenter</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves onto the interactive area defined by a DOM element on which it did not originate.  Events of this type must not bubble.</p>
-        
+
         <p class="issue" id="issue-touchenter-reenter"><strong>Issue:</strong> it's not clear if a touchenter event can occur when a touch re-enters the target of the touch start. It seems to say 'no' (Matthew Schinckel)</p>
       </section>
-      
+
       <section>
         <h3 id="event-touchleave">The <dfn class="event">touchleave</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves off the interactive area defined by a DOM element.  Events of this type must not bubble.</p>
       </section>
-      
+
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchcancel</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when a <a>TouchPoint</a> has been disrupted in an implementation-specific manner, such as by moving outside the bounds of the UA window.  A user agent may also dispatch this event type when the user places more <a>touch point</a>s on the touch surface than the device or implementation is configured to store, in which case the earliest <a>TouchPoint</a> object in the <a>TouchList</a> should be removed.</p>
       </section>
     </section>
-    
+
     <section>
       <h2>Glossary</h2>
-      
+
       <dl>
         <dt><dfn>active touch event session</dfn></dt>
         <dd>A conceptual state in which there is at least one instance of a <a>TouchEvent</a> event with at least one non-empty <a>TouchList</a>.
           <!-- <pre class='example'>
-            
           </pre> -->
         </dd>
-        
+
         <dt><dfn>touch point</dfn></dt>
         <dd>The coordinate point at which a pointer (e.g finger or stylus) intersects the target surface of an interface.  This may apply to a finger touching a touch-screen, or an digital pen writing on a piece of paper.</dd>
-        
+
       </dl>
-      
+
     </section>
-    
+
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
         Many thanks to the WebKit engineers for developing the model used as a basis for this spec, Neil Roberts (SitePen) for his summary of WebKit touch events, Peter-Paul Koch (PPK) for his writeups and suggestions, Robin Berjon for developing the <a href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js spec authoring tool</a>, and the WebEvents WG for their many contributions</a>.
       </p>
-      
+
       <p>Many others have made additional comments as the spec developed, which have led to steady improvements.  Among them are Matthew Schinckel, . If I inadvertently omitted your name, please let me know.</p>
     </section>
   </body>
