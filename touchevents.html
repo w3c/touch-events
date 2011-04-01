@@ -22,7 +22,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-03-29",
+          publishDate:  "2011-04-01",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -164,7 +164,7 @@
 
         <dt>readonly attribute float rotationAngle</dt>
         <dd>
-          the angle (in degrees) that the ellipse described by <a>radiusX</a> and <a>radiusY</a> is rotated counter-clockwise about its center.  The value must be in the range (-90, 90].
+          the angle (in degrees) that the ellipse described by <a>radiusX</a> and <a>radiusY</a> is rotated counter-clockwise about its center.  The value must be in the range <code>[0, 90)</code>.  If the ellipse described by <a>radiusX</a> and <a>radiusY</a> is circular, then <a>rotationAngle</a> must be <code>0</code>.
         </dd>
 
         <dt>readonly attribute float force</dt>
