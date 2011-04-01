@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Touch Events: Touch area tests</title>
+  <meta name="viewport" content="width=device-width">
+  <script src="../testharness.js"></script>
+  <script>
+    setup({explicit_done: true});
+
+    function run() {
+      var target = document.getElementById("target");
+
+      on_event(target, "touchstart", function onTouchStart(ev) {
+        var t = ev.touches[0];
+
+        test(function() {
+          assert_true(t.rotationAngle >= 0 && t.rotationAngle < 90);
+        }, "rotationAngle must be in the range [0, 90).");
+
+        test(function() {
+          assert_true(t.radiusX != t.radiusY || t.rotationAngle == 0);
+        },
+        "If the ellipse described by radiusX and radiusY is circular, " +
+        "then rotationAngle must be 0.");
+
+        done();
+      });
+    }
+  </script>
+</head>
+<body onload="run()">
+  <h1>Touch area tests</h1>
+  <p id="target" style="background: yellow; padding: 2em;">
+    Touch this element to continue.
+  </p>
+  <div id="log"></div>
+</body>
+</html>
