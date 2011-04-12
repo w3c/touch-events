@@ -163,12 +163,12 @@
 
         <dt>readonly attribute long radiusX</dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels of the same scale as <a>screenX</a>; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the x-axis, in pixels of the same scale as <a>screenX</a>; <code>1</code> if no value is known.
           <p class="issue" id="issue-units"><strong>Issue:</strong> What are units of radiusX/radiusY?  CSS Pixels?</p>
         </dd>
         <dt>readonly attribute long radiusY</dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the y-axis, in pixels of the same scale as <a>screenY</a>; <code>1</code> if no value is known.  This attribute may not be available on all user agents or platforms.
+          the radius of the ellipse which most closely circumscribes the touching area (e.g. finger, stylus) along the y-axis, in pixels of the same scale as <a>screenY</a>; <code>1</code> if no value is known.
         </dd>
 
         <dt>readonly attribute float rotationAngle</dt>
@@ -178,7 +178,7 @@
 
         <dt>readonly attribute float force</dt>
         <dd>
-          a relative value of pressure applied, in the range <code>0</code> to <code>1</code>, where <code>0</code> is no pressure, and <code>1</code> is the highest level of pressure the touch device is capable of sensing; <code>0</code> if no value is known.  This attribute may not be available on all user agents or platforms.  In environments where <a>force</a> is available, the absolute pressure represented by the <a>force</a> attribute, and the sensitivity in levels of pressure, may vary.
+          a relative value of pressure applied, in the range <code>0</code> to <code>1</code>, where <code>0</code> is no pressure, and <code>1</code> is the highest level of pressure the touch device is capable of sensing; <code>0</code> if no value is known.  In environments where <a>force</a> is known, the absolute pressure represented by the <a>force</a> attribute, and the sensitivity in levels of pressure, may vary.
 
           <p class="issue" id="issue-inkml"><strong>Issue:</strong> Consider aligning with other "channels" and values from <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup Language (InkML)</a>, in addition to <a>force</a>, e.g. adding <a>angle</a>, <a>clientZ</a>, <a>rotation</a>, etc.</p>
         </dd>
