@@ -176,12 +176,16 @@
           <p>
             the angle (in degrees) that the ellipse described by <a>radiusX</a>
             and <a>radiusY</a> is rotated clockwise about its center;
-            <code>0</code> if no value is known.  The value must be in the
-            range <code>[0, 90)</code>.
+            <code>0</code> if no value is known.  The value must be greater
+            than or equal to <code>0</code> and less than <code>90</code>.
           </p>
           <p>
             If the ellipse described by <a>radiusX</a> and <a>radiusY</a> is
-            circular, then <a>rotationAngle</a> must be <code>0</code>.
+            circular, then <a>rotationAngle</a> has no effect.  The user agent
+            may use <code>0</code> as the value in this case, or it may use any
+            other value in the allowed range.  (For example, the user agent may
+            use the value from the previous touch event, to avoid sudden
+            changes in value.)
           </p>
         </dd>
 
