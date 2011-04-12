@@ -313,6 +313,17 @@
       </section>
     </section>
 
+    <section id="mouse-events">
+      <h2>Interaction with Mouse Events</h2>
+      <p>The user agent may dispatch both touch events and mouse events
+      [[!DOM-LEVEL-2-EVENTS]] in response to the same user input.  If the user
+      agent dispatches both touch events and mouse events in response to a
+      single user action, then the <a>touchstart</a> event type must be
+      dispatched before any mouse event types for that action.  The ordering of
+      any further touch events and mouse events is left to the implementation,
+      except as specified elsewhere.</p>
+    </section>
+
     <section>
       <h2>Glossary</h2>
 
