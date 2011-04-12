@@ -293,6 +293,8 @@
       <section>
         <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user moves a <a>touch point</a> along the touch surface, even outside the interactive area of the <a>target</a> element.</p>
+        <p>If the values of <a>radiusX</a>, <a>radiusY</a>, <a>rotationAngle</a>, or <a>force</a> are known, then the user agent also must dispatch this event type to indicate when any of these attributes of a <a>touch point</a> have changed.</p>
+        <p>Note that the rate at which the user agent sends <a>touchmove</a> events is implementation-defined, and may depend on hardware capabilities and other implementation details.</p>
       </section>
 
       <section>
