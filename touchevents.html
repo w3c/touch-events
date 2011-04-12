@@ -126,13 +126,6 @@
         <dd>
           the original proximal event target for this <a>touch point</a>.  The target must be an <a>Element</a>.
         </dd>
-        <dt>readonly attribute DOMTimeStamp timestamp</dt>
-        <dd>
-          The <a>timestamp</a> attribute represents the time when the <a>TouchPoint</a> was initiated and is represented as a DOMTimeStamp [[!DOM-LEVEL-3-CORE]].
-          <p class="issue" id="issue-timestamp-format"><strong>Issue:</strong> should we align to timestamp as defined in the <a href="http://dev.w3.org/geo/api/#timestamp">Geolocation API spec</a> (as above), or with the datetime as defined in the <a href="http://dev.w3.org/html5/spec/edits.html#attr-mod-datetime">HTML5 spec</a> (attribute DOMString dateTime, where datetime is a <a href="http://dev.w3.org/html5/spec/common-microsyntaxes.html#valid-global-date-and-time-string">valid global date and time string</a>), or to something else (see <a href="http://lists.w3.org/Archives/Public/www-dom/2010OctDec/0069.html">this thread on Event.timeStamp</a>)?</p>
-
-          <p class="issue" id="issue-timestamp"><strong>Issue:</strong> Should each touchpoint have its own timestamp?  Or should we leave timestamps up to script authors?  My feeling is that having implicit timestamps may be useful in defining an author-defined gesture-like mapping between low-level and high-level events (e.g. a swipe vs. drag speed threshold expressed as the difference in timestamps)</p>
-        </dd>
 
         <dt>readonly attribute long screenX</dt>
         <dd>
