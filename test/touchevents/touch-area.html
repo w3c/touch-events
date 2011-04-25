@@ -6,11 +6,17 @@
   <script src="../testharness.js"></script>
   <script>
     setup({explicit_done: true});
+    var test_click = async_test("Interaction with mouse events");
 
     function run() {
       var target = document.getElementById("target");
 
+      var touchstart_received = false;
+
       on_event(target, "touchstart", function onTouchStart(ev) {
+        touchstart_received = true;
+        test_click.done();
+
         var t = ev.touches[0];
 
         test(function() {
@@ -19,13 +25,32 @@
 
         done();
       });
+
+      on_event(target, "click", function onClick(ev) {
+        test_click.step(function() {
+          assert_true(touchstart_received,
+            "The touchstart event must be dispatched before any mouse " +
+            "events. (If this fails, it might mean that the user agent does " +
+            "not implement W3C touch events at all.)"
+          );
+        });
+        test_click.done();
+        done();
+      });
     }
   </script>
+  <style>
+    #target {
+      background: yellow;
+      border: 1px solid orange;
+      padding: 2em;
+    }
+  </style>
 </head>
 <body onload="run()">
   <h1>Touch area tests</h1>
-  <p id="target" style="background: yellow; padding: 2em;">
-    Touch this element to continue.
+  <p id="target">
+    Tap this element with one finger (or other pointing device).
   </p>
   <div id="log"></div>
 </body>
