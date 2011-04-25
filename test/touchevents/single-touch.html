@@ -22,19 +22,45 @@
         }, "TouchEvent target attributes are correct.");
 
         test(function() {
+          var attrs = ["altKey", "metaKey", "ctrlKey", "shiftKey"];
+          for (var i = 0; i < attrs.length; i++) {
+            assert_true(attrs[i] in ev);
+          }
+        }, "TouchEvent modifier key attributes are present.");
+
+        test(function() {
           assert_equals(ev.touches.length, 1, "One touch point.");
           assert_equals(ev.changedTouches.length, 1, "One changed touch point.");
           assert_equals(ev.targetTouches.length, 1, "One target touch point.");
         }, "TouchList lengths are correct.");
 
+        var t = ev.touches[0];
+        var ct = ev.changedTouches[0];
+        var tt = ev.targetTouches[0];
+
         test(function() {
-          var t = ev.touches[0];
+          assert_equals(t.identifier, ct.identifier, "touches and changedTouches match.");
+          assert_equals(t.identifier, tt.identifier, "touches and targetTouches match.");
+        }, "TouchLists contain the same TouchPoint.");
+
+        test(function() {
           assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
           assert_true(t.rotationAngle < 90, "rotationAngle must be > 90.");
 
           assert_true(t.radiusX > 0, "radiusX is positive.");
           assert_true(t.radiusY > 0, "radiusY is positive.");
-        }, "TouchPoint area attributes are correct");
+
+          assert_true(t.force >= 0, "force >= 0.");
+          assert_true(t.force <= 1, "force <= 1.");
+        }, "TouchPoint attribute values are valid");
+
+        test(function() {
+          var attrs = ["screenX", "screenY", "clientX", "clientY",
+                       "pageX", "pageY"];
+          for (var i = 0; i < attrs.length; i++) {
+            assert_true(attrs[i] in t);
+          }
+        }, "TouchPoint location attributes are present.");
 
         done();
       });
