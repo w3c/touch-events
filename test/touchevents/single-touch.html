@@ -20,12 +20,16 @@
           assert_equals(ev.touches.length, 1, "One touch point.");
           assert_equals(ev.changedTouches.length, 1, "One changed touch point.");
           assert_equals(ev.targetTouches.length, 1, "One target touch point.");
+        }, "TouchList lengths are correct.");
 
+        test(function() {
           var t = ev.touches[0];
           assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
           assert_true(t.rotationAngle < 90, "rotationAngle must be > 90.");
 
-        }, "touchstart event attributes are correct");
+          assert_true(t.radiusX > 0, "radiusX is positive.");
+          assert_true(t.radiusY > 0, "radiusY is positive.");
+        }, "TouchPoint area attributes are correct");
 
         done();
       });
