@@ -108,10 +108,10 @@
     </section>
 
     <section>
-      <h2><a>TouchPoint</a> Interface</h2>
+      <h2><a>Touch</a> Interface</h2>
       <p>This interface defines an individual point of contact for a touch event.</p>
 
-      <dl title='interface TouchPoint' class='idl'>
+      <dl title='interface Touch' class='idl'>
         <dt>readonly attribute long identifier</dt>
         <dd>
           An identification number for each <a>touch point</a>, unique to that <a>touch point</a> per session.
@@ -119,7 +119,7 @@
           <p>The algorithm for determining the <a>identifier</a> value is as follows:</p>
           <ol>
             <li>if there are no other <a>active touch event session</a>s, the value of <a>identifier</a> must be <code>0</code></li>
-            <li>if there is at least one <a>active touch event session</a>, the value of <a>identifier</a> must be the lowest integer not currently used by any active <a>TouchPoint</a> object in any <a>active touch event session</a></li>
+            <li>if there is at least one <a>active touch event session</a>, the value of <a>identifier</a> must be the lowest integer not currently used by any active <a>Touch</a> object in any <a>active touch event session</a></li>
           </ol>
         </dd>
         <dt>readonly attribute EventTarget target</dt>
@@ -200,15 +200,15 @@
       <dl title='interface TouchList' class='idl'>
         <dt>readonly attribute unsigned long length</dt>
         <dd>
-          returns the number of touchpoints in the list
+          returns the number of touches in the list
         </dd>
-        <dt>caller getter <a>TouchPoint</a> item (in unsigned long <a>index</a>)</dt>
+        <dt>caller getter <a>Touch</a> item (in unsigned long <a>index</a>)</dt>
         <dd>
-          returns the touchpoint with index <a>index</a> from the list, sorted in order from latest to earliest
+          returns the touches with index <a>index</a> from the list, sorted in order from latest to earliest
         </dd>
-        <dt>caller getter <a>TouchPoint</a> identifiedPoint (in long <a>identifier</a>)</dt>
+        <dt>caller getter <a>Touch</a> identifiedPoint (in long <a>identifier</a>)</dt>
         <dd>
-          returns the first touchpoint with long <a>identifier</a> from the list
+          returns the first touches with long <a>identifier</a> from the list
         </dd>
       </dl>
     </section>
@@ -221,15 +221,15 @@
       <dl title='interface TouchEvent : UIEvent' class='idl'>
         <dt>readonly attribute <a>TouchList</a> touches</dt>
         <dd>
-          a list of <a>TouchPoint</a>s for every point of contact currently touching the surface
+          a list of <a>Touch</a>es for every point of contact currently touching the surface
         </dd>
         <dt>readonly attribute <a>TouchList</a> targetTouches</dt>
         <dd>
-          a list of <a>TouchPoint</a>s for every point of contact currently touching the surface, which started on the same target
+          a list of <a>Touch</a>es for every point of contact currently touching the surface, which started on the same target
         </dd>
         <dt>readonly attribute <a>TouchList</a> changedTouches</dt>
         <dd>
-          a list of <a>TouchPoint</a>s for every point of contact which contributed to the event
+          a list of <a>Touch</a>es for every point of contact which contributed to the event
         </dd>
 
         <dt>readonly attribute boolean altKey</dt>
@@ -311,7 +311,7 @@
 
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchcancel</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a <a>TouchPoint</a> has been disrupted in an implementation-specific manner, such as a synchronous event or action originating from the UA canceling the touch, or the touch point leaving the document window into a non-document area which is capable of handling user interactions. (e.g. The UA's native user interface, plug-ins)  A user agent may also dispatch this event type when the user places more <a>touch point</a>s on the touch surface than the device or implementation is configured to store, in which case the earliest <a>TouchPoint</a> object in the <a>TouchList</a> should be removed.</p>
+        <p>A user agent must dispatch this event type to indicate when a touch point has been disrupted in an implementation-specific manner, such as a synchronous event or action originating from the UA canceling the touch, or the touch point leaving the document window into a non-document area which is capable of handling user interactions. (e.g. The UA's native user interface, plug-ins)  A user agent may also dispatch this event type when the user places more <a>touch point</a>s on the touch surface than the device or implementation is configured to store, in which case the earliest <a>Touch</a> object in the <a>TouchList</a> should be removed.</p>
       </section>
     </section>
 

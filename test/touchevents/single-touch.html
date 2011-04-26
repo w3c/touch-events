@@ -41,7 +41,7 @@
         test(function() {
           assert_equals(t.identifier, ct.identifier, "touches and changedTouches match.");
           assert_equals(t.identifier, tt.identifier, "touches and targetTouches match.");
-        }, "TouchLists contain the same TouchPoint.");
+        }, "TouchLists contain the same Touch.");
 
         test(function() {
           assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
@@ -52,7 +52,7 @@
 
           assert_true(t.force >= 0, "force >= 0.");
           assert_true(t.force <= 1, "force <= 1.");
-        }, "TouchPoint attribute values are valid");
+        }, "Touch attribute values are valid");
 
         test(function() {
           var attrs = ["screenX", "screenY", "clientX", "clientY",
@@ -60,7 +60,7 @@
           for (var i = 0; i < attrs.length; i++) {
             assert_true(attrs[i] in t);
           }
-        }, "TouchPoint location attributes are present.");
+        }, "Touch location attributes are present.");
 
         done();
       });
