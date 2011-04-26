@@ -39,6 +39,12 @@
         var tt = ev.targetTouches[0];
 
         test(function() {
+          assert_true(ev instanceof TouchEvent, "Event is a TouchEvent.");
+          assert_true(ev.touches instanceof TouchList, "touches is a TouchList");
+          assert_true(t instanceof Touch, "touches[0] is a Touch");
+        }, "Interface names are correct.");
+
+        test(function() {
           assert_equals(t.identifier, 0, "touches identifier is 0.");
           assert_equals(ct.identifier, 0, "changedTouches identifier is 0.");
           assert_equals(tt.identifier, 0, "targetTouches identifier is 0.");
