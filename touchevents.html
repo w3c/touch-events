@@ -359,9 +359,13 @@
       [[!DOM-LEVEL-2-EVENTS]] in response to the same user input.  If the user
       agent dispatches both touch events and mouse events in response to a
       single user action, then the <a>touchstart</a> event type must be
-      dispatched before any mouse event types for that action.  The ordering of
-      any further touch events and mouse events is left to the implementation,
-      except as specified elsewhere.</p>
+      dispatched before any mouse event types for that action.  If the
+      <a>preventDefault</a> method of the <a>touchstart</a> event is called,
+      then the user agent should not dispatch any mouse events for that
+      action.</p>
+
+      <p>The default actions and ordering of any further touch and mouse events
+      are implementation-defined, except as specified elsewhere.</p>
     </section>
 
     <section>
@@ -376,9 +380,7 @@
 
         <dt><dfn>touch point</dfn></dt>
         <dd>The coordinate point at which a pointer (e.g finger or stylus) intersects the target surface of an interface.  This may apply to a finger touching a touch-screen, or an digital pen writing on a piece of paper.</dd>
-
       </dl>
-
     </section>
 
     <section class='appendix'>
