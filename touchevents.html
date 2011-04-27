@@ -284,35 +284,65 @@
 
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when the user places a <a>touch point</a> on the touch surface.</p>
+        <p>A user agent must dispatch this event type to indicate when the user
+        places a <a>touch point</a> on the touch surface.</p>
       </section>
 
       <section>
         <h3 id="event-touchend">The <dfn class="event">touchend</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when the user removes a <a>touch point</a> from the touch surface, also including cases where the touch point physically leaves the touch surface, such as being dragged off of the screen.</p>
-        <p>The <a>touch point</a> or points that were removed must be included in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and must not be included in the <a>touches</a> and <a>targetTouches</a> attributes.</p>
+        <p>A user agent must dispatch this event type to indicate when the user
+        removes a <a>touch point</a> from the touch surface, also including
+        cases where the touch point physically leaves the touch surface, such
+        as being dragged off of the screen.</p>
+
+        <p>The <a>touch point</a> or points that were removed must be included
+        in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and
+        must not be included in the <a>touches</a> and <a>targetTouches</a>
+        attributes.</p>
       </section>
 
       <section>
         <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when the user moves a <a>touch point</a> along the touch surface, even outside the interactive area of the <a>target</a> element.</p>
-        <p>If the values of <a>radiusX</a>, <a>radiusY</a>, <a>rotationAngle</a>, or <a>force</a> are known, then the user agent also must dispatch this event type to indicate when any of these attributes of a <a>touch point</a> have changed.</p>
-        <p>Note that the rate at which the user agent sends <a>touchmove</a> events is implementation-defined, and may depend on hardware capabilities and other implementation details.</p>
+        <p>A user agent must dispatch this event type to indicate when the user
+        moves a <a>touch point</a> along the touch surface, even outside the
+        interactive area of the <a>target</a> element.</p>
+
+        <p>If the values of <a>radiusX</a>, <a>radiusY</a>,
+        <a>rotationAngle</a>, or <a>force</a> are known, then the user agent
+        also must dispatch this event type to indicate when any of these
+        attributes of a <a>touch point</a> have changed.</p>
+
+        <p>Note that the rate at which the user agent sends <a>touchmove</a>
+        events is implementation-defined, and may depend on hardware
+        capabilities and other implementation details.</p>
       </section>
 
       <section>
         <h3 id="event-touchenter">The <dfn class="event">touchenter</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves onto the interactive area defined by a DOM element.  Events of this type must not bubble.</p>
+        <p>A user agent must dispatch this event type to indicate when a
+        <a>touch point</a> moves onto the interactive area defined by a DOM
+        element.  Events of this type must not bubble.</p>
       </section>
 
       <section>
         <h3 id="event-touchleave">The <dfn class="event">touchleave</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a <a>touch point</a> moves off the interactive area defined by a DOM element.  Events of this type must not bubble.</p>
+        <p>A user agent must dispatch this event type to indicate when a
+        <a>touch point</a> moves off the interactive area defined by a DOM
+        element.  Events of this type must not bubble.</p>
       </section>
 
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchcancel</dfn> event</h3>
-        <p>A user agent must dispatch this event type to indicate when a touch point has been disrupted in an implementation-specific manner, such as a synchronous event or action originating from the UA canceling the touch, or the touch point leaving the document window into a non-document area which is capable of handling user interactions. (e.g. The UA's native user interface, plug-ins)  A user agent may also dispatch this event type when the user places more <a>touch point</a>s on the touch surface than the device or implementation is configured to store, in which case the earliest <a>Touch</a> object in the <a>TouchList</a> should be removed.</p>
+        <p>A user agent must dispatch this event type to indicate when a touch
+        point has been disrupted in an implementation-specific manner, such as
+        a synchronous event or action originating from the UA canceling the
+        touch, or the touch point leaving the document window into a
+        non-document area which is capable of handling user interactions. (e.g.
+        The UA's native user interface, plug-ins)  A user agent may also
+        dispatch this event type when the user places more <a>touch point</a>s
+        on the touch surface than the device or implementation is configured to
+        store, in which case the earliest <a>Touch</a> object in the
+        <a>TouchList</a> should be removed.</p>
       </section>
     </section>
 
