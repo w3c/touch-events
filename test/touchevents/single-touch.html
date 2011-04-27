@@ -20,6 +20,7 @@
       var touchmove_received = false;
       var touchend_received = false;
       var invalid_touchmove_received = false;
+      var touchstart_identifier;
 
       on_event(target0, "touchstart", function onTouchStart(ev) {
         ev.preventDefault();
@@ -66,6 +67,11 @@
           assert_equals(tt.identifier, 0, "targetTouches identifier is 0.");
         }, "Touch identifiers are correct.");
 
+        touchstart_identifier = t.identifier;
+        test(function() {
+          assert_equals(ev.touches.identifiedTouch(touchstart_identifier), t, "touches.identifiedTouch is correct.");
+        }, "identifiedTouch");
+
         test(function() {
           assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
           assert_true(t.rotationAngle < 90, "rotationAngle must be > 90.");
@@ -105,6 +111,12 @@
           assert_equals(ev.changedTouches.length, 1, "One changed touch point.");
           assert_equals(ev.targetTouches.length, 1, "One target touch point.");
         }, "touchmove TouchList lengths are correct.");
+
+        test(function() {
+          assert_equals(ev.touches[0].identifier, touchstart_identifier, "Touch identifier matches.");
+          assert_equals(ev.changedTouches[0].identifier, touchstart_identifier, "Changed touch identifier matches.");
+          assert_equals(ev.targetTouches[0].identifier, touchstart_identifier, "Target touch identifier matches.");
+        }, "touchmove identifier matches touchstart identifier.");
       });
 
       on_event(target1, "touchmove", function onTouchMove(ev) {
@@ -138,8 +150,8 @@
         var t = ev.changedTouches[0];
 
         test(function() {
-          assert_equals(t.identifier, 0, "changedTouches identifier is 0.");
-        }, "Touch identifier is correct.");
+          assert_equals(t.identifier, touchstart_identifier, "changedTouches identifier matches.");
+        }, "touchend identifier matches.");
 
         test(function() {
           assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
