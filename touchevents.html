@@ -290,6 +290,7 @@
       <section>
         <h3 id="event-touchend">The <dfn class="event">touchend</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user removes a <a>touch point</a> from the touch surface, also including cases where the touch point physically leaves the touch surface, such as being dragged off of the screen.</p>
+        <p>The <a>touch point</a> or points that were removed must be included in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and must not be included in the <a>touches</a> and <a>targetTouches</a> attributes.</p>
       </section>
 
       <section>
