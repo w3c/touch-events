@@ -22,7 +22,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-04-26",
+          publishDate:  "2011-04-27",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -121,10 +121,6 @@
             <li>if there are no other <a>active touch event session</a>s, the value of <a>identifier</a> must be <code>0</code></li>
             <li>if there is at least one <a>active touch event session</a>, the value of <a>identifier</a> must be the lowest integer not currently used by any active <a>Touch</a> object in any <a>active touch event session</a></li>
           </ol>
-        </dd>
-        <dt>readonly attribute EventTarget target</dt>
-        <dd>
-          the original proximal event target for this <a>touch point</a>.  The target must be an <a>Element</a>.
         </dd>
 
         <dt>readonly attribute long screenX</dt>
@@ -286,6 +282,8 @@
         <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user
         places a <a>touch point</a> on the touch surface.</p>
+
+        <p>The target of this event must be an <a>Element</a>.</p>
       </section>
 
       <section>
@@ -294,6 +292,11 @@
         removes a <a>touch point</a> from the touch surface, also including
         cases where the touch point physically leaves the touch surface, such
         as being dragged off of the screen.</p>
+
+        <p>The <a>target</a> of this event must be the same <a>Element</a> that
+        received the <a>touchstart</a> event when this <a>touch point</a> was
+        placed on the surface, even if the <a>touch point</a> has since moved
+        outside the interactive area of the <a>target</a> element.</p>
 
         <p>The <a>touch point</a> or points that were removed must be included
         in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and
@@ -304,8 +307,12 @@
       <section>
         <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
         <p>A user agent must dispatch this event type to indicate when the user
-        moves a <a>touch point</a> along the touch surface, even outside the
-        interactive area of the <a>target</a> element.</p>
+        moves a <a>touch point</a> along the touch surface.
+
+        <p>The <a>target</a> of this event must be the same <a>Element</a> that
+        received the <a>touchstart</a> event when this <a>touch point</a> was
+        placed on the surface, even if the <a>touch point</a> has since moved
+        outside the interactive area of the <a>target</a> element.</p>
 
         <p>If the values of <a>radiusX</a>, <a>radiusY</a>,
         <a>rotationAngle</a>, or <a>force</a> are known, then the user agent
