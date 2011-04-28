@@ -98,13 +98,11 @@
     </section>
 
     <section id='conformance'>
-
       <p>This specification defines conformance criteria that apply to a single product: the <dfn id="dfn-user-agent">user agent</dfn> that implements the interfaces that it contains. </p>
 
       <p>Implementations that use ECMAScript to implement the APIs defined in this specification must implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]] as this specification uses that specification and terminology.  </p>
 
       <p> A conforming implementation is required to implement all fields defined in this specification. </p>
-
     </section>
 
     <section>
@@ -185,9 +183,7 @@
           <p class="issue" id="issue-inkml"><strong>Issue:</strong> Consider aligning with other "channels" and values from <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup Language (InkML)</a>, in addition to <a>force</a>, e.g. adding <a>angle</a>, <a>clientZ</a>, <a>rotation</a>, etc.</p>
         </dd>
       </dl>
-
     </section>
-
 
     <section>
       <h2><a>TouchList</a> Interface</h2>
@@ -208,7 +204,6 @@
         </dd>
       </dl>
     </section>
-
 
     <section>
       <h2><a>TouchEvent</a> Interface</h2>
@@ -262,7 +257,7 @@
             <dt>DOMString type</dt> <dd></dd>
             <dt>boolean canBubble</dt> <dd></dd>
             <dt>boolean cancelable</dt> <dd></dd>
-            <dt>DOMWindow view</dt> <dd></dd>
+            <dt>AbstractView view</dt> <dd></dd>
             <dt>long detail</dt> <dd></dd>
             <dt>boolean ctrlKey</dt> <dd></dd>
             <dt>boolean altKey</dt> <dd></dd>
@@ -348,6 +343,49 @@
         store, in which case the earliest <a>Touch</a> object in the
         <a>TouchList</a> should be removed.</p>
       </section>
+    </section>
+
+    <section>
+      <h2><a>DocumentTouch</a> Interface</h2>
+      <p>The <a>DocumentTouch</a> interface provides a mechanism by which the user can create <a>Touch</a> and <a>TouchList</a> objects. The <a>DocumentTouch</a> interface must be implemented on the <a>Document</a> object.</p>
+
+      <dl title='interface DocumentTouch' class='idl'>
+        <dt>Touch createTouch()</dt>
+        <dd>
+          Creates a <a>Touch</a> object with the specified attributes.
+          <dl class='parameters'>
+            <dt>AbstractView view</dt> <dd></dd>
+            <dt>EventTarget target</dt> <dd></dd>
+            <dt>long identifier</dt> <dd></dd>
+            <dt>long pageX</dt> <dd></dd>
+            <dt>long pageY</dt> <dd></dd>
+            <dt>long screenX</dt> <dd></dd>
+            <dt>long screenY</dt> <dd></dd>
+            <dt>long clientX</dt> <dd></dd>
+            <dt>long clientY</dt> <dd></dd>
+            <dt>optional long radiusX</dt> <dd></dd>
+            <dt>optional long radiusY</dt> <dd></dd>
+            <dt>optional float rotationAngle</dt> <dd></dd>
+            <dt>optional float force</dt> <dd></dd>
+          </dl>
+        </dd>
+
+        <dt>TouchList createTouchList()</dt>
+        <dd>
+          Creates a <a>TouchList</a> object containing the specified <a>Touch</a> objects.
+          <dl class='parameters'>
+            <dt>Touch[] touches</dt> <dd></dd>
+          </dl>
+        </dd>
+
+        <dt>TouchList createTouchList()</dt>
+        <dd>
+          Creates a <a>TouchList</a> object containing a single <a>Touch</a>.
+          <dl class='parameters'>
+            <dt>Touch touch</dt> <dd></dd>
+          </dl>
+        </dd>
+      </dl>
     </section>
 
     <section id="mouse-events">
