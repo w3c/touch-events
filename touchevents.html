@@ -97,6 +97,16 @@
       The Touch Interface specification defines a set of low-level events that represent one or more points of contact with a touch-sensitive surface, and changes of those points with respect to the surface and any DOM elements displayed upon it (e.g. for touch screens) or associated with it (e.g. for drawing tablets without displays).  It also addresses pen-tablet devices, such as drawing tablets, with consideration toward stylus capabilities.
     </section>
 
+    <section id='introduction'>
+      <h2>Introduction</h2>
+      
+      <p>User Agents that run on terminals which provide touch input to use web applications typically use interpreted mouse events to allow the users to access interactive web applications. However, these interpreted events, being normalized data based on the physical touch input, tend to have limitations on delivering the exact intended user experience. Additionally, it is not possible to handle concurrent input regardless of the device capability, due the constraints of mouse events: both system level limitations, and legacy compatibility.</p>
+
+      <p>Meanwhile, native applications are capable of handling both cases with the provided system APIs.</p>
+
+      <p>The Touch Events specification provides a solution to this with a interface to allow web applications to directly handle touch events, and multiple touch points for capable devices.</p>
+    </section>
+
     <section id='conformance'>
 
       <p>This specification defines conformance criteria that apply to a single product: the <dfn id="dfn-user-agent">user agent</dfn> that implements the interfaces that it contains. </p>
