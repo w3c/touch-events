@@ -411,9 +411,9 @@
       agent dispatches both touch events and mouse events in response to a
       single user action, then the <a>touchstart</a> event type must be
       dispatched before any mouse event types for that action.  If the
-      <a>preventDefault</a> method of the <a>touchstart</a> event is called,
-      then the user agent should not dispatch any mouse events for that
-      action.</p>
+      <a>preventDefault</a> method of <a>touchstart</a> or <a>touchmove</a>
+      is called, the user agent should not dispatch any mouse event that
+      would be a consequential result of the the prevented touch event. </p>
 
       <p>The default actions and ordering of any further touch and mouse events
       are implementation-defined, except as specified elsewhere.</p>
