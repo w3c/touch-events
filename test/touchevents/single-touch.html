@@ -61,13 +61,12 @@
           assert_true(t instanceof Touch, "touches[0] is a Touch");
         }, "Interface names are correct.");
 
-        test(function() {
-          assert_equals(t.identifier, 0, "touches identifier is 0.");
-          assert_equals(ct.identifier, 0, "changedTouches identifier is 0.");
-          assert_equals(tt.identifier, 0, "targetTouches identifier is 0.");
-        }, "Touch identifiers are correct.");
-
         touchstart_identifier = t.identifier;
+        test(function() {
+          assert_equals(ct.identifier, touchstart_identifier, "changedTouches identifier matches.");
+          assert_equals(tt.identifier, touchstart_identifier, "targetTouches identifier matches.");
+        }, "Touch identifiers are consistent.");
+
         test(function() {
           assert_equals(ev.touches.identifiedTouch(touchstart_identifier), t, "touches.identifiedTouch is correct.");
         }, "identifiedTouch");

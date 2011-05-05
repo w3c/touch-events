@@ -160,25 +160,12 @@
       <dl title='interface Touch' class='idl'>
         <dt>readonly attribute long identifier</dt>
         <dd>
-          An identification number for each <a>touch point</a>, unique to that
-          <a>touch point</a> per session.
+          An identification number for each <a>touch point</a>.
 
-          <p>
-            The algorithm for determining the <a>identifier</a> value is as
-            follows:
-          </p>
-          <ol>
-            <li>
-              if there are no other <a>active touch event session</a>s, the
-              value of <a>identifier</a> must be <code>0</code>
-            </li>
-            <li>
-              if there is at least one <a>active touch event session</a>, the
-              value of <a>identifier</a> must be the lowest integer not
-              currently used by any active <a>Touch</a> object in any
-              <a>active touch event session</a>
-            </li>
-          </ol>
+          When a touch point becomes active, it must be assigned an
+          <a>identifier</a> that is distinct from any other <a>active touch
+          point</a>.  While the touch point remains active, all events that
+          refer to it must assign it the same <a>identifier</a>.
         </dd>
 
         <dt>readonly attribute long screenX</dt>
@@ -549,12 +536,14 @@
       <h2>Glossary</h2>
 
       <dl>
-        <dt><dfn>active touch event session</dfn></dt>
+        <dt><dfn>active touch point</dfn></dt>
         <dd>
-          A conceptual state in which there is at least one instance of a
-          <a>TouchEvent</a> event with at least one non-empty <a>TouchList</a>.
-          <!-- <pre class='example'>
-          </pre> -->
+          A <a>touch point</a> which is currently on the screen and is being
+          tracked by the user agent.  The touch point becomes active when the
+          user agent first dispatches a <a>touchstart</a> event indicating its
+          appearance.  It ceases to be active after the user agent dispatches a
+          <a>touchend</a> or <a>touchcancel</a> event indicating that the touch
+          point is removed from the surface or no longer tracked.
         </dd>
 
         <dt><dfn>touch point</dfn></dt>
