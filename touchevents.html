@@ -371,6 +371,13 @@
           point is within a frame, the event should be dispatched to an element
           in the <a>child browsing context</a> of that frame.
         </p>
+
+        <p>
+          If the <a>preventDefault</a> method is called on this event, it
+          should prevent any default actions caused by any touch events
+          associated with the same <a>active touch point</a>, including mouse
+          events or scrolling.
+        </p>
       </section>
 
       <section>
@@ -422,6 +429,13 @@
           Note that the rate at which the user agent sends <a>touchmove</a>
           events is implementation-defined, and may depend on hardware
           capabilities and other implementation details.
+        </p>
+
+        <p>
+          If the <a>preventDefault</a> method is called on the <em>first</em>
+          <a>touchmove</a> event of an <a>active touch point</a>, it should
+          prevent any default action caused by any <a>touchmove</a> event
+          associated with the same <a>active touch point</a>, such as scrolling.
         </p>
       </section>
 
