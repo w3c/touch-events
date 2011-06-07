@@ -367,7 +367,9 @@
         </p>
 
         <p>
-          The target of this event must be an <a>Element</a>.
+          The target of this event must be an <a>Element</a>.  If the touch
+          point is within a frame, the event should be dispatched to an element
+          in the <a>child browsing context</a> of that frame.
         </p>
       </section>
 
