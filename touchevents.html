@@ -296,13 +296,26 @@
         </dd>
         <dt>readonly attribute <a>TouchList</a> targetTouches</dt>
         <dd>
-          a list of <a>Touch</a>es for every point of contact currently
-          touching the surface, which started on the same target
+          a list of <a>Touch</a>es for every point of contact that is touching
+          the surface <em>and</em> started on the element that is the
+          <a>target</a> of the current event.
         </dd>
         <dt>readonly attribute <a>TouchList</a> changedTouches</dt>
         <dd>
-          a list of <a>Touch</a>es for every point of contact which contributed
-          to the event
+          <p>
+            a list of <a>Touch</a>es for every point of contact which contributed
+            to the event.
+          </p>
+          <p>
+            For the <a>touchstart</a> event this must be a list of the touch
+            points that just became active with the current event.  For the
+            <a>touchmove</a> event this must be a list of the touch points that
+            have moved since the last event.  For the <a>touchend</a> event
+            this must be a list of the touch points that have just been removed
+            from the surface.  For the <a>touchenter</a> and <a>touchleave</a>
+            events, this must be a list of the touch points that have just
+            entered or left the target element.
+          </p>
         </dd>
 
         <dt>readonly attribute boolean altKey</dt>
