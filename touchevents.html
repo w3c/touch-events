@@ -548,12 +548,13 @@
       </p>
 
       <p>
-        If the user agent dispatches a <a>click</a> event in response to touch
-        input, the <a>click</a> event should be dispatched after the
-        <a>touchstart</a> and <a>touchend</a> events for the corresponding
-        touch point.  If the contents of the document change during processing
-        of the touch events, then the user agent may dispatch the <a>click</a>
-        event to a different target than the touch events.
+        If the user agent intreprets a sequence of touch events as a click,
+        then it should dispatch <a>mousemove</a>, <a>mousedown</a>,
+        <a>mouseup</a>, and <a>click</a> events (in that order) at the location
+        of the <a>touchend</a> event for the corresponding touch input.  If the
+        contents of the document have changed during processing of the touch
+        events, then the user agent may dispatch the mouse events to a
+        different target than the touch events.
       </p>
 
       <p>
