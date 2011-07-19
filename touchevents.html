@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-05-05",
+          publishDate:  "2011-07-19",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -51,7 +51,7 @@
                 company: "W3C", companyURL: "http://w3.org/" },
               { name: "Sangwhan Moon",
                 company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
-              { name: "Matt Brubeck",
+              { name: "Matt Brubeck", url: "http://limpet.net/mbrubeck/",
                 company: "Mozilla", companyURL: "http://www.mozilla.org/" },
           ],
 
@@ -545,6 +545,15 @@
         <a>preventDefault</a> method of <a>touchstart</a> or <a>touchmove</a>
         is called, the user agent should not dispatch any mouse event that
         would be a consequential result of the the prevented touch event.
+      </p>
+
+      <p>
+        If the user agent dispatches a <a>click</a> event in response to touch
+        input, the <a>click</a> event should be dispatched after the
+        <a>touchstart</a> and <a>touchend</a> events for the corresponding
+        touch point.  If the contents of the document change during processing
+        of the touch events, then the user agent may dispatch the <a>click</a>
+        event to a different target than the touch events.
       </p>
 
       <p>
