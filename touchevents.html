@@ -370,6 +370,106 @@
           </dl>
         </dd>
       </dl>
+      
+      <section class="informative">
+          <h2>Usage Examples</h2>
+          
+          <p>
+            The examples below demonstrate the relations between the different
+            <a>TouchList</a> members defined in a <a>TouchEvent</a>.
+          </p>
+          
+          <section>
+              <h3>touches and targetTouches of a <a>TouchEvent</a></h3>
+              
+              <p>
+                This example demonstrates the utility and relations between the
+                touches and targetTouches members defined in the <a>TouchEvent</a>
+                interface. The following code will generate different output based
+                on the number of touch points on the touchable element and the document:
+              </p>
+      
+              <pre class="example">
+                  &lt;div id='touchable'&gt;
+                      This element is touchable.
+                  &lt;/div&gt;
+          
+                  document.getElementById('touchable').addEventListener('touchstart', function(ev) {
+
+                      if (ev.touches.item(0) == ev.targetTouches.item(0))
+                      {
+                          /**
+                           * If the first touch on the surface is also targeting the
+                           * "touchable" element, the code below should execute.
+                           * Since targetTouches is a subset of touches which covers the
+                           * entire surface, TouchEvent.touches >= TouchEvents.targetTouches
+                           * is always true.
+                           */
+
+                          document.write('Hello Touch Events!');
+                      }
+
+                      if (ev.touches.length == ev.targetTouches.length)
+                      {
+                          /**
+                           * If all of the active touch points are on the "touchable"
+                           * element, the length properties should be the same.
+                           */
+
+                          document.write('All points are on target element')
+                      }
+
+                      if (ev.touches.length > 1)
+                      {
+                          /**
+                           * On a single touch input device, there can only be one point
+                           * of contact on the surface, so the following code can only
+                           * execute when the terminal supports multiple touches.
+                           */
+
+                          document.write('Hello Multiple Touch!');
+                      }
+
+                  }, false);
+              </pre>
+          </section>
+          
+          <section>
+              <h3>changedTouches of a <a>TouchEvent</a></h3>
+              
+              <p>
+                This example demonstrates the utility of changedTouches and it's relation
+                with the other <a>TouchList</a> members of the <a>TouchEvent</a> interface.
+                The code is a example which triggers whenever a touch point is removed
+                from the defined touchable element:
+              </p>
+              
+              <pre class="example">
+                  &lt;div id='touchable'&gt;
+                      This element is touchable.
+                  &lt;/div&gt;
+              
+                  document.getElementById('touchable').addEventListener('touchend', function(ev) {
+
+                      /**
+                       * Example output when three touch points are on the surface,
+                       * two of them being on the "touchable" element and one point
+                       * in the "touchable" element is lifted from the surface:
+                       *
+                       * Touch points removed: 1
+                       * Touch points left on element: 1
+                       * Touch points left on document: 2
+                       */
+
+                      document.write('Removed: ' + ev.changedTouches.length);
+                      document.write('Remaining on element: ' + ev.targetTouches.length);
+                      document.write('Remaining on document: ' + ev.touches.length);
+
+                  }, false);
+              </pre>
+          </section>
+              
+      </section>
 
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn>
