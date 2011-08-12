@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-08-11",
+          publishDate:  "2011-08-12",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -95,7 +95,7 @@
   </head>
   <body>
     <section id='abstract'>
-      The Touch Interface specification defines a set of low-level events that
+      The Touch Events specification defines a set of low-level events that
       represent one or more points of contact with a touch-sensitive surface,
       and changes of those points with respect to the surface and any DOM
       elements displayed upon it (e.g. for touch screens) or associated with it
@@ -267,15 +267,13 @@
         <dd>
           returns the number of <a>Touch</a>es in the list
         </dd>
-        <dt>getter <a>Touch</a> item (in unsigned long <a>index</a>)</dt>
+        <dt>getter <a>Touch</a> item (in unsigned long index)</dt>
         <dd>
-          returns the <a>Touch</a> with index <a>index</a> from the list,
-          sorted in order from latest to earliest
+          returns the <a>Touch</a> at the specified index in the list
         </dd>
-        <dt><a>Touch</a> identifiedTouch (in long <a>identifier</a>)</dt>
+        <dt><a>Touch</a> identifiedTouch (in long identifier)</dt>
         <dd>
-          returns the first <a>Touch</a> with long <a>identifier</a> from the
-          list
+          returns the first <a>Touch</a> item in the list whose <a>identifier</a> property matches the specified identifier
         </dd>
       </dl>
     </section>
