@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-08-12",
+          publishDate:  "2011-09-02",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -154,7 +154,8 @@
       <h2><a>Touch</a> Interface</h2>
       <p>
         This interface defines an individual point of contact for a touch
-        event.
+        event.  <a>Touch</a> objects are immutable; after one is created, its
+        attributes must not change.
       </p>
 
       <dl title='interface Touch' class='idl'>
@@ -259,7 +260,8 @@
       <h2><a>TouchList</a> Interface</h2>
       <p>
         This interface defines a list of individual points of contact for a
-        touch event.
+        touch event.  <a>TouchList</a> objects are immutable; after one is
+        created, its contents must not change.
       </p>
 
       <dl title='interface TouchList' class='idl'>
@@ -283,7 +285,9 @@
       <p>
         This interface defines the <a>touchstart</a>, <a>touchend</a>,
         <a>touchmove</a>, <a>touchenter</a>, <a>touchleave</a>, and
-        <a>touchcancel</a> event types.
+        <a>touchcancel</a> event types.  <a>TouchEvent</a> objects are
+        immutable; after one is created and initialized, its attributes must
+        not change.
       </p>
 
       <dl title='interface TouchEvent : UIEvent' class='idl'>
