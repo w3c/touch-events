@@ -168,7 +168,7 @@
 
         <dt>readonly attribute long index</dt>
         <dd>
-          The index of the gamepad in the <a>DocumentGamepads</a>.
+          The index of the gamepad in the <a>Document</a>.
 
           When multiple gamepads are connected to a <a>user agent</a>,
           indices MUST be assigned on a first-come, first-serve basis,
@@ -248,18 +248,17 @@
     </section>
 
     <section>
-      <h2><a>DocumentGamepads</a> Interface</h2>
+      <h2><a>Document</a> Interface extension</h2>
 
       <p>
 
-        This interface defines a collection of Gamepads. The
-        <a>DocumentGamepads</a> interface MUST be implemented on the
-        <a>Document</a> object.
+        This partial interface defines an extension to the <a>Document</a>
+        interface.
 
       </p>
 
 
-      <dl title='interface DocumentGamepads' class='idl'>
+      <dl title='partial interface Document' class='idl'>
         <dt>readonly attribute Gamepad[] gamepads</dt>
 
         <dd>
