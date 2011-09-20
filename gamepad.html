@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Joystick</title>
+    <title>Gamepad</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
     <meta name="viewport" content="width=device-width">
     <!--
@@ -93,20 +93,20 @@
   </head>
   <body>
     <section id='abstract'>
-      The Joystick specification defines a low-level interface that represents
-      joystick devices (also known as game pads).
+      The Gamepad specification defines a low-level interface that represents
+      gamepad devices (also known as joysticks).
     </section>
 
     <section id='introduction' class='informative'>
 
       <h2>Introduction</h2>
 
-      <p>Some <a>user agent</a>s have connected joystick devices (also known
+      <p>Some <a>user agent</a>s have connected gamepad devices (also known
       as gamepads). These devices are desirable and suited to input for gaming
       applications, and for &quot;10 foot&quot; user interfaces
       (presentations, media viewers).</p>
 
-      <p>Currently, the only way for a joystick to be used as input would be
+      <p>Currently, the only way for a gamepad to be used as input would be
       to emulate mouse or keyboard events, however this would lose information
       and require additional software outside of the <a>user agent</a> to
       accomplish emulation.</p>
@@ -114,8 +114,8 @@
       <p>Meanwhile, native applications are capable of accessing these devices
       via system APIs.</p>
 
-      <p>The Joystick API provides a solution to this problem by specifying
-      interfaces that allow web applications to directly act on joystick
+      <p>The Gamepad API provides a solution to this problem by specifying
+      interfaces that allow web applications to directly act on gamepad
       data.</p>
 
       <p>This specification references interfaces from a number of other
@@ -150,32 +150,32 @@
     </section>
 
     <section>
-      <h2><a>Joystick</a> Interface</h2>
+      <h2><a>Gamepad</a> Interface</h2>
       <p>
-        This interface defines an individual joystick device.
+        This interface defines an individual gamepad device.
       </p>
 
-      <dl title='interface Joystick' class='idl'>
+      <dl title='interface Gamepad' class='idl'>
 
         <dt>readonly attribute string id</dt>
         <dd>
-          An identification string for the joystick.
+          An identification string for the gamepad.
 
-          This string identifies the brand or style of connected joystick
+          This string identifies the brand or style of connected gamepad
           device. Typically, this will include the USB vendor and a product
           ID.
         </dd>
 
         <dt>readonly attribute long index</dt>
         <dd>
-          The index of the joystick in the <a>DocumentJoysticks</a>.
+          The index of the gamepad in the <a>DocumentGamepads</a>.
 
-          When multiple joysticks are connected to a <a>user agent</a>,
+          When multiple gamepads are connected to a <a>user agent</a>,
           indices MUST be assigned on a first-come, first-serve basis,
-          starting at zero. If a joystick is disconnected, previously assigned
-          indices MUST NOT be reassigned to joysticks that continue to be
-          connected. However, if a joystick is disconnected, and subsequently
-          the same or a different joystick is then connected, index entries
+          starting at zero. If a gamepad is disconnected, previously assigned
+          indices MUST NOT be reassigned to gamepads that continue to be
+          connected. However, if a gamepad is disconnected, and subsequently
+          the same or a different gamepad is then connected, index entries
           MUST be reused.
 
         </dd>
@@ -183,7 +183,7 @@
         <dt>readonly attribute DOMTimeStamp timestamp</dt>
 
         <dd>
-          Last time the data for this joystick was updated.
+          Last time the data for this gamepad was updated.
 
           Timestamp is a monotonically increasing value that allows the author
           to determine if the <code>axes</code> and <code>button</code> data
@@ -195,7 +195,7 @@
         <dt>readonly attribute float[] axes</dt>
         <dd>
 
-          Array of values for all axes of the joystick.
+          Array of values for all axes of the gamepad.
 
           All axis values MUST be linearly normalized to the range [-1.0 ..
           1.0]. As appropriate, -1.0 SHOULD correspond to "up" or "left", and
@@ -212,7 +212,7 @@
 
         <dt>readonly attribute float[] buttons</dt>
         <dd>
-          Array of values for all buttons of the joystick.
+          Array of values for all buttons of the gamepad.
 
           All button values MUST be linearly normalized to the range [0.0 ..
           1.0]. 0.0 MUST mean fully unpressed, and 1.0 MUST mean fully
@@ -248,25 +248,25 @@
     </section>
 
     <section>
-      <h2><a>DocumentJoysticks</a> Interface</h2>
+      <h2><a>DocumentGamepads</a> Interface</h2>
 
       <p>
 
-        This interface defines a collection of Joysticks. The
-        <a>DocumentJoysticks</a> interface MUST be implemented on the
+        This interface defines a collection of Gamepads. The
+        <a>DocumentGamepads</a> interface MUST be implemented on the
         <a>Document</a> object.
 
       </p>
 
 
-      <dl title='interface DocumentJoysticks' class='idl'>
-        <dt>readonly attribute Joystick[] joysticks</dt>
+      <dl title='interface DocumentGamepads' class='idl'>
+        <dt>readonly attribute Gamepad[] gamepads</dt>
 
         <dd>
 
-          The currently connected and interacted-with joysticks.
+          The currently connected and interacted-with gamepads.
 
-          Joysticks MUST only appear in the list if they are currently
+          Gamepads MUST only appear in the list if they are currently
           connected to the <a>user agent</a>, and have been interacted with by
           the user. Otherwise, they MUST not appear in the list to avoid a
           malicious page from fingerprinting the user based on connected
@@ -278,15 +278,15 @@
     </section>
 
     <section>
-      <h2><a>JoystickEvent</a> Interface</h2>
+      <h2><a>GamepadEvent</a> Interface</h2>
 
-      <dl title='interface JoystickEvent' class='idl'>
-        <dt>readonly attribute Joystick joystick</dt>
+      <dl title='interface GamepadEvent' class='idl'>
+        <dt>readonly attribute Gamepad gamepad</dt>
 
         <dd>
 
-            The single joystick attribute provides access to the associated
-            joystick data for this event.
+            The single gamepad attribute provides access to the associated
+            gamepad data for this event.
 
         </dd>
 
@@ -299,7 +299,7 @@
           
           <p>
 
-            The example below demonstrates typical access to joysticks. Note
+            The example below demonstrates typical access to gamepads. Note
             the relationship with the <a>WindowAnimationTiming</a>
             [[!ANIMATION-TIMING]] interface.
           </p>
@@ -311,9 +311,9 @@ function runAnimation()
 {
     window.requestAnimationFrame(runAnimation);
 
-    for (var i = 0; i < document.joysticks.length; ++i)
+    for (var i = 0; i < document.gamepads.length; ++i)
     {
-        var joy = document.joysticks[i];
+        var joy = document.gamepads[i];
         // todo; simple demo of displaying joy.axes and joy.buttons
     }
 }
@@ -331,11 +331,11 @@ window.requestAnimationFrame(runAnimation);
 
               Interactive applications will typically be using the
               <a>WindowAnimationTiming</a> interface to drive animation, and
-              will want coordinate animation with user joystick input. As
-              such, the joystick data should be polled as closely as possible
+              will want coordinate animation with user gamepad input. As
+              such, the gamepad data should be polled as closely as possible
               to immediately before the animation callbacks are executed, and
               with frequency matching that of the animation. That is, if the
-              animation callbacks are running at 60Hz, the joystick inputs
+              animation callbacks are running at 60Hz, the gamepad inputs
               should also be sampled at that rate.
 
               </p> 
@@ -346,13 +346,13 @@ window.requestAnimationFrame(runAnimation);
 
     <section>
 
-      <h3 id="event-joystickconnected">The <dfn class="event">joystickconnected</dfn> event</h3>
+      <h3 id="event-gamepadconnected">The <dfn class="event">gamepadconnected</dfn> event</h3>
 
         <p>
 
           A <a>user agent</a> MUST dispatch this event type to indicate the
-          user has connected a joystick. If a joystick was already connected
-          when the page was loaded, the <a>joystickconnected</a> event will be
+          user has connected a gamepad. If a gamepad was already connected
+          when the page was loaded, the <a>gamepadconnected</a> event will be
           dispatched when the user presses a button or moves an axis.
 
         </p>
@@ -361,13 +361,13 @@ window.requestAnimationFrame(runAnimation);
 
     <section>
 
-        <h3 id="event-joystickdisconnected">The <dfn class="event">joystickdisconnected</dfn> event</h3>
+        <h3 id="event-gamepaddisconnected">The <dfn class="event">gamepaddisconnected</dfn> event</h3>
 
         <p>
 
-          When a joystick is disconnected from the <a>user agent</a>, if the
+          When a gamepad is disconnected from the <a>user agent</a>, if the
           <a>user agent</a> has previously dispatched a
-          <a>joystickconnected</a> event, a <a>joystickdisconnected</a> event
+          <a>gamepadconnected</a> event, a <a>gamepaddisconnected</a> event
           MUST be dispatched.
 
         </p>
@@ -382,8 +382,8 @@ window.requestAnimationFrame(runAnimation);
 
         <i>More discussion needed, on whether to include or exclude axis and button
         changed events, and whether to roll them more together
-        (<code>joystickchanged</code>?), separate somewhat
-        (<code>joystickaxischanged</code>?), or separate by individual axis
+        (<code>gamepadchanged</code>?), separate somewhat
+        (<code>gamepadaxischanged</code>?), or separate by individual axis
         and button.</i>
 
         </p>
