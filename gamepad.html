@@ -150,6 +150,26 @@
     </section>
 
     <section>
+
+      <h2>Scope</h2>
+
+      <p>Interfacing with external devices designed to control games has the
+      potential to become large and intractable if approached in full
+      generality. In this specification we explicitly choose to narrow scope
+      to provide a useful subset of functionality that can be widely
+      implemented and broadly useful.</p>
+
+      <p>Specifically, we choose to only support two categories of input from
+      devices: buttons and axes. Both buttons and axes report analog values,
+      buttons ranging from [0..1], and axes ranging from [-1..1]. This allows
+      support for devices common to current gaming systems including gamepads,
+      directional pads, joysticks, wheels, pedals, accelerometers. It excludes
+      support for more complex devices that do motion sensing, depth sensing,
+      video analysis, gesture recognition, and so on.</p>
+
+    </section>
+
+    <section>
       <h2><a>Gamepad</a> Interface</h2>
       <p>
         This interface defines an individual gamepad device.
