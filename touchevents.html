@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-09-06",
+          publishDate:  "2011-09-22",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -499,15 +499,14 @@
     </section>
 
     <section>
-      <h2><a>DocumentTouch</a> Interface</h2>
+      <h2>Extensions to the <a>Document</a> Interface</h2>
       <p>
-        The <a>DocumentTouch</a> interface provides a mechanism by which the
-        user can create <a>Touch</a> and <a>TouchList</a> objects. The
-        <a>DocumentTouch</a> interface must be implemented on the
-        <a>Document</a> object.
+        The <a>Document</a> interface [[!DOM-LEVEL-3-CORE]] contains methods
+        by which the user can create <a>Touch</a> and <a>TouchList</a>
+        objects.
       </p>
 
-      <dl title='interface DocumentTouch' class='idl'>
+      <dl title='partial interface Document' class='idl'>
         <dt>Touch createTouch()</dt>
         <dd>
           Creates a <a>Touch</a> object with the specified attributes.
