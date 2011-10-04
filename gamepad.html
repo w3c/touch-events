@@ -122,7 +122,7 @@
       specifications:</p>
 
       <ul>
-      <li><a class="externalDFN">Document</a> [[!DOM-LEVEL-3-CORE]]</li>
+      <li><a class="externalDFN">Navigator</a> [[!NAVIGATOR]]</li>
       <li><a class="externalDFN">DOMTimeStamp</a> [[!WEBIDL]]</li>
       <li><a class="externalDFN">WindowAnimationTiming</a> [[ANIMATION-TIMING]]</li>
       </ul>
@@ -188,7 +188,7 @@
 
         <dt>readonly attribute long index</dt>
         <dd>
-          The index of the gamepad in the <a>Document</a>.
+          The index of the gamepad in the <a>Navigator</a>.
 
           When multiple gamepads are connected to a <a>user agent</a>,
           indices MUST be assigned on a first-come, first-serve basis,
@@ -268,17 +268,17 @@
     </section>
 
     <section>
-      <h2><a>Document</a> Interface extension</h2>
+      <h2><a>Navigator</a> Interface extension</h2>
 
       <p>
 
-        This partial interface defines an extension to the <a>Document</a>
+        This partial interface defines an extension to the <a>Navigator</a>
         interface.
 
       </p>
 
 
-      <dl title='partial interface Document' class='idl'>
+      <dl title='partial interface Navigator' class='idl'>
         <dt>readonly attribute Gamepad[] gamepads</dt>
 
         <dd>
@@ -330,9 +330,9 @@ function runAnimation()
 {
     window.requestAnimationFrame(runAnimation);
 
-    for (var i = 0; i < document.gamepads.length; ++i)
+    for (var i = 0; i < navigator.gamepads.length; ++i)
     {
-        var pad = document.gamepads[i];
+        var pad = navigator.gamepads[i];
         // todo; simple demo of displaying pad.axes and pad.buttons
     }
 }
