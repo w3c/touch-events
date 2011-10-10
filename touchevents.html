@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-10-05",
+          publishDate:  "2011-10-10",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -257,9 +257,9 @@
             For the <a>touchstart</a> event this must be a list of the touch
             points that just became active with the current event.  For the
             <a>touchmove</a> event this must be a list of the touch points that
-            have moved since the last event.  For the <a>touchend</a> event
-            this must be a list of the touch points that have just been removed
-            from the surface.
+            have moved since the last event.  For the <a>touchend</a> and 
+			<a>touchcancel</a> events this must be a list of the touch points 
+			that have just been removed from the surface.
           </p>
         </dd>
 
@@ -418,8 +418,8 @@
         </p>
 
         <p>
-          The <a>target</a> of this event must be the same <a>Element</a> that
-          received the <a>touchstart</a> event when this <a>touch point</a> was
+          The <a>target</a> of this event must be the same <a>Element</a> on 
+		  which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the <a>target</a> element.
         </p>
@@ -440,8 +440,8 @@
         </p>
 
         <p>
-          The <a>target</a> of this event must be the same <a>Element</a> that
-          received the <a>touchstart</a> event when this <a>touch point</a> was
+          The <a>target</a> of this event must be the same <a>Element</a> on 
+		  which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the <a>target</a> element.
         </p>
@@ -473,6 +473,20 @@
           point</a>s on the touch surface than the device or implementation is
           configured to store, in which case the earliest <a>Touch</a> object
           in the <a>TouchList</a> should be removed.
+        </p>
+
+        <p>
+          The <a>target</a> of this event must be the same <a>Element</a> on 
+		  which the <a>touch point</a> started when it was first
+          placed on the surface, even if the <a>touch point</a> has since moved
+          outside the interactive area of the <a>target</a> element.
+        </p>
+
+        <p>
+          The <a>touch point</a> or points that were removed must be included
+          in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and
+          must not be included in the <a>touches</a> and <a>targetTouches</a>
+          attributes.
         </p>
       </section>
     </section>
