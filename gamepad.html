@@ -94,17 +94,16 @@
   <body>
     <section id='abstract'>
       The Gamepad specification defines a low-level interface that represents
-      gamepad devices (also known as joysticks).
+      gamepad devices.
     </section>
 
     <section id='introduction' class='informative'>
 
       <h2>Introduction</h2>
 
-      <p>Some <a>user agent</a>s have connected gamepad devices (also known
-      as joysticks). These devices are desirable and suited to input for gaming
-      applications, and for &quot;10 foot&quot; user interfaces
-      (presentations, media viewers).</p>
+      <p>Some <a>user agent</a>s have connected gamepad devices. These devices
+      are desirable and suited to input for gaming applications, and for
+      &quot;10 foot&quot; user interfaces (presentations, media viewers).</p>
 
       <p>Currently, the only way for a gamepad to be used as input would be
       to emulate mouse or keyboard events, however this would lose information
@@ -159,13 +158,22 @@
       to provide a useful subset of functionality that can be widely
       implemented and broadly useful.</p>
 
-      <p>Specifically, we choose to only support two categories of input from
-      devices: buttons and axes. Both buttons and axes report analog values,
-      buttons ranging from [0..1], and axes ranging from [-1..1]. This allows
-      support for devices common to current gaming systems including gamepads,
-      directional pads, joysticks, wheels, pedals, accelerometers. It excludes
-      support for more complex devices that do motion sensing, depth sensing,
-      video analysis, gesture recognition, and so on.</p>
+      <p>Specifically, we choose to only support the functionality required to
+      support gamepads. Support for gamepads requires two input types: buttons
+      and axes. Both buttons and axes are reported as analog values, buttons
+      ranging from [0..1], and axes ranging from [-1..1].</p>
+      
+      <p>While the primary goal is support for gamepad devices, supporting
+      these two types of analog inputs allows support for other similar devices
+      common to current gaming systems including joysticks, driving wheels,
+      pedals, and accelerometers. As such, the name "gamepad" is exemplary
+      rather than trying to be a generic name for the entire set of devices
+      addressed by this specification.</p>
+      
+      <p>We specifically exclude support for more complex devices that may also
+      be used in some gaming contexts, including those that that do motion
+      sensing, depth sensing, video analysis, gesture recognition, and so
+      on.</p>
 
     </section>
 
