@@ -386,6 +386,82 @@
               
       </section>
 
+      <section class="informative">
+          <h2>List of <a>TouchEvent</a> types</h2>
+
+          <p>
+            The following table provides a summary of the types of possible
+            <a>TouchEvent</a> types defined in this specification. All events
+            should accomplish the bubbling phase. Some events are not cancelable
+            (see <a>preventDefault</a>).
+          </p>
+          
+          <!--
+          // FIXME: As of the time of writing, respec.js doesn't have support for
+          // tables like this - we're just piggybacking on a existing class, with
+          // raw markup as a quick and dirty workaround.
+          -->
+
+          <table class="parameters" id="table-event-summary" summary="This table 
+          contains the complete list of touch events defined in the Touch Events 
+          specification. The first column contains the local name of the event type. 
+          The second column indicates if the event accomplish the bubbling phase or
+           not (all events accomplish the capture and target phases). The third 
+           column indicates if the default action associated with the event can 
+           be canceled. The fourth column indicates the nodes that can be target 
+           of the event. the fifth (and last) column indicates the DOM interface 
+           implemented by the event object.">
+          <tr>
+              <th>Event Type</th>
+              <th>Sync / Async</th>
+              <th>Bubbling phase</th>
+              <th>Trusted proximal event target types</th>
+              <th>DOM interface</th>
+              <th>Cancelable</th>
+              <th>Default Action</th>
+          </tr>
+          <tr> 
+              <td><a>touchstart</a></td> 
+              <td>Sync</td> 
+              <td>Yes</td> 
+              <td><code>Document, Element</code></td> 
+              <td><a>TouchEvent</a></td> 
+              <td>Yes</td> 
+              <td>none</td> 
+          </tr>
+          <tr> 
+              <td><a>touchend</a></td> 
+              <td>Sync</td> 
+              <td>Yes</td> 
+              <td><code>Document, Element</code></td> 
+              <td><a>TouchEvent</a></td> 
+              <td>Yes</td> 
+              <td>
+                Varies: mousemove (If point has been moved), mousedown, 
+                mouseup, click
+              </td> 
+          </tr>
+          <tr> 
+              <td><a>touchmove</a></td> 
+              <td>Sync</td> 
+              <td>Yes</td> 
+              <td><code>Document, Element</code></td> 
+              <td><a>TouchEvent</a></td> 
+              <td>Yes</td> 
+              <td>none</td> 
+          </tr>
+          <tr> 
+              <td><a>touchcancel</a></td> 
+              <td>Sync</td> 
+              <td>Yes</td> 
+              <td><code>Document, Element</code></td> 
+              <td><a>TouchEvent</a></td> 
+              <td>No</td> 
+              <td>none</td> 
+          </tr>
+          </table>
+      </section>
+ 
       <section>
         <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn>
         event</h3>
