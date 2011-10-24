@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mouse Lock</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <meta name="viewport" content="width=device-width">
+    <!--
+      === NOTA BENE ===
+      For the three scripts below, if your spec resides on dev.w3 you can check them
+      out in the same tree and use relative links so that they'll work offline,
+     -->
+    <script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script>
+    <script class='remove'>
+      var respecConfig = {
+        // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+        specStatus:           "ED",
+
+        // the specification's short name, as in http://www.w3.org/TR/short-name/
+        shortName:            "mouse-lock",
+
+        // if your specification has a subtitle that goes below the main
+        // formal title, define it here
+        // subtitle   :  "an excellent document",
+
+        // if you wish the publication date to be other than today, set this
+        //publishDate:  "2011-01-01",
+
+        // if the specification's copyright date is a range of years, specify
+        // the start date here:
+        // copyrightStart: "2005"
+
+        // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+        // and its maturity status
+        // previousPublishDate:  "1977-03-15",
+        // previousMaturity:  "WD",
+
+        // if there a publicly available Editor's Draft, this is the link
+        edDraftURI:           "http://dvcs.w3.org/hg/webevents/raw-file/default/mouse-lock.html",
+
+        // if this is a LCWD, uncomment and set the end of its review period
+        // lcEnd: "2009-08-05",
+
+        // if you want to have extra CSS, append them to this list
+        // it is recommended that the respec.css stylesheet be kept
+        extraCSS:             ["http://www.w3.org/StyleSheets/TR/W3C-TR.css", "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
+
+        // editors, add as many as you like
+        // only "name" is required
+        editors:  [
+            { name: "Vincent Scheib", url: "http://www.scheib.net",
+        company: "Google", companyURL: "http://www.google.com/" },
+        ],
+
+        // authors, add as many as you like.
+        // This is optional, uncomment if you have authors as well as editors.
+        // only "name" is required. Same format as editors.
+
+        //authors:  [
+        //    { name: "Your Name", url: "http://example.org/",
+        //      company: "Your Company", companyURL: "http://example.com/" },
+        //],
+
+        // name of the WG
+        wg:           "Web Events Working Group",
+
+        // URI of the public WG page
+        wgURI:        "http://www.w3.org/2010/webevents/",
+
+        // name (with the @w3c.org) of the public mailing to which comments are due
+        wgPublicList: "public-webevents",
+
+        // URI of the patent status for this WG, for Rec-track documents
+        // !!!! IMPORTANT !!!!
+        // This is important for Rec-track documents, do not copy a patent URI from a random
+        // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+        // Team Contact.
+        wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
+      };
+    </script>
+
+    <style type="text/css">
+      .event {
+        font-family: monospace;
+        color: #459900;
+      }
+
+      pre.idl {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <section id='abstract'>
+      This specification defines an API that provides scripted access to raw
+      mouse movement data while locking the target of mouse events to a single
+      element and removing the cursor from view.  This is an essential input
+      mode for certain classes of applications, especially first person
+      perspective 3D applications and 3D modelling software.
+    </section>
+
+    <section id='introduction' class='informative'>
+
+      <h2>Introduction</h2>
+
+      <p>The Mouse Lock API provides for input methods of applications based on 
+      the movement of the mouse, not just the absolute position of a cursor.  A 
+      popular example is that of first person movement controls in three 
+      dimensional graphics applications such as games.  Movement of the mouse is 
+      interpreted for rotation of the view-port, there is no limit to how far 
+      movement can go, and no mouse cursor is displayed.</p>
+      
+      <p>Mouse Lock is related to Mouse Capture [MDCCAP].  Capture provides 
+      continued event delivery to a target element while a mouse is being 
+      dragged, but ceases when the mouse button is released.  Mouse Lock differs 
+      by being persistent, not limited by screen boundaries, sending events 
+      regardless of mouse button state, hiding the cursor, and not releasing 
+      until an API call or specific release gesture by the user.</p> 
+
+    </section>
+
+    <section id='conformance'>
+      <p>
+        This specification defines conformance criteria that apply to a single
+        product: the <dfn id="dfn-user-agent">user agent</dfn> that implements
+        the interfaces that it contains.
+      </p>
+
+      <p>
+        Implementations that use ECMAScript to implement the APIs defined in
+        this specification MUST implement them in a manner consistent with the
+        ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]] as
+        this specification uses that specification and terminology.
+      </p>
+
+      <p>
+        A conforming implementation is required to implement all fields
+        defined in this specification.
+      </p>
+    </section>
+
+    <section>
+      <h2><a>Document</a> Interface extension</h2>
+      <p>
+        The <a>Document</a> interface [[!DOM-LEVEL-3-CORE]] contains methods
+        providing the ability to enter, exit, and poll the state of mouse lock.
+      </p>
+
+      <dl title='partial interface Document' class='idl'>
+        <dt>void lockMouse()</dt>
+        <dd>
+          The <a>lockMouse</a>() method requests that the mouse be locked to a 
+          given DOM element <a>target</a>. It must immediately return. Two 
+          optional callback parameters provide asynchronous notification of 
+          success <a>successCallback</a> or failure <a>failureCallback</a> to 
+          acquire the locked state. The user agent must determine if mouse lock 
+          state will be entered and call the appropriate callback if it was 
+          provided. Because a user agent may prompt a user for permission to 
+          enter mouse lock the response must be asynchronous.
+          <dl class='parameters'>
+            <dt>in Element target</dt> <dd></dd>
+            <dt>in optional VoidCallback successCallback</dt> <dd></dd>
+            <dt>in optional VoidCallback failureCallback</dt> <dd></dd>
+          </dl>
+        </dd>
+      </dl>
+    </section>
+
+
+
+    <section class='appendix informative'>
+      <h2>Acknowledgements</h2>
+
+      <p>Many have made contributions to the discussions of this
+        specification:</p>
+
+      <ul>
+        <li>Adam Barth</li>
+        <li>Alexey Proskuryakov</li>
+        <li>Aryeh Gregor</li>
+        <li>Brandon Andrews</li>
+        <li>Glenn Maynard</li>
+        <li>Gregg Tavares</li>
+        <li>John Villar</li>
+        <li>Jonas Sicking</li>
+        <li>Klaas Heidstra</li>
+        <li>Olli Pettay</li>
+        <li>Robert O'Callahan</li>
+        <li>Tab Atkins Jr.</li>
+      </ul>
+
+      <p>Please let me know if I have inadvertently omitted your name.</p>
+    </section>
+  </body>
+</html>
