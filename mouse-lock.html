@@ -150,15 +150,17 @@
     </section>
 
     <section>
-      <h2><a>Document</a> Interface extension</h2>
+      <h2>Extensions to the <a>Document</a> Interface</h2>
       <p>
         The <a>Document</a> interface [[!DOM-LEVEL-3-CORE]] contains methods
         providing the ability to enter, exit, and poll the state of mouse lock.
       </p>
 
       <dl title='partial interface Document' class='idl'>
-        <dt>void <dfn>lockMouse</dfn>()</dt>
+        <dt>void lockMouse ()</dt>
         <dd>
+          <dfn title="lockMouse"></dfn>
+
           <p>The <code>lockMouse</code> method requests that the mouse be locked 
           to a given DOM element <code>target</code>. It must immediately
           return. Two optional callback parameters provide asynchronous 
@@ -169,22 +171,17 @@
           prompt a user for permission to enter mouse lock the response must be 
           asynchronous.</p>
 
-          <dl class='parameters'>
-            <dt>in Element target</dt> <dd></dd>
-            <dt>in optional VoidCallback successCallback</dt> <dd></dd>
-            <dt>in optional VoidCallback failureCallback</dt> <dd></dd>
-          </dl>
-
           <p>Mouse lock must succeed only if the window is in focus and the 
           user-agent is the active application of the operating system. The 
-          target element of <a>lockMouse</a>() need not be in focus.</p>
+          target element of <code>lockMouse</code> need not be in focus.</p>
 
           <p>Mouse lock must succeed only if the target element is in the DOM 
           tree. If the target element is removed from the DOM tree after mouse 
           lock is entered then mouse lock will be lost.</p>
 
           <p>If the mouse is already locked to the same element, a repeated 
-          call to lockMouse() will succeed and the <code>successCallback</code> called. If 
+          call to <code>lockMouse</code> will succeed and the 
+          <code>successCallback</code> called. If 
           another element is locked a user agent must transfer the mouse lock to 
           the new target and call the <a>mouselocklost</a> callback for the previous 
           target.</p>
@@ -194,18 +191,53 @@
           <code>mouseup</code>, <code>click</code>, <code>wheel</code>)[DOMMOUSE] to the target of mouse lock, and 
           not fire mouse events to other elements. Events that require the 
           concept of a mouse cursor must not be dispatched (for example: 
-          <code>mouseover</code>, <code>mouseout</code>). In the locked state the system mouse cursor 
+          <code>mouseover</code>, <code>mouseout</code>).</p>
+          
+          <p>In the locked state the system mouse cursor 
           must be hidden. Movement and button presses of the mouse must not 
           cause the window to lose focus.</p>
 
           <p>Synthetic mouse events created by application script act the same 
           regardless of lock state.<p>
 
+          <dl class='parameters'>
+            <dt>in Element target</dt> <dd></dd>
+            <dt>in optional VoidCallback successCallback</dt> <dd></dd>
+            <dt>in optional VoidCallback failureCallback</dt> <dd></dd>
+          </dl>
+        </dd>
+
+        <dt>void unlockMouse ()</dt>
+        <dd>
+          <dfn title="unlockMouse"></dfn>
+
+          <p>The <code>unlockMouse</code> method cancels the mouse lock state.
+          The system mouse cursor must be displayed again and positioned at 
+          the same location that it was when mouse lock was entered (the same
+          location that is reported in screenX/Y when the mouse is locked).</p>
+        </dd>
+
+        <dt>Element mouseLocked ()</dt>
+        <dd>
+          <dfn title="mouseLocked"></dfn>
+
+          <p>The <code>mouseLocked</code> method returns the element that is
+          the current target of mouse lock, or null if not locked.</p>
         </dd>
       </dl>
     </section>
 
+    <section>
+      <h2><a>mouselocklost</a> Event</h2>
 
+      <p>User agents must allow a new DOM event type, named
+      <code>mouselocklost</code> of type <code>MouseLockLostEvent</code>
+      and must fire on the element object that is the current target of
+      mouse lock when mouse lock is lost or disabled for any reason.</p>
+
+      <dl title='interface MouseLockLostEvent : Event' class='idl'>
+      </dl>
+    </section>
 
     <section class='appendix informative'>
       <h2>Acknowledgements</h2>
