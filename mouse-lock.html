@@ -88,6 +88,12 @@
         white-space: pre-wrap;
       }
     </style>
+
+    <script>
+        function escapeContents(doc, content) {
+            return doc._esc(content);
+        }
+    </script>
   </head>
   <body>
     <section id='abstract'>
@@ -97,39 +103,31 @@
       mode for certain classes of applications, especially first person
       perspective 3D applications and 3D modelling software.
     </section>
-    
-    <section id="sotd"> <!-- Status of This Document -->
-      Conversion in progress from the <a href="http://goo.gl/9G8pd">Version 
-      0.8, 2011-10-20 Draft Spec</a> Google Document.
-    </section>
 
-    </section> 
+    <section id="sotd"> <!-- Status of This Document -->
+    </section>
 
     <section id='introduction' class='informative'>
 
       <h2>Introduction</h2>
 
-      <p>The Mouse Lock API provides for input methods of applications based on 
-      the movement of the mouse, not just the absolute position of a cursor.  A 
-      popular example is that of first person movement controls in three 
-      dimensional graphics applications such as games.  Movement of the mouse is 
-      interpreted for rotation of the view-port, there is no limit to how far 
+      <p>The Mouse Lock API provides for input methods of applications based on
+      the movement of the mouse, not just the absolute position of a cursor.  A
+      popular example is that of first person movement controls in three
+      dimensional graphics applications such as games.  Movement of the mouse is
+      interpreted for rotation of the view-port, there is no limit to how far
       movement can go, and no mouse cursor is displayed.</p>
-      
-      <p>Mouse Lock is related to Mouse Capture [MDCCAP].  Capture provides 
-      continued event delivery to a target element while a mouse is being 
-      dragged, but ceases when the mouse button is released.  Mouse Lock differs 
-      by being persistent, not limited by screen boundaries, sending events 
-      regardless of mouse button state, hiding the cursor, and not releasing 
-      until an API call or specific release gesture by the user.</p> 
+
+      <p>Mouse Lock is related to Mouse Capture [MDCCAP].  Capture provides
+      continued event delivery to a target element while a mouse is being
+      dragged, but ceases when the mouse button is released.  Mouse Lock differs
+      by being persistent, not limited by screen boundaries, sending events
+      regardless of mouse button state, hiding the cursor, and not releasing
+      until an API call or specific release gesture by the user.</p>
 
     </section>
 
     <section id='conformance'>
-      <p class="issue" id="issue-whatever">
-        Please check this section is OK . 
-      </p>
-
       <p>
         This specification defines conformance criteria that apply to a single
         product: the <dfn id="dfn-user-agent">user agent</dfn> that implements
@@ -161,43 +159,45 @@
         <dd>
           <dfn title="lockMouse"></dfn>
 
-          <p>The <code>lockMouse</code> method requests that the mouse be locked 
+          <p>The <code>lockMouse</code> method requests that the mouse be locked
           to a given DOM element <code>target</code>. It must immediately
-          return. Two optional callback parameters provide asynchronous 
+          return. Two optional callback parameters provide asynchronous
           notification of success (<code>successCallback</code>) or failure
-          (<code>failureCallback</code>) to acquire the locked state. The user 
-          agent must determine if mouse lock state will be entered and call the 
-          appropriate callback if it was provided.  Because a user agent may 
-          prompt a user for permission to enter mouse lock the response must be 
+          (<code>failureCallback</code>) to acquire the locked state. The user
+          agent must determine if mouse lock state will be entered and call the
+          appropriate callback if it was provided.  Because a <a>user agent</a> may
+          prompt a user for permission to enter mouse lock the response must be
           asynchronous.</p>
 
-          <p>Mouse lock must succeed only if the window is in focus and the 
-          user-agent is the active application of the operating system. The 
+          <p>Mouse lock must succeed only if the window is in focus and the
+          user-agent is the active application of the operating system. The
           target element of <code>lockMouse</code> need not be in focus.</p>
 
-          <p>Mouse lock must succeed only if the target element is in the DOM 
-          tree. If the target element is removed from the DOM tree after mouse 
+          <p>Mouse lock must succeed only if the target element is in the DOM
+          tree. If the target element is removed from the DOM tree after mouse
           lock is entered then mouse lock will be lost.</p>
 
-          <p>If the mouse is already locked to the same element, a repeated 
-          call to <code>lockMouse</code> will succeed and the 
-          <code>successCallback</code> called. If 
-          another element is locked a user agent must transfer the mouse lock to 
-          the new target and call the <a>mouselocklost</a> callback for the previous 
+          <p>If the mouse is already locked to the same element, a repeated
+          call to <code>lockMouse</code> will succeed and the
+          <code>successCallback</code> called. If
+          another element is locked a <a>user agent</a> must transfer the mouse lock to
+          the new target and call the <a><code>mouselocklost</code></a> callback for the previous
           target.</p>
 
-          <p>Once in the locked state the user agent must fire all relevant user 
-          generated <code>MouseEvent</code> events (for example: <code>mousemove</code>, <code>mousedown</code>, 
-          <code>mouseup</code>, <code>click</code>, <code>wheel</code>)[DOMMOUSE] to the target of mouse lock, and 
-          not fire mouse events to other elements. Events that require the 
-          concept of a mouse cursor must not be dispatched (for example: 
-          <code>mouseover</code>, <code>mouseout</code>).</p>
-          
-          <p>In the locked state the system mouse cursor 
-          must be hidden. Movement and button presses of the mouse must not 
+          <p>Once in the locked state the <a>user agent</a> must fire all relevant
+          user generated <code>MouseEvent</code> events (for example:
+          <code>mousemove</code>, <code>mousedown</code>, <code>mouseup</code>,
+          <code>click</code>, <code>wheel</code>)[<a
+          href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#events-MouseEvent">DOMMOUSE</a>]
+          to the target of mouse lock, and not fire mouse events to other elements.
+          Events that require the concept of a mouse cursor must not be dispatched
+          (for example: <code>mouseover</code>, <code>mouseout</code>).</p>
+
+          <p>In the locked state the system mouse cursor
+          must be hidden. Movement and button presses of the mouse must not
           cause the window to lose focus.</p>
 
-          <p>Synthetic mouse events created by application script act the same 
+          <p>Synthetic mouse events created by application script act the same
           regardless of lock state.<p>
 
           <dl class='parameters'>
@@ -212,9 +212,10 @@
           <dfn title="unlockMouse"></dfn>
 
           <p>The <code>unlockMouse</code> method cancels the mouse lock state.
-          The system mouse cursor must be displayed again and positioned at 
+          The system mouse cursor must be displayed again and positioned at
           the same location that it was when mouse lock was entered (the same
-          location that is reported in screenX/Y when the mouse is locked).</p>
+          location that is reported in <code>screenX</code>/<code>Y</code>
+          when the mouse is locked).</p>
         </dd>
 
         <dt>Element mouseLocked ()</dt>
@@ -228,7 +229,7 @@
     </section>
 
     <section>
-      <h2><a>mouselocklost</a> Event</h2>
+      <h2><dfn><code>mouselocklost</code></dfn> Event</h2>
 
       <p>User agents must allow a new DOM event type, named
       <code>mouselocklost</code> of type <code>MouseLockLostEvent</code>
@@ -237,6 +238,460 @@
 
       <dl title='interface MouseLockLostEvent : Event' class='idl'>
       </dl>
+    </section>
+
+    <section>
+      <h2>Extensions to the <a>MouseEvent</a> Interface</h2>
+
+      <p>User agents must extend the MouseEvent interface [<a
+      href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#events-MouseEvent">DOMMOUSE</a>]
+      with two members:</p>
+
+      <dl title='partial interface MouseEvent' class='idl'>
+        <dt>readonly attribute long movementX</dt>
+        <dd><dfn title="movementX"></dfn></dd>
+        <dt>readonly attribute long movementY</dt>
+        <dd><dfn title="movementY"></dfn></dd>
+      </dl>
+
+      <p>The members <code>movementX</code> and <code>movementY</code> must
+      provide the change in position of the mouse, as if the values of
+      <code>screenX</code>/<code>Y</code> were stored between two subsequent
+      <code>mousemove</code> events <code>eNow</code> and
+      <code>ePrevious</code> and the difference taken
+      <code>movementX = eNow.screenX-ePrevious.screenX</code>.</p>
+
+      <p><code>movementX</code>/<code>Y</code> must be valid regardless of mouse
+      lock state.</p>
+
+      <p>When unlocked, the system cursor can exit and re-enter the <a>user
+      agent</a> window.  If it does so and the <a>user agent</a> was not the
+      target of operating system mouse move events then the most recent mouse
+      position will be unknown to the <a>user agent</a> and
+      <code>movementX</code>/<code>Y</code> can not be computed and must be set
+      to zero.</p>
+
+      <p>When mouse lock is enabled <code>clientX</code>, <code>clientY</code>,
+      <code>screenX</code>, and <code>screenY</code> must hold constant values
+      as if the mouse did not move at all once mouse lock was entered.  But
+      <code>movementX</code>/<code>Y</code> must continue to provide the change
+      in position of the mouse as when the mouse is unlocked.  There will be no
+      limit to <code>movementX</code>/<code>Y</code> values if the mouse is
+      continuously moved in a single direction.  The concept of the mouse cursor
+      will have been removed, and it will not move off the window or be clamped
+      by a screen edge.</p>
+    </section>
+
+    <section>
+      <h2>Requirements</h2>
+
+      <p>The Mouse Lock API must provide a default system action to unlock the
+      mouse.</p>
+
+      <p>The Mouse Lock API must be agnostic to the underlying system-specific
+      mouse locking mechanism.</p>
+
+      <p>The Mouse Lock API must exit the mouse lock state if the <a>user agent</a>,
+      window, or tab loses focus.</p>
+    </section>
+
+    <section class='informative'>
+      <h2>Use Cases</h2>
+
+      <section>
+        <h2>Relative view-port rotation of free moving virtual actors</h2>
+
+        <p>A player on a first/third person game will need to control the
+        view-port orientation.  A widely used method is the use of mouse movements
+        to control the viewing angle.  This kind of application can use the Mouse
+        Lock API to allow a complete freedom of control over the viewport's yaw
+        and pitch even when the user is not pressing mouse buttons.  Those buttons
+        can be used for other actions while constantly providing navigation via
+        mouse movement.</p>
+      </section>
+
+      <section>
+        <h2>Free rotation of 3D models or panning of 2D layers</h2>
+
+        <p>Users of a three dimensional modeling application will need to rotate
+        models.  A application can use the Mouse Lock API to enable the author to
+        rotate the model freely in a drag operation without limiting motion.
+        Without mouse lock a drag would stop providing motion data when the mouse
+        cursor is limited by the edge of the screen.</p>
+
+        <p>Similarly, absolute motion panning of a large two dimensional image
+        could be permitted in a single drag operation without cursor / screen
+        limits.</p>
+      </section>
+
+      <section>
+        <h2>Relative movement of actors</h2>
+
+        <p>A player on a fast reflexes game controls a paddle to bounce back a
+        ball to the opponent, while allowing the same paddle to execute actions
+        based on different mouse buttons being pressed.  The application can use
+        the Mouse Lock API to allow the player to react quickly without being
+        concerned about the mouse cursor leaving the game play area and clicking
+        another system application, thus breaking the game flow.</p>
+      </section>
+
+      <section>
+        <h2>Jog movement over spinner controls</h2>
+
+        <p>When modifying numerically magnitudes in applications sometimes the
+        user will prefer to "drag" a numeric control (e.g.  a spinner [<a
+        href="http://books.zkoss.org/wiki/Small%20Talks/2008/June/Using%20Spinner%20Component">ZKSPINNER</a>])
+        by its button handles to increment or decrement the numeric value.  An
+        application could use the Mouse Lock API to allow modifying the numeric
+        values beyond what the logical screen bounds allow.  The same could apply
+        for a control that fast forwards or rewinds a video or audio stream like a
+        "jog".</p>
+      </section>
+
+      <section>
+        <h2>Synthetic cursor interaction with HTML DOM UI</h2>
+
+        <p>Some games use a classical cursor, however they want it to be limited
+        or controlled in some manner.  E.g.  limited to the bounds of the game, or
+        movable by the game.  Locking the mouse enables this if the application
+        creates their own cursor.  However HTML and DOM should still be available
+        to use for user interface.  Synthetic mouse events should be permitted to
+        allow an application defined cursor to interact with DOM.  E.g.  the
+        following code should permit a custom cursor to send click events while
+        the mouse is locked:</p>
+
+        <pre class='example' data-transform='escapeContents'>
+            document.addEventListener("click", function (e) {
+              if (e._isSynthetic)
+                return;
+              // send a synthetic click
+              var ee = document.createEvent("MouseEvents");
+              ee._isSynthetic = true;
+              x = myCursor.x;
+              y = myCursor.y;
+              ee.initMouseEvent("click", true, true, null, 1,
+                                x + e.screenX - e.clientX,
+                                y + e.screenY - e.clientY,
+                                x,
+                                y);
+              var target = document.elementFromPoint(x, y)
+              if (target)
+                target.dispatchEvent(ee)
+            });
+        </pre>
+
+        <p>Note that synthetic clicks may not be permitted by a <a>user agent</a> to
+        produce the same default action as a non-synthetic click.  However,
+        application handlers can still take action and provide user interface with
+        existing HTML & DOM mechanisms.</p>
+      </section>
+
+      <section>
+        <h2>View-port panning by moving a mouse cursor against the bounds of a
+        view-port.</h2>
+
+        <p>Real Time Strategy games often use this technique.  When the player
+        moves the mouse to the view-port borders, if they "push" the border
+        with a mouse movement, the view-port is panned over the game area
+        according to how much they move the mouse.  When moving the mouse cursor
+        within the bounds of the view port it acts at is typically would on a
+        system.  Applications may choose to implement this using mouse lock and
+        the previous use case of "Synthetic cursor interaction with HTML DOM UI"
+        to bring cursor behavior completely under their control.</p>
+      </section>
+
+      <section>
+        <h2>Game Lobby, timer based mouse lock</h2>
+
+        <p>Games that use mouse lock may desire a traditional UI and system cursor
+        while players prepare in a game lobby.  Games usually start after a short
+        timer when all players are ready.  Ideally the game could then switch to
+        mouse lock mode without requiring a user gesture.  Players should be able
+        to seamlessly move from the game lobby into game navigation.</p>
+      </section>
+
+      <section>
+        <h2>Game Portal</h2>
+
+        <p>Game portals, and other sites such as Facebook and Google Plus, host
+        games for users to play.  These games may be hosted and served from a
+        different origin from that of the portal site.  Embedded games should be
+        able to lock the mouse, even in non-full screen mode.</p>
+      </section>
+
+    </section>
+
+    <section class='informative'>
+      <h2>Security</h2>
+
+      <p>Security Concerns:</p>
+        <ul>
+          <li>User gestures may be misdirected to elements the user did not intend
+          to interact with.</li>
+
+          <li>Mouse Lock will remove the ability of a user to interact with user
+          agent and operating system controls</li>
+
+          <li>Mouse Lock can be called repeated by script after user exits mouse
+          lock, blocking user from meaningful progress.</li>
+
+          <li>Full screen exit instructions are displayed in some <a>user agents</a> when
+          the mouse is moved to the top of the screen.  During mouse lock that
+          gesture is not possible.</li>
+        </ul>
+
+        <p>Responses:</p>
+        <ul>
+          <li>User agents may limit what security origins may lock the mouse.</li>
+
+          <li>User agents may prompt for confirmation before locking, this
+          preference may be saved as a content setting.</li>
+
+          <li>Keyboard based escape will always be provided, e.g.  ESC key.</li>
+
+          <li>Persistent display of escape instructions can be provided.</li>
+
+          <li>Repeated escapes of mouse lock can signal <a>user agent</a> to not re-lock
+          the mouse without more specific user intent gesture, e.g.  similar to how
+          Chrome suppresses repeated alert() calls.</li>
+
+          <li>Changing to new tabs, windows, or any other action that causes a page
+          to lose focus will exit mouse lock.</li>
+
+          <li>Mouse lock can only be engaged when the window is in focus in the user
+          agent and operating system.</li>
+        </ul>
+
+        <p>Recommendations:</p>
+        <ul>
+          <li>ESC key should exit mouse lock.</li>
+
+          <li>Preferences per sub-domain can be used to allow or block mouse lock,
+          similar to popup, geolocation, and fullscreen.</li>
+        </ul>
+
+        <p>Mouse Lock is a required user interaction mode for certain application
+        types, but carries a usability concern if maliciously used.  An attacker
+        could remove the ability for a user to control their mouse cursor on their
+        system.  User agents will prevent this by always providing a mechanism to
+        exit mouse lock, by informing the user of how, and by limiting how mouse
+        lock can be entered.</p>
+
+        <p>User agents will determine their own appropriate policies, which may be
+        specialized per device or differ based on user options.  The following
+        discussion illustrates considerations and plausible implementations.</p>
+
+        <dl>
+          <dt>Escape from mouse lock must always be possible.</dt>
+          <dd>Based on device the mechanisms will vary, but obvious examples include
+          the keyboard escape key "ESC" and any control that moves the system focus
+          away from the web page (window management keystrokes that change windows,
+          operating system buttons such as the Windows key).</dd>
+
+          <dt>Escape instructions may be communicated.</dt>
+          <dd>User agents can provide persistent on screen instructions, or
+          transitory instructions when mouse lock is entered.  If users are
+          particularly dissatisfied with the distraction of instructions <a>user agents</a>
+          may offer to hide instructions after sufficient intent is expressed, e.g.
+          by permissions.</dd>
+
+          <dt>Escape can not be performed by mouse actions, including the use of the
+          context menu.</dt>
+          <dd>The intent of the Mouse Lock feature is to enable rich applications
+          not currently available in browsers.  These applications have unbounded
+          movement and button press consumption needs, including the use of the
+          context menu.<dd>
+        </dl>
+
+        <p>Examples of user agent scenarios:</p>
+
+        <dl>
+          <dt>A conservative approach</dt>
+          <dd>May only permit mouse lock based on a user gesture such as a click
+          event.  The <a>user agent</a> would prompt the user with a confirmation dialog,
+          with options to permit, dismiss, or block all repeated attempts.  That
+          dialog may be a passive display instead of modal.  Instructions for escape
+          would be provided.  After acceptance, a succinct reminder notice of escape
+          instructions may persist.  In the extreme, a <a>user agent</a> may require the
+          user to perform an uncommon gesture demonstrating that they understand the
+          escape gesture, e.g.  by pressing F10.</dd>
+
+          <dt>A full screen approach</dt>
+          <dd>May permit mouse lock at any time, and cancel mouse lock when full
+          screen mode is exited.  Instructions for exiting full screen mode may be
+          shown, likely for a brief period of time to not detriment the full screen
+          experience.  Entry to mouse lock may be gated by a user explicitly
+          confirming the action via a dialog.</dd>
+
+          <dt>A permissive approach</dt>
+          <dd>May permit mouse lock for the target or ancestor of a a user gesture
+          without prompt.  Escape instructions would likely be displayed
+          persistently in a non full screen view.</dd>
+        </dl>
+
+        <p>Chrome / Chromium has a design document page for their implementation
+        of mouse lock: <a
+        href="http://www.chromium.org/developers/design-documents/mouse-lock">http://www.chromium.org/developers/design-documents/mouse-lock</a></p>
+
+    </section>
+
+    <section class='informative'>
+      <h2>Frequently Asked Questions</h2>
+
+      <section>
+        <h2>Why not merge with Mouse Capture: setCapture()?</h2>
+
+        <p>Mouse Capture [<a
+        href="https://developer.mozilla.org/en/DOM/element.setCapture">MDCCAP</a>]
+        handles low security risk mouse event target lock for the duration of a
+        mouse drag gesture.  Mouse Lock removes the concept the the cursor and
+        directs all events to a given target.  They are related, but
+        different.</p>
+
+        <p>If a browser implemented both, it would be reasonable to support a
+        combination of traits: The security simplicity of "automatically release
+        lock when mouse up" and the increased functionality of total control over
+        mouse input and removal of the system cursor.  The security trait would
+        allow more permissive use of the feature for applications that only
+        required a short burst of mouse lock during a drag event.</p>
+
+        <p>This functionaility is omitted from the initial version of this spec
+        because it helps the minor use cases in windowed mode but we still do not
+        have an implementation solving the major ones.  And, to implement this a
+        browser must implement both, which none does yet.  It is not clear if this
+        feature should live on .lockMouse or on .setCapture.  If both were
+        implemented, either API could be augmented fairly easily to offer the
+        hybrid functionality.</p>
+      </section>
+
+      <section>
+        <h2>Why not repurpose MouseEvent's .clientX/Y .screenX/Y?</h2>
+
+        <p>Even in non locked state, the delta values of mouse movement are
+        useful.  Changing the meaning of .client or .screen based on lock state
+        would also cause easy errors in code not carefully monitoring the lock
+        state.</p>
+      </section>
+
+      <section>
+        <h2>Why use .movementX/Y instead of .deltaX/Y?</h2>
+
+        <p>When the mouse is locked 'wheel' events should be sent to the mouse
+        lock target element just as 'mousemove' events are.  There is a naming
+        conflict with .deltaX/Y/Z as defined in <a
+        href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#events-wheelevents">DOM
+        3 'wheel' event</a>.</p>
+      </section>
+
+      <section>
+        <h2>Why bundle all functionality (hiding cursor, providing mouse deltas)
+        instead of using CSS to hide the cursor, always providing delta values,
+        and offering an API to restrict the cursor movement to a portion of the
+        webpage?</h2>
+
+        <p>There are good motivations to provide a more fine grained approach.
+        E.g.  the use case "View-port panning by moving a mouse cursor against the
+        bounds of a view-port" doesn't require hiding the mouse cursor, only
+        bounding it and always having delta values available.  Also, this
+        specification defines the movement deltas to be taken from how the system
+        mouse cursor moves, which incorporates operating system filtering and
+        acceleration of the mouse movement data.  Applications may desire access
+        to a more raw form of movement data prior to adjustments appropriate for a
+        mouse cursor.  Also, raw data may provide better than pixel level accuracy
+        for movement, as well as higher frequency updates.  Providing the raw
+        delta movement would also not require special permission or mode from a
+        user, and for some set of applications that do not require bounding the
+        cursor may reduce the security barriers and prompts needed.</p>
+
+        <p>There are two justifications for postponing this finer grained
+        approach.  The first is a concern of specifying what units mouse movement
+        data are provided in.  This specification defines .movementX/Y precisely
+        as the same values that could be recorded when the mouse is not under lock
+        by changes in .screenX/Y.  Implementations across multiple <a>user agents</a> and
+        operating systems will easily be able to meet that requirement and provide
+        application developers and users with a consistent experience.  Further,
+        users are expected to have already configured the full system of hardware
+        input and operating system options resulting in a comfortable control the
+        system mouse cursor.  By specifying .movementX/Y in the same units mouse
+        lock API applications will be instantly usable to all users because they
+        have already settled their preferences.</p>
+
+        <p>Secondly, the implementation of providing movement data and bounding
+        the mouse cursor is more difficult in the fine grained approach.  Bundling
+        the features together gives implementations freedom to use a variety of
+        techniques as appropriate on each operating system and is more practical
+        to implement.  Direct APIs do not exist on all platforms (Win, Mac, Linux)
+        to bound the cursor to a specific rectangle, and prototypes have not yet
+        been developed to demonstrate building that behavior by e.g.  invisible
+        windows with xlib or manual cursor movement on Mac.  Unaccelerated Delta
+        values have been proposed to be accessed by reading raw Human Interface
+        Device (HID) data.  E.g.  WM_INPUT messages on windows, and USB device
+        apis on Mac / Linux.  The challenge here is interpreting and normalizing
+        the units to some consistent and specifiable scale.  Also, most APIs
+        considered to date are limited to USB devices.</p>
+
+        <p>It would be reasonable to consider adding these capabilities in the
+        future, as the currently specified mouse lock API would be easy to
+        continue to support if the finer grained delta and confinement features
+        were implemented.</p>
+
+        <p>The bundled API is selected for implementation practicality, because
+        the desired use cases are supported, and because it will not conflict with
+        future improvements as discussed here.</p>
+      </section>
+
+      <section>
+        <h2>High resolution deltas / High frequency updates?</h2>
+
+        <p>Not yet, for the same reasons in the previous Q.  See "Why bundle all
+        functionality (hiding cursor, providing mouse deltas) instead of using CSS
+        to hide the cursor, always providing delta values, and offering an API to
+        restrict the cursor movement to a portion of the webpage?" above.</p>
+      </section>
+
+      <section>
+        <h2>Why modify MouseEvent and reuse existing mouse events instead of
+        creating a mousedelta event?</h2>
+
+        <p>When under mouse lock many mouse events remain relevant, e.g.  click,
+        mousedown, etc.  These all share the same event data structure MouseEvent.
+        If movement data were reported via a new data structure then a new event
+        would be needed for reporting delta movement.  The new data structure
+        would have many parallels to MouseEvent to offer the same conveniences,
+        e.g.  button and modifier key states.  When handling click, down, and up
+        events would the existing mousedown, mouseup be used?  If so, they would
+        provide .clientX/Y and .screenX/Y with no useful data, but would lack the
+        convenience of containing the current movement data.  Or, new events would
+        also be required for when the moues is locked.</p>
+
+        <p>Also, movementX/Y are convenient even when the mouse is not locked.
+        This spec requires movement members to always be valid, even when the
+        mouse cursor exists.  This reduces code required to track the last cursor
+        state and mouseover/mouseout transistions if applications which to make
+        use of delta motion of the mouse.  This may be convenient even if the
+        mouse is not fully locked and the deficiencies of no locked target of
+        events, out of window, and screen borders clamping dat exist.</p>
+
+        <p>The only negative of adding movementX/Y to MouseEvent appears to be the
+        unused values in clientX/Y and screenX/Y when under mouse lock.  This does
+        not seem to be a significant problem.</p>
+
+        <p>Therefore the minimal change to add movementX/Y to MouseEvent is
+        selected to reduce API and implementation complexity.</p>
+      </section>
+
+      <section>
+        <h2>Why separate targets for mouse events under mouse lock and keyboard
+        input focus?</h2>
+
+        <p>Consider a game with a 3D view controlled by moving the mouse cursor,
+        while the user may still chat with other users via a text console.  It is
+        reasonable for the application to accept text input to an element that is
+        different than where mouse events are being dispatched.  This is similar
+        to preexisting behavior of receiving mousemove events over any element
+        while typing into a form on a page.</p>
+      </section>
+
     </section>
 
     <section class='appendix informative'>
