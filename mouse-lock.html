@@ -97,6 +97,13 @@
       mode for certain classes of applications, especially first person
       perspective 3D applications and 3D modelling software.
     </section>
+    
+    <section id="sotd"> <!-- Status of This Document -->
+      Conversion in progress from the <a href="http://goo.gl/9G8pd">Version 
+      0.8, 2011-10-20 Draft Spec</a> Google Document.
+    </section>
+
+    </section> 
 
     <section id='introduction' class='informative'>
 
@@ -119,6 +126,10 @@
     </section>
 
     <section id='conformance'>
+      <p class="issue" id="issue-whatever">
+        Please check this section is OK . 
+      </p>
+
       <p>
         This specification defines conformance criteria that apply to a single
         product: the <dfn id="dfn-user-agent">user agent</dfn> that implements
@@ -146,21 +157,50 @@
       </p>
 
       <dl title='partial interface Document' class='idl'>
-        <dt>void lockMouse()</dt>
+        <dt>void <dfn>lockMouse</dfn>()</dt>
         <dd>
-          The <a>lockMouse</a>() method requests that the mouse be locked to a 
-          given DOM element <a>target</a>. It must immediately return. Two 
-          optional callback parameters provide asynchronous notification of 
-          success <a>successCallback</a> or failure <a>failureCallback</a> to 
-          acquire the locked state. The user agent must determine if mouse lock 
-          state will be entered and call the appropriate callback if it was 
-          provided. Because a user agent may prompt a user for permission to 
-          enter mouse lock the response must be asynchronous.
+          <p>The <code>lockMouse</code> method requests that the mouse be locked 
+          to a given DOM element <code>target</code>. It must immediately
+          return. Two optional callback parameters provide asynchronous 
+          notification of success (<code>successCallback</code>) or failure
+          (<code>failureCallback</code>) to acquire the locked state. The user 
+          agent must determine if mouse lock state will be entered and call the 
+          appropriate callback if it was provided.  Because a user agent may 
+          prompt a user for permission to enter mouse lock the response must be 
+          asynchronous.</p>
+
           <dl class='parameters'>
             <dt>in Element target</dt> <dd></dd>
             <dt>in optional VoidCallback successCallback</dt> <dd></dd>
             <dt>in optional VoidCallback failureCallback</dt> <dd></dd>
           </dl>
+
+          <p>Mouse lock must succeed only if the window is in focus and the 
+          user-agent is the active application of the operating system. The 
+          target element of <a>lockMouse</a>() need not be in focus.</p>
+
+          <p>Mouse lock must succeed only if the target element is in the DOM 
+          tree. If the target element is removed from the DOM tree after mouse 
+          lock is entered then mouse lock will be lost.</p>
+
+          <p>If the mouse is already locked to the same element, a repeated 
+          call to lockMouse() will succeed and the <code>successCallback</code> called. If 
+          another element is locked a user agent must transfer the mouse lock to 
+          the new target and call the <a>mouselocklost</a> callback for the previous 
+          target.</p>
+
+          <p>Once in the locked state the user agent must fire all relevant user 
+          generated <code>MouseEvent</code> events (for example: <code>mousemove</code>, <code>mousedown</code>, 
+          <code>mouseup</code>, <code>click</code>, <code>wheel</code>)[DOMMOUSE] to the target of mouse lock, and 
+          not fire mouse events to other elements. Events that require the 
+          concept of a mouse cursor must not be dispatched (for example: 
+          <code>mouseover</code>, <code>mouseout</code>). In the locked state the system mouse cursor 
+          must be hidden. Movement and button presses of the mouse must not 
+          cause the window to lose focus.</p>
+
+          <p>Synthetic mouse events created by application script act the same 
+          regardless of lock state.<p>
+
         </dd>
       </dl>
     </section>
