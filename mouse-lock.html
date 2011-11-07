@@ -118,7 +118,7 @@
       interpreted for rotation of the view-port, there is no limit to how far
       movement can go, and no mouse cursor is displayed.</p>
 
-      <p>Mouse Lock is related to Mouse Capture [MDCCAP].  Capture provides
+      <p>Mouse Lock is related to Mouse Capture [[MDN-SETCAPTURE]].  Capture provides
       continued event delivery to a target element while a mouse is being
       dragged, but ceases when the mouse button is released.  Mouse Lock differs
       by being persistent, not limited by screen boundaries, sending events
@@ -202,8 +202,7 @@
           <p>Once in the locked state the <a>user agent</a> must fire all relevant
           user generated <code>MouseEvent</code> events (for example:
           <code>mousemove</code>, <code>mousedown</code>, <code>mouseup</code>,
-          <code>click</code>, <code>wheel</code>)[<a
-          href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#events-MouseEvent">DOMMOUSE</a>]
+          <code>click</code>, <code>wheel</code>)[[!DOM-LEVEL-3-CORE]]
           to the <code>target</code> of mouse lock, and not fire mouse events to
           other elements.  Events that require the concept of a mouse cursor must
           not be dispatched (for example: <code>mouseover</code>,
@@ -354,9 +353,10 @@
         <h2>Jog movement over spinner controls</h2>
 
         <p>When modifying numerically magnitudes in applications sometimes the
-        user will prefer to "drag" a numeric control (e.g.  a spinner [<a
-        href="http://books.zkoss.org/wiki/Small%20Talks/2008/June/Using%20Spinner%20Component">ZKSPINNER</a>])
-        by its button handles to increment or decrement the numeric value.  An
+        user will prefer to "drag" a numeric control by its button handles to
+        increment or decrement the numeric value.  E.g. a spinner with a
+        number entry text box and arrows pointing up and down that can be
+        clicked or dragged on to change the value. An
         application could use the Mouse Lock API to allow modifying the numeric
         values beyond what the logical screen bounds allow.  The same could apply
         for a control that fast forwards or rewinds a video or audio stream like a
@@ -556,8 +556,7 @@
       <section>
         <h2>Why not merge with Mouse Capture: setCapture()?</h2>
 
-        <p>Mouse Capture [<a
-        href="https://developer.mozilla.org/en/DOM/element.setCapture">MDCCAP</a>]
+        <p>Mouse Capture [[MDN-SETCAPTURE]]
         handles low security risk mouse event target lock for the duration of a
         mouse drag gesture.  Mouse Lock removes the concept of the cursor and
         directs all events to a given target.  They are related, but
