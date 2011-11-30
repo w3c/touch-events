@@ -724,6 +724,13 @@
         would be a consequential result of the the prevented touch event.
       </p>
 
+      <p class="note">
+        If a Web application can process touch events, it can intercept them, 
+        and no corresponding mouse events would need to be dispatched by the 
+        user agent. If the Web application is not specifically written for 
+        touch input devices, it can react to the subsequent mouse events instead.
+      </p>
+
       <p>
         If the user agent intreprets a sequence of touch events as a click,
         then it should dispatch <a>mousemove</a>, <a>mousedown</a>,
