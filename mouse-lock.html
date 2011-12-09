@@ -152,11 +152,11 @@
       <p>
         The <a>Navigator</a> interface [[!NAVIGATOR]] contains a
         <code>pointer</code> attribute providing access to the
-        <a>MouseLockable</a> interface.
+        <a>PointerLock</a> interface.
       </p>
 
       <dl title='partial interface Navigator' class='idl'>
-        <dt>readonly attribute MouseLockable pointer</dt>
+        <dt>readonly attribute PointerLock pointer</dt>
         <dd>
           <dfn title="pointer"></dfn>
         </dd>
@@ -164,13 +164,13 @@
     </section>
 
     <section>
-      <h2><a>MouseLockable</a> Interface</h2>
+      <h2><a>PointerLock</a> Interface</h2>
       <p>
-        The <a>MouseLockable</a> interface contains methods
+        The <a>PointerLock</a> interface contains methods
         providing the ability to enter, exit, and poll the state of mouse lock.
       </p>
 
-      <dl title='interface MouseLockable' class='idl'>
+      <dl title='interface PointerLock' class='idl'>
         <dt>void lock ()</dt>
         <dd>
           <dfn title="lock"></dfn>
@@ -197,7 +197,7 @@
           <code>lock</code> will succeed and the <code>successCallback</code>
           called.  If another element is locked a <a>user agent</a> must transfer
           the mouse lock to the new <code>target</code> and call the
-          <a><code>mouselocklost</code></a> callback for the previous target.</p>
+          <a><code>pointerlocklost</code></a> callback for the previous target.</p>
 
           <p>Once in the locked state the <a>user agent</a> must fire all relevant
           user generated <code>MouseEvent</code> events (for example:
@@ -233,23 +233,23 @@
           when the mouse is locked).</p>
         </dd>
 
-        <dt>bool islocked ()</dt>
+        <dt>bool isLocked ()</dt>
         <dd>
-          <dfn title="islocked"></dfn>
+          <dfn title="isLocked"></dfn>
 
-          <p>The <code>islocked</code> method returns true is the mouse is
+          <p>The <code>isLocked</code> method returns true if the mouse is
           currently locked.</p>
         </dd>
       </dl>
     </section>
 
     <section>
-      <h2><dfn><code>mouselocklost</code></dfn> Event</h2>
+      <h2><dfn><code>pointerlocklost</code></dfn> Event</h2>
 
       <p>When mouse lock is lost or disabled for any reason <a>user agents</a>
       must <a
       href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#concept-event-fire">fire
-      an event</a> named <code>mouselocklost</code> with its
+      an event</a> named <code>pointerlocklost</code> with its
       <code>bubble</code> attribute set to true to the mouse lock
       <a>target</a> element.</p>
     </section>
