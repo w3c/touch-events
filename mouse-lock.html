@@ -196,8 +196,8 @@
           <p>If the mouse is already locked to the same element, a repeated call to
           <code>lock</code> will succeed and the <code>successCallback</code>
           called.  If another element is locked a <a>user agent</a> must transfer
-          the mouse lock to the new <code>target</code> and call the
-          <a><code>pointerlocklost</code></a> callback for the previous target.</p>
+          the mouse lock to the new <code>target</code> and dispatch the
+          <a><code>pointerlocklost</code></a> event for the previous target.</p>
 
           <p>Once in the locked state the <a>user agent</a> must fire all relevant
           user generated <code>MouseEvent</code> events (for example:
@@ -216,9 +216,9 @@
           regardless of lock state.<p>
 
           <dl class='parameters'>
-            <dt>in Element target</dt> <dd></dd>
-            <dt>in optional VoidCallback successCallback</dt> <dd></dd>
-            <dt>in optional VoidCallback failureCallback</dt> <dd></dd>
+            <dt>Element target</dt> <dd></dd>
+            <dt>optional VoidCallback successCallback</dt> <dd></dd>
+            <dt>optional VoidCallback failureCallback</dt> <dd></dd>
           </dl>
         </dd>
 
@@ -233,12 +233,12 @@
           when the mouse is locked).</p>
         </dd>
 
-        <dt>bool isLocked ()</dt>
+        <dt>readonly attribute bool isLocked</dt>
         <dd>
           <dfn title="isLocked"></dfn>
 
-          <p>The <code>isLocked</code> method returns true if the mouse is
-          currently locked.</p>
+          <p>The <code>isLocked</code> attribute is true if the mouse is
+          currently locked and false otherwise.</p>
         </dd>
       </dl>
     </section>
@@ -294,6 +294,18 @@
       continuously moved in a single direction.  The concept of the mouse cursor
       will have been removed, and it will not move off the window or be clamped
       by a screen edge.</p>
+    </section>
+
+    <section>
+      <h2><a>VoidCallback</a> Interface</h2>
+      <p>
+        The <a>VoidCallback</a> interface is a generic callback with no parameters.
+      </p>
+      <dl title='[NoInterfaceObject, Callback=FunctionOnly] interface VoidCallback' class='idl'>
+        <dt>void handleEvent ()</dt>
+        <dd>
+        </dd>
+      </dl>
     </section>
 
     <section>
