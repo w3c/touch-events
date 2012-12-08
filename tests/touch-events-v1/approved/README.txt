@@ -1,7 +1,7 @@
 The files in this directory are part of the test suite for the
 Web Events WG's Touch Events spec:
 
-  <http://w3.org/TR/touchevents/>
+  <http://w3.org/TR/touch-events/>
 
 The following file is used to for single touch point testing. It was
 copied from:
