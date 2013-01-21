@@ -97,7 +97,7 @@
   <body>
     <section id='sotd'>
      This specification is the 24 January 2013 Last Call Working Draft. 
-     The comment period for this Last Call Working Draft is 14 February 2013.
+     The comment period for this Last Call Working Draft ends 14 February 2013.
 
      The <a href="http://www.w3.org/TR/2011/CR-touch-events-20111215/"> 
      15 December 2011 Candidate Recommendation</a> 
@@ -606,6 +606,8 @@
         <dt>TouchList createTouchList()</dt>
         <dd>
           Creates a <a>TouchList</a> object consisting of zero or more <a>Touch</a> objects.
+          Calling this method with no arguments creates a <a>TouchList</a> with no objects in it 
+          and length 0 (zero). 
           <dl class='parameters'>
             <dt>Touch... touches</dt> <dd></dd>
           </dl>
