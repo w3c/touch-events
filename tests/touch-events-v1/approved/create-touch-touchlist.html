@@ -128,6 +128,14 @@
 		touch2 = document.createTouch(window, target0, 44, 25, 30, 45, 50);
 
 		var touchList;
+		
+		test(function() {
+			touchList = document.createTouchList();
+			assert_equals(touchList.length, 0, "touchList.length is 0");
+		}, "document.createTouchList exists and correctly creates a TouchList from zero Touch objects");
+
+		if (touchList)
+			check_TouchList_object(touchList);
 
 		test(function() {
 			touchList = document.createTouchList(touch1);
@@ -137,23 +145,16 @@
 
 		if (touchList)
 			check_TouchList_object(touchList);
-
+			
 		test(function() {
-			touchList = document.createTouchList([touch1]);
-			assert_equals(touchList.length, 1, "touchList.length is 1");
-			assert_equals(touchList.item(0), touch1, "touchList.item(0) is input touch1");
-			if (touchList)
-				check_TouchList_object(touchList);
-		}, "document.createTouchList exists and correctly creates a TouchList from a Touch array of 1 item");
-		
-		test(function() {
-			touchList = document.createTouchList([touch1, touch2]);
+			touchList = document.createTouchList(touch1, touch2);
 			assert_equals(touchList.length, 2, "touchList.length is 2");
 			assert_equals(touchList.item(0), touch1, "touchList.item(0) is input touch1");
 			assert_equals(touchList.item(1), touch2, "touchList.item(1) is input touch2");
-			if (touchList)
-				check_TouchList_object(touchList);
-		}, "document.createTouchList exists and correctly creates a TouchList from a Touch array of 2 items");
+		}, "document.createTouchList exists and correctly creates a TouchList from two Touch objects");
+
+		if (touchList)
+			check_TouchList_object(touchList);
 
 		target0.innerHTML = "Test complete."
 		done();
