@@ -21,8 +21,6 @@
 <script>
 	setup({explicit_done: true});
 
-	var hasIdentifiedTouch = true;
-
 	// Check a Touch object's atttributes for existence and correct type
 	// TA: 1.1.2, 1.1.3
 	function check_Touch_object (t) {
@@ -73,22 +71,13 @@
 		test(function() {
 			assert_equals(Object.prototype.toString.call(tl), "[object TouchList]", "touch list is of type TouchList");
 		}, "touch list is a TouchList object");
-		test(function() {
-			// A common failure mode (eg. WebKit bug 96294), don't report multiple errors for it
-			hasIdentifiedTouch = 'identifiedTouch' in tl;
-			assert_true(hasIdentifiedTouch);
-		}, "TouchList contains an identifiedTouch property");
 		[
 			["unsigned long", "length"],
 			["function", "item"],
-			["function", "identifiedTouch"],
 		].forEach(function(attr) {
 			var type = attr[0];
 			var name = attr[1];
 
-			if (name == "identifiedTouch" && !hasIdentifiedTouch)
-				return;
-			  
 			// existence check
 			test(function() {
 				assert_true(name in tl, name + " attribute in TouchList");
@@ -103,7 +92,7 @@
 				break;
 			case "function":
 				test(function() {
-					assert_equals(typeof tl[name], "function", name + " attribute of type long");
+					assert_equals(typeof tl[name], "function", name + " attribute of type function");
 				}, "TouchList." + name + " attribute is of type function");
 				break;
 			default:
@@ -114,14 +103,6 @@
 		for (var i=0; i < tl.length; i++) {
 			check_Touch_object(tl.item(i));
 		}
-		// identifiedTouch should return the member Touch object with the specified identifier
-		test(function() {
-			if (hasIdentifiedTouch) {
-				for (var i=0; i < tl.length; i++) {
-					assert_equals(tl.item(i), tl.identifiedTouch(tl.item(i).identifier), "TouchList.identifiedTouch returns the correct item");
-				}
-			}
-		}, "TouchList.identifiedTouch returns the correct item");
 	}
 
     function check_touch_clientXY(touch) {
