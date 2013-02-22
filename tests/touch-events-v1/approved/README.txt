@@ -1,23 +1,28 @@
-The files in this directory are part of the test suite for the
-Web Events WG's Touch Events spec:
+This directory contains the test files that constitute the test suite
+for the Web Events WG's Touch Events v1 spec. 
+
+Each file will run several tests when the file is loaded into a Web 
+browser. As described below, some files require User interaction for 
+the tests to run properly.
 
   <http://w3.org/TR/touch-events/>
 
-The following file is used to for single touch point testing. It was
-copied from:
-
-  <http://w3c-test.org/webevents/tests/touch-events-v1/submissions/Moz-Nok-Goog/single-touch.html>
-
-1. single-touch.html ; copied from <http://w3c-test.org/webevents/tests/touch-events-v1/submissions/Moz-Nok-Goog/single-touch.html>
-
-The following files are used for multiple touch point testing. The files
-were copied from:
-
-  <http://w3c-test.org/webevents/tests/touch-events-v1/submissions/Nokia/>
+= Automated testing - the following file does Not require user interaction 
+to run:
 
 1. create-touch-touchlist.html
-2. multi-touch-interactions.html
-3. multi-touch-interactions.js
-4. multi-touch-interfaces.html
+
+= Manual testing - the following files Require user interaction to run.
+Note the top of each test file indicates what the user must do to run the
+tests properly.
+
+The test file for single touch:
+
+1. single-touch.html 
+
+The test files for multi-touch:
+
+1. multi-touch-interactions.html
+2. multi-touch-interfaces.html
 
 
