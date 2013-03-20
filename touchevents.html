@@ -169,6 +169,10 @@
         A conforming implementation is required to implement all fields
         defined in this specification.
       </p>
+
+      <p>
+        WindowProxy is defined in [[!HTML5]].
+      </p>
     </section>
 
     <section>
@@ -192,7 +196,7 @@
 
         <dt>readonly attribute EventTarget target</dt>
         <dd>
-          The <a>Element</a> on which the <a>touch point</a> started when it
+          The <a>EventTarget</a> on which the <a>touch point</a> started when it
           was first placed on the surface, even if the <a>touch point</a> has
           since moved outside the interactive area of that element.
         </dd>
@@ -243,9 +247,11 @@
         <dd>
           returns the number of <a>Touch</a>es in the list
         </dd>
-        <dt>getter <a>Touch</a> item (in unsigned long index)</dt>
+        <dt>getter <a>Touch</a>? item (in unsigned long index)</dt>
         <dd>
-          returns the <a>Touch</a> at the specified index in the list
+          returns the <a>Touch</a> at the specified index in the list.
+          The value of index must be in the range of zero to length-1;
+          otherwise null is returned.
         </dd>
       </dl>
     </section>
@@ -596,7 +602,7 @@
         <dd>
           Creates a <a>Touch</a> object with the specified attributes.
           <dl class='parameters'>
-            <dt>AbstractView view</dt> <dd></dd>
+            <dt>WindowProxy view</dt> <dd></dd>
             <dt>EventTarget target</dt> <dd></dd>
             <dt>long identifier</dt> <dd></dd>
             <dt>long pageX</dt> <dd></dd>
