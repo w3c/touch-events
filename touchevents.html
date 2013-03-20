@@ -328,6 +328,21 @@
           otherwise <code>false</code>
         </dd>
       </dl>
+
+      <section class="informative">
+       <h2>TouchEvent Implementer's Note</h2>
+       <div class="note">
+        <p>User agents should ensure that all <a>Touch</a> objects available from a given 
+        <a>TouchEvent</a> are all associated to the same document that the <a>TouchEvent</a> was dispatched 
+        to. To implement this, user agents should maintain a notion of the current 
+        <em>touch-active</em> document. On first touch, this is set to the target document 
+        where the touch was created. When all active touch points are released, the 
+        <em>touch-active</em> document is cleared. All <a>TouchEvent</a>s are dispatched to the 
+        current <em>touch-active</em> document, and each <a>Touch</a> object it contains refers 
+        only to DOM elements (and co-ordinates) in that document. If a touch starts entirely 
+        outside the currently <em>touch-active</em> document, then it is ignored entirely. </p>
+       </div> 
+      </section>
       
       <section class="informative">
           <h2>Usage Examples</h2>
