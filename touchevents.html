@@ -251,6 +251,10 @@
         touch event.  <a>TouchList</a> objects are immutable; after one is
         created, its contents must not change.
       </p>
+      <p>
+        A TouchList object's <em>supported property indices</em> ([[!WEBIDL]])
+        are the numbers in the range 0 to one less than the length of the list. 
+      </p>
 
       <dl title='interface TouchList' class='idl'>
         <dt>readonly attribute unsigned long length</dt>
@@ -259,9 +263,8 @@
         </dd>
         <dt>getter <a>Touch</a>? item (in unsigned long index)</dt>
         <dd>
-          returns the <a>Touch</a> at the specified index in the list.
-          The value of index must be in the range of zero to length-1;
-          otherwise null is returned.
+          returns the <a>Touch</a> at the specified index in the list or
+          null if the index is not less than the length of the list. 
         </dd>
       </dl>
     </section>
