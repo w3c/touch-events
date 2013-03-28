@@ -156,6 +156,14 @@
 		if (touchList)
 			check_TouchList_object(touchList);
 
+		// TouchList.item(x) should return null if x is >= TouchList.length
+		if (touchList) {
+			test(function() {
+				touch1 = touchList.item(touchList.length);
+				assert_equals(touch1, null, "touchList.item(touchList.length) must return null");
+			}, "TouchList.item returns null if the index is >= the length of the list");
+		}
+
 		target0.innerHTML = "Test complete."
 		done();
 	}
