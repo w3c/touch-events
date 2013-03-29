@@ -103,6 +103,11 @@
 		for (var i=0; i < tl.length; i++) {
 			check_Touch_object(tl.item(i));
 		}
+		// TouchList.item(x) should return null if x is >= TouchList.length
+		test(function() {
+			var t = tl.item(tl.length);
+			assert_equals(t, null, "TouchList.item(TouchList.length) must return null");
+		}, "TouchList.item returns null if the index is >= the length of the list");
 	}
 
     function check_touch_clientXY(touch) {
