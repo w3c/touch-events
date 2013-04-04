@@ -685,10 +685,12 @@
 
       <p class="note">
         Some user agents implement an initTouchEvent method as part of the
-        <a>TouchEvent</a> interface.  This method can attach <a>TouchList</a>
-        objects returned by <a>createTouchList</a> to a <a>TouchEvent</a>
-        object.  The <a>initTouchEvent</a> method is not yet standardized, but
-        it may appear in some form in future specifications.
+        <a>TouchEvent</a> interface.  When this method is available, scripts
+        can use it to initialize the properties of a <a>TouchEvent</a> object,
+        including its <a>TouchList</a> properties (which can be initialized
+        with values returned from <a>createTouchList</a>).  The
+        <a>initTouchEvent</a> method is not yet standardized, but it may appear
+        in some form in a future specification.
       </p>
     </section>
 
