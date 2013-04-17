@@ -13,7 +13,7 @@
     <script type="text/javascript" class='remove'>
       var respecConfig = {
           // specification status (e.g. WD, LC, NOTE, etc.). If in doubt use ED.
-          specStatus:           "ED",
+          specStatus:           "PR",
 
           // the specification's short name, as in http://www.w3.org/TR/short-name/
           shortName:            "touch-events",
@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2013-03-20",
+          publishDate:  "2013-05-09",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -797,5 +797,27 @@
         test suite: Matt Brubeck, Olli Pettay, Art Barstow, Cathy Chan and Rick Byers.
       </p>
     </section>
+
+    <section class='appendix informative'>
+      <h2>Changes Since Last Publication</h2>
+      <p>The following non-substantive changes were made since the 
+        <a href="http://www.w3.org/TR/2013/WD-touch-events-20130124/">
+         24 January 2013 Last Call Working Draft</a> was published:
+      </p>
+      <ul>
+       <li>Added a non-normative note for implementers regarding event targets 
+          (<a href="https://dvcs.w3.org/hg/webevents/rev/6f2c52cd50f6">changeset</a>).</li>
+       <li>Added a non-normative note regarding mapping hardware events to touch events
+          (<a href="https://dvcs.w3.org/hg/webevents/rev/fe0ce5b66e4d">changeset</a>).</li>
+       <li>Minor Web IDL bug fixes and clarifications (changesets: 
+          <a href="https://dvcs.w3.org/hg/webevents/rev/67417356ff2a">1</a>,  
+          <a href="https://dvcs.w3.org/hg/webevents/rev/0edc668e7910">2</a>).</li>
+       <li>Added a non-normative note regarding the <code>initTouchEvent</code> method
+          that is not standardized (changesets: 
+          <a href="https://dvcs.w3.org/hg/webevents/rev/6294f7949a33">1</a>,  
+          <a href="https://dvcs.w3.org/hg/webevents/rev/a892e79887ab">2</a>).</li>
+      </ul>
+    </section>
+
   </body>
 </html>
