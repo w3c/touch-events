@@ -8,10 +8,10 @@
 <link rel="help" href="http://www.w3.org/TR/touch-events/#touchlist-interface"/>
 <link rel="help" href="http://www.w3.org/TR/touch-events/#touchevent-interface"/>
 <link rel="help" href="http://www.w3.org/TR/touch-events/#extensions-to-the-document-interface"/>
-<script src="/resources/testharness.js"></script>
-<script src="/resources/testharnessreport.js"></script>
-<script src="/resources/WebIDLParser.js"></script>
-<script src="/resources/idlharness.js"></script>
+<script src="http://w3c-test.org/resources/testharness.js"></script>
+<script src="http://w3c-test.org/resources/testharnessreport.js"></script>
+<script src="http://w3c-test.org/resources/WebIDLParser.js"></script>
+<script src="http://w3c-test.org/resources/idlharness.js"></script>
 </head>
 <body>
 <h1>idlharness test</h1>
@@ -54,7 +54,7 @@ interface TouchEvent : UIEvent {
 
 partial interface Document {
     Touch     createTouch (AbstractView view, EventTarget target, long identifier, long pageX, long pageY, long screenX, long screenY);
-    TouchList createTouchList (optional Touch... touches);
+    TouchList createTouchList (Touch... touches);
 };
 
 </pre>
