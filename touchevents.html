@@ -23,7 +23,7 @@
           // subtitle   :  "an excellent document",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2013-09-26",
+          publishDate:  "2013-10-10",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -197,17 +197,33 @@
       </p>
 
       <p>
-        The IDL blocks in this specification are conforming IDL 
-        fragments as defined by the WebIDL specification [[!WEBIDL]].
-      </p>
-
-      <p>
-        A conforming implementation is required to implement all fields
-        defined in this specification.
-      </p>
-
-      <p>
         WindowProxy is defined in [[!HTML5]].
+      </p>
+
+
+        <h3 id="webidl-conform">WebIDL Conformance</h3>
+        <p>
+          The IDL blocks in this specification are conforming IDL 
+          fragments as defined by the WebIDL specification [[!WEBIDL]].
+        </p>
+
+        <p>
+          A conforming Web Events user agent must also be a <a href="http://www.w3.org/TR/WebIDL/#dfn-conforming-ECMAScript-implementation">conforming ECMAScript implementation</a> of this IDL fragments in this specification, with the following exception:</p>
+
+        <ul>
+          <li>
+            <a href="http://www.w3.org/TR/WebIDL/#es-attributes">section 4.4.6
+            of Web IDL</a> requires that IDL attributes are reflected as
+            accessor properties on interface prototype objects.  Instead of
+            this, the user agent may reflect IDL attributes as data properties
+            on the platform objects that implement the relevant interface.
+            These data properties must have the same behavior when getting and
+            setting as would be exhibited when invoking the getter and setter
+            of the accessor properties on the platform object.
+          </li>
+        </ul>
+      <p>
+        <strong>Note:</strong> Both ways of reflecting IDL attributes allow for simply getting and setting the property on the platform object to work.  For example, given a Touch object aTouch, evaluating aTouch.target would return the EventTarget for the Touch object.  If the user agent implements IDL attributes as accessor properties, then the property access invokes the getter which returns the EventTarget.  If the user agent implements IDL attributes as data properties on the platform object with the same behavior as would be found with the accessor properties, then the object would appear to have an own property named "target" whose value is an EventTarget object, and the property access would return this value.
       </p>
     </section>
 
