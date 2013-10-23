@@ -49,7 +49,7 @@
           editors:  [
               { name: "Doug Schepers", url: "http://schepers.cc/",
                 company: "W3C", companyURL: "http://w3.org/" },
-              { name: "Sangwhan Moon",
+              { name: "Sangwhan Moon", url: "http://sangwhan.com",
                 company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
               { name: "Matt Brubeck", url: "http://limpet.net/mbrubeck/",
                 company: "Mozilla", companyURL: "http://www.mozilla.org/" },
@@ -120,11 +120,11 @@
     <section>
       <h2><a>Touch</a> Interface</h2>
       <p>
-        This section defines <em>extenstions</em> to the <a>Touch</a> interface
+        This section defines <em>extensions</em> to the <a>Touch</a> interface
 	defined in [[!TOUCH-EVENTS]].
       </p>
 
-      <dl title='interface Touch' class='idl'>
+      <dl title='partial interface Touch' class='idl'>
 
         <dt>readonly attribute long radiusX</dt>
         <dd>
@@ -167,11 +167,11 @@
     <section>
       <h2><a>TouchList</a> Interface</h2>
       <p>
-        This section defines an <em>extenstion</em> to the <a>TouchList</a>
+        This section defines an <em>extension</em> to the <a>TouchList</a>
 	interface defined in [[!TOUCH-EVENTS]].
       </p>
 
-      <dl title='interface TouchList' class='idl'>
+      <dl title='partial interface TouchList' class='idl'>
         <dt><a>Touch</a> identifiedTouch (in long identifier)</dt>
         <dd>
           returns the first <a>Touch</a> item in the list whose <a>identifier</a> property matches the specified identifier
