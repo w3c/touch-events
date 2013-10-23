@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Touch Events version 2</title>
+    <title>Touch Events Extensions</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
     <meta name="viewport" content="width=device-width">
     <!--
@@ -13,17 +13,17 @@
     <script class='remove'>
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-          specStatus:           "ED",
+          specStatus:           "WG-NOTE",
 
           // the specification's short name, as in http://www.w3.org/TR/short-name/
           shortName:            "touch-events",
 
           // if your specification has a subtitle that goes below the main
           // formal title, define it here
-          // subtitle   :  "an excellent document",
+          // subtitle   :  "W3C Working Group Note",
 
           // if you wish the publication date to be other than today, set this
-          publishDate:  "2011-11-14",
+          publishDate:  "2013-11-05",
 
           // if the specification's copyright date is a range of years, specify
           // the start date here:
@@ -42,7 +42,7 @@
 
           // if you want to have extra CSS, append them to this list
           // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             ["http://www.w3.org/StyleSheets/TR/W3C-TR.css", "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
+          // extraCSS:             ["http://www.w3.org/StyleSheets/TR/W3C-TR.css", "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
 
           // editors, add as many as you like
           // only "name" is required
@@ -95,127 +95,36 @@
   </head>
   <body>
     <section id='abstract'>
-      The Touch Events specification defines a set of low-level events that
-      represent one or more points of contact with a touch-sensitive surface,
-      and changes of those points with respect to the surface and any DOM
-      elements displayed upon it (e.g. for touch screens) or associated with it
-      (e.g. for drawing tablets without displays).  It also addresses
-      pen-tablet devices, such as drawing tablets, with consideration toward
-      stylus capabilities.
-
-      <p class="warning">
-        Touch Events version 2 is unfinished and is no
-        longer being developed.  We recommend that user agents implement the older
-        <a href="http://www.w3.org/TR/touch-events/">Touch Events version 1</a>
-        specification and/or the newer
+        <p>This document defines <em>extensions</em> to the 
+        <a href="http://www.w3.org/TR/touch-events/">Touch Events</a> specification
+        that have been implemented by one or more browsers.</p>
+	
+        <p>We recommend that user agents implement the 
+        <a href="http://www.w3.org/TR/touch-events/">Touch Events Recommendation</a>
+        and/or the newer
         <a href="http://www.w3.org/TR/pointerevents/">Pointer Events</a>
-        specification instead.
-      </p>
+        specification instead.</p>
+
+        <p>This document is no longer being developed.</p>
     </section>
 
 
     <section id='introduction' class='informative'>
       <h2>Introduction</h2>
 
-      <p>
-        User Agents that run on terminals which provide touch input to use web
-        applications typically use interpreted mouse events to allow users
-        to access interactive web applications. However, these interpreted
-        events, being normalized data based on the physical touch input, tend
-        to have limitations on delivering the intended user experience.
-        Additionally, it is not possible to handle concurrent input regardless
-        of device capability, due to constraints of mouse events: both
-        system level limitations and legacy compatibility.
-      </p>
-
-      <p>
-        Meanwhile, native applications are capable of handling both cases with
-        the provided system APIs.
-      </p>
-
-      <p>
-        The Touch Events specification provides a solution to this problem by
-        specifying interfaces to allow web applications to directly handle touch
-        events, and multiple touch points for capable devices.
-      </p>
-    </section>
-
-    <section id='conformance'>
-      <p>
-        This specification defines conformance criteria that apply to a single
-        product: the <dfn id="dfn-user-agent">user agent</dfn> that implements
-        the interfaces that it contains.
-      </p>
-
-      <p>
-        Implementations that use ECMAScript to implement the APIs defined in
-        this specification must implement them in a manner consistent with the
-        ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]] as
-        this specification uses that specification and terminology.
-      </p>
-
-      <p>
-        A conforming implementation is required to implement all fields
-        defined in this specification.
-      </p>
+      <p>This document defines <em>extensions</em> to the 
+       <a href="http://www.w3.org/TR/touch-events/">Touch Events</a> specification
+       that have been implemented by one or more browsers.</p>
     </section>
 
     <section>
       <h2><a>Touch</a> Interface</h2>
       <p>
-        This interface describes an individual <a>touch point</a> for a touch
-        event.  <a>Touch</a> objects are immutable; after one is created, its
-        attributes must not change.
+        This section defines <em>extenstions</em> to the <a>Touch</a> interface
+	defined in [[!TOUCH-EVENTS]].
       </p>
 
       <dl title='interface Touch' class='idl'>
-        <dt>readonly attribute long identifier</dt>
-        <dd>
-          An identification number for each <a>touch point</a>.
-
-          When a touch point becomes active, it must be assigned an
-          <a>identifier</a> that is distinct from any other <a>active touch
-          point</a>.  While the touch point remains active, all events that
-          refer to it must assign it the same <a>identifier</a>.
-        </dd>
-
-        <dt>readonly attribute EventTarget target</dt>
-        <dd>
-          The <a>Element</a> on which the <a>touch point</a> started when it
-          was first placed on the surface, even if the <a>touch point</a> has
-          since moved outside the interactive area of that element.
-        </dd>
-
-        <dt>readonly attribute long screenX</dt>
-        <dd>
-          The horizontal coordinate of point relative to the screen in pixels
-        </dd>
-        <dt>readonly attribute long screenY</dt>
-        <dd>
-          The vertical coordinate of point relative to the screen in pixels
-        </dd>
-
-        <dt>readonly attribute long clientX</dt>
-        <dd>
-          The horizontal coordinate of point relative to the viewport in pixels,
-          excluding any scroll offset
-        </dd>
-        <dt>readonly attribute long clientY</dt>
-        <dd>
-          The vertical coordinate of point relative to the viewport in pixels,
-          excluding any scroll offset
-        </dd>
-
-        <dt>readonly attribute long pageX</dt>
-        <dd>
-          The horizontal coordinate of point relative to the viewport in pixels,
-          including any scroll offset
-        </dd>
-        <dt>readonly attribute long pageY</dt>
-        <dd>
-          The vertical coordinate of point relative to the viewport in pixels,
-          including any scroll offset
-        </dd>
 
         <dt>readonly attribute long radiusX</dt>
         <dd>
@@ -232,24 +141,6 @@
           touching area (e.g. finger, stylus) along the y-axis, in pixels of
           the same scale as <a>screenY</a>; <code>1</code> if no value is
           known.  The value must be positive.
-        </dd>
-
-        <dt>readonly attribute float rotationAngle</dt>
-        <dd>
-          <p>
-            the angle (in degrees) that the ellipse described by <a>radiusX</a>
-            and <a>radiusY</a> is rotated clockwise about its center;
-            <code>0</code> if no value is known.  The value must be greater
-            than or equal to <code>0</code> and less than <code>90</code>.
-          </p>
-          <p>
-            If the ellipse described by <a>radiusX</a> and <a>radiusY</a> is
-            circular, then <a>rotationAngle</a> has no effect.  The user agent
-            may use <code>0</code> as the value in this case, or it may use any
-            other value in the allowed range.  (For example, the user agent may
-            use the <a>rotationAngle</a> value from the previous touch event,
-            to avoid sudden changes.)
-          </p>
         </dd>
 
         <dt>readonly attribute float force</dt>
@@ -276,20 +167,11 @@
     <section>
       <h2><a>TouchList</a> Interface</h2>
       <p>
-        This interface defines a list of individual points of contact for a
-        touch event.  <a>TouchList</a> objects are immutable; after one is
-        created, its contents must not change.
+        This section defines an <em>extenstion</em> to the <a>TouchList</a>
+	interface defined in [[!TOUCH-EVENTS]].
       </p>
 
       <dl title='interface TouchList' class='idl'>
-        <dt>readonly attribute unsigned long length</dt>
-        <dd>
-          returns the number of <a>Touch</a>es in the list
-        </dd>
-        <dt>getter <a>Touch</a> item (in unsigned long index)</dt>
-        <dd>
-          returns the <a>Touch</a> at the specified index in the list
-        </dd>
         <dt><a>Touch</a> identifiedTouch (in long identifier)</dt>
         <dd>
           returns the first <a>Touch</a> item in the list whose <a>identifier</a> property matches the specified identifier
@@ -297,506 +179,12 @@
       </dl>
     </section>
 
-    <section>
-      <h2><a>TouchEvent</a> Interface</h2>
-      <p>
-        This interface defines the <a>touchstart</a>, <a>touchend</a>,
-        <a>touchmove</a>, <a>touchenter</a>, <a>touchleave</a>, and
-        <a>touchcancel</a> event types.  <a>TouchEvent</a> objects are
-        immutable; after one is created and initialized, its attributes must
-        not change.
-      </p>
-
-      <dl title='interface TouchEvent : UIEvent' class='idl'>
-        <dt>readonly attribute <a>TouchList</a> touches</dt>
-        <dd>
-          a list of <a>Touch</a>es for every point of contact currently
-          touching the surface.
-        </dd>
-        <dt>readonly attribute <a>TouchList</a> targetTouches</dt>
-        <dd>
-          a list of <a>Touch</a>es for every point of contact that is touching
-          the surface <em>and</em> started on the element that is the
-          <a>target</a> of the current event.
-        </dd>
-        <dt>readonly attribute <a>TouchList</a> changedTouches</dt>
-        <dd>
-          <p>
-            a list of <a>Touch</a>es for every point of contact which contributed
-            to the event.
-          </p>
-          <p>
-            For the <a>touchstart</a> event this must be a list of the touch
-            points that just became active with the current event.  For the
-            <a>touchmove</a> event this must be a list of the touch points that
-            have moved since the last event.  For the <a>touchend</a> and 
-            <a>touchcancel</a> events this must be a list of the touch points 
-            that have just been removed from the surface.  For the <a>touchenter</a> 
-            and <a>touchleave</a> events, this must be a list of the touch points 
-            that have just entered or left the target element.
-          </p>
-        </dd>
-
-        <dt>readonly attribute boolean altKey</dt>
-        <dd>
-          <code>true</code> if the alt (Alternate) key modifier is activated;
-          otherwise <code>false</code>
-        </dd>
-        <dt>readonly attribute boolean metaKey</dt>
-        <dd>
-          <code>true</code> if the meta (Meta) key modifier is activated;
-          otherwise <code>false</code>.  On some platforms this attribute may
-          map to a differently-named key modifier.
-        </dd>
-        <dt>readonly attribute boolean ctrlKey</dt>
-        <dd>
-          <code>true</code> if the ctrl (Control) key modifier is activated;
-          otherwise <code>false</code>
-        </dd>
-        <dt>readonly attribute boolean shiftKey</dt>
-        <dd>
-          <code>true</code> if the shift (Shift) key modifier is activated;
-          otherwise <code>false</code>
-        </dd>
-        <dt>readonly attribute EventTarget relatedTarget</dt>
-        <dd>
-          identifies a secondary EventTarget related to a touch event.  This
-          attribute is used with the <a>touchenter</a> event to indicate the
-          <a>EventTarget</a> the touch point exited, and with the
-          <a>touchleave</a> event to indicate the <a>EventTarget</a> the touch
-          point entered.  For other event types, this attribute must be
-          <code>null</code>.
-        </dd>
-      </dl>
-      
-      <section class="informative">
-          <h2>Usage Examples</h2>
-          
-          <p>
-            The examples below demonstrate the relations between the different
-            <a>TouchList</a> members defined in a <a>TouchEvent</a>.
-          </p>
-          
-          <section>
-              <h3>touches and targetTouches of a <a>TouchEvent</a></h3>
-              
-              <p>
-                This example demonstrates the utility and relations between the
-                touches and targetTouches members defined in the <a>TouchEvent</a>
-                interface. The following code will generate different output based
-                on the number of touch points on the touchable element and the document:
-              </p>
-      
-              <pre class="example">
-                  &lt;div id='touchable'&gt;
-                      This element is touchable.
-                  &lt;/div&gt;
-          
-                  document.getElementById('touchable').addEventListener('touchstart', function(ev) {
-
-                      if (ev.touches.item(0) == ev.targetTouches.item(0))
-                      {
-                          /**
-                           * If the first touch on the surface is also targeting the
-                           * "touchable" element, the code below should execute.
-                           * Since targetTouches is a subset of touches which covers the
-                           * entire surface, TouchEvent.touches >= TouchEvents.targetTouches
-                           * is always true.
-                           */
-
-                          document.write('Hello Touch Events!');
-                      }
-
-                      if (ev.touches.length == ev.targetTouches.length)
-                      {
-                          /**
-                           * If all of the active touch points are on the "touchable"
-                           * element, the length properties should be the same.
-                           */
-
-                          document.write('All points are on target element')
-                      }
-
-                      if (ev.touches.length > 1)
-                      {
-                          /**
-                           * On a single touch input device, there can only be one point
-                           * of contact on the surface, so the following code can only
-                           * execute when the terminal supports multiple touches.
-                           */
-
-                          document.write('Hello Multiple Touch!');
-                      }
-
-                  }, false);
-              </pre>
-          </section>
-          
-          <section>
-              <h3>changedTouches of a <a>TouchEvent</a></h3>
-              
-              <p>
-                This example demonstrates the utility of changedTouches and it's relation
-                with the other <a>TouchList</a> members of the <a>TouchEvent</a> interface.
-                The code is a example which triggers whenever a touch point is removed
-                from the defined touchable element:
-              </p>
-              
-              <pre class="example">
-                  &lt;div id='touchable'&gt;
-                      This element is touchable.
-                  &lt;/div&gt;
-              
-                  document.getElementById('touchable').addEventListener('touchend', function(ev) {
-
-                      /**
-                       * Example output when three touch points are on the surface,
-                       * two of them being on the "touchable" element and one point
-                       * in the "touchable" element is lifted from the surface:
-                       *
-                       * Touch points removed: 1
-                       * Touch points left on element: 1
-                       * Touch points left on document: 2
-                       */
-
-                      document.write('Removed: ' + ev.changedTouches.length);
-                      document.write('Remaining on element: ' + ev.targetTouches.length);
-                      document.write('Remaining on document: ' + ev.touches.length);
-
-                  }, false);
-              </pre>
-          </section>
-              
-      </section>
-
-      <section class="informative">
-          <h2>List of <a>TouchEvent</a> types</h2>
-
-          <p>
-            The following table provides a summary of the types of possible
-            <a>TouchEvent</a> types defined in this specification. All events
-            should accomplish the bubbling phase. Some events are not cancelable
-            (see <a>preventDefault</a>).
-          </p>
-          
-          <!--
-          // FIXME: As of the time of writing, respec.js doesn't have support for
-          // tables like this - we're just piggybacking on a existing class, with
-          // raw markup as a quick and dirty workaround.
-          -->
-
-          <table class="parameters" id="table-event-summary" summary="This table 
-          contains the complete list of touch events defined in the Touch Events 
-          specification. The first column contains the local name of the event type. 
-          The second column indicates if the event accomplish the bubbling phase or
-           not (all events accomplish the capture and target phases). The third 
-           column indicates if the default action associated with the event can 
-           be canceled. The fourth column indicates the nodes that can be target 
-           of the event. the fifth (and last) column indicates the DOM interface 
-           implemented by the event object.">
-          <tr>
-              <th>Event Type</th>
-              <th>Sync / Async</th>
-              <th>Bubbling phase</th>
-              <th>Trusted proximal event target types</th>
-              <th>DOM interface</th>
-              <th>Cancelable</th>
-              <th>Default Action</th>
-          </tr>
-          <tr> 
-              <td><a>touchstart</a></td> 
-              <td>Sync</td> 
-              <td>Yes</td> 
-              <td><code>Document, Element</code></td> 
-              <td><a>TouchEvent</a></td> 
-              <td>Yes</td> 
-              <td>none</td> 
-          </tr>
-          <tr> 
-              <td><a>touchend</a></td> 
-              <td>Sync</td> 
-              <td>Yes</td> 
-              <td><code>Document, Element</code></td> 
-              <td><a>TouchEvent</a></td> 
-              <td>Yes</td> 
-              <td>
-                Varies: mousemove (If point has been moved), mousedown, 
-                mouseup, click
-              </td> 
-          </tr>
-          <tr> 
-              <td><a>touchmove</a></td> 
-              <td>Sync</td> 
-              <td>Yes</td> 
-              <td><code>Document, Element</code></td> 
-              <td><a>TouchEvent</a></td> 
-              <td>Yes</td> 
-              <td>none</td> 
-          </tr>
-          <tr> 
-              <td><a>touchcancel</a></td> 
-              <td>Sync</td> 
-              <td>Yes</td> 
-              <td><code>Document, Element</code></td> 
-              <td><a>TouchEvent</a></td> 
-              <td>No</td> 
-              <td>none</td> 
-          </tr>
-          </table>
-      </section>
- 
-      <section>
-        <h3 id="event-touchstart">The <dfn class="event">touchstart</dfn>
-        event</h3>
-        <p>
-          A user agent must dispatch this event type to indicate when the user
-          places a <a>touch point</a> on the touch surface.
-        </p>
-
-        <p>
-          The target of this event must be an <a>Element</a>.  If the touch
-          point is within a frame, the event should be dispatched to an element
-          in the <a>child browsing context</a> of that frame.
-        </p>
-
-        <p>
-          If the <a>preventDefault</a> method is called on this event, it
-          should prevent any default actions caused by any touch events
-          associated with the same <a>active touch point</a>, including mouse
-          events or scrolling.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="event-touchend">The <dfn class="event">touchend</dfn> event</h3>
-        <p>
-          A user agent must dispatch this event type to indicate when the user
-          removes a <a>touch point</a> from the touch surface, also including
-          cases where the touch point physically leaves the touch surface, such
-          as being dragged off of the screen.
-        </p>
-
-        <p>
-          The <a>target</a> of this event must be the same <a>Element</a> on 
-          which the <a>touch point</a> started when it was first
-          placed on the surface, even if the <a>touch point</a> has since moved
-          outside the interactive area of the <a>target</a> element.
-        </p>
-
-        <p>
-          The <a>touch point</a> or points that were removed must be included
-          in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and
-          must not be included in the <a>touches</a> and <a>targetTouches</a>
-          attributes.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="event-touchmove">The <dfn class="event">touchmove</dfn> event</h3>
-        <p>
-          A user agent must dispatch this event type to indicate when the user
-          moves a <a>touch point</a> along the touch surface.
-        </p>
-
-        <p>
-          The <a>target</a> of this event must be the same <a>Element</a> on 
-          which the <a>touch point</a> started when it was first
-          placed on the surface, even if the <a>touch point</a> has since moved
-          outside the interactive area of the <a>target</a> element.
-        </p>
-
-        <p>
-          If the values of <a>radiusX</a>, <a>radiusY</a>,
-          <a>rotationAngle</a>, or <a>force</a> are known, then the user agent
-          also must dispatch this event type to indicate when any of these
-          attributes of a <a>touch point</a> have changed.
-        </p>
-
-        <p>
-          Note that the rate at which the user agent sends <a>touchmove</a>
-          events is implementation-defined, and may depend on hardware
-          capabilities and other implementation details.
-        </p>
-
-        <p>
-          If the <a>preventDefault</a> method is called on the <em>first</em>
-          <a>touchmove</a> event of an <a>active touch point</a>, it should
-          prevent any default action caused by any <a>touchmove</a> event
-          associated with the same <a>active touch point</a>, such as scrolling.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="event-touchenter">The <dfn class="event">touchenter</dfn> event</h3>
-        <p>
-          A user agent must dispatch this event type to indicate when a
-          <a>touch point</a> moves onto the interactive area defined by a DOM
-          element.  Events of this type must not bubble.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="event-touchleave">The <dfn class="event">touchleave</dfn> event</h3>
-        <p>
-          A user agent must dispatch this event type to indicate when a
-          <a>touch point</a> moves off the interactive area defined by a DOM
-          element.  Events of this type must not bubble.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="event-touchcancel">The <dfn class="event">touchcancel</dfn> event</h3>
-        <p>
-          A user agent must dispatch this event type to indicate when a touch
-          point has been disrupted in an implementation-specific manner, such as
-          a synchronous event or action originating from the UA canceling the
-          touch, or the touch point leaving the document window into a
-          non-document area which is capable of handling user interactions.
-          (e.g. The UA's native user interface, plug-ins)  A user agent may
-          also dispatch this event type when the user places more <a>touch
-          point</a>s on the touch surface than the device or implementation is
-          configured to store, in which case the earliest <a>Touch</a> object
-          in the <a>TouchList</a> should be removed.
-        </p>
-
-        <p>
-          The <a>target</a> of this event must be the same <a>Element</a> on 
-          which the <a>touch point</a> started when it was first
-          placed on the surface, even if the <a>touch point</a> has since moved
-          outside the interactive area of the <a>target</a> element.
-        </p>
-
-        <p>
-          The <a>touch point</a> or points that were removed must be included
-          in the <a>changedTouches</a> attribute of the <a>TouchEvent</a>, and
-          must not be included in the <a>touches</a> and <a>targetTouches</a>
-          attributes.
-        </p>
-      </section>
-    </section>
-
-    <section>
-      <h2>Extensions to the <a>Document</a> Interface</h2>
-      <p>
-        The <a>Document</a> interface [[!DOM-LEVEL-3-CORE]] contains methods
-        by which the user can create <a>Touch</a> and <a>TouchList</a>
-        objects.
-      </p>
-
-      <dl title='partial interface Document' class='idl'>
-        <dt>Touch createTouch()</dt>
-        <dd>
-          Creates a <a>Touch</a> object with the specified attributes.
-          <dl class='parameters'>
-            <dt>AbstractView view</dt> <dd></dd>
-            <dt>EventTarget target</dt> <dd></dd>
-            <dt>long identifier</dt> <dd></dd>
-            <dt>long pageX</dt> <dd></dd>
-            <dt>long pageY</dt> <dd></dd>
-            <dt>long screenX</dt> <dd></dd>
-            <dt>long screenY</dt> <dd></dd>
-            <dt>optional long radiusX</dt> <dd></dd>
-            <dt>optional long radiusY</dt> <dd></dd>
-            <dt>optional float rotationAngle</dt> <dd></dd>
-            <dt>optional float force</dt> <dd></dd>
-          </dl>
-        </dd>
-
-        <dt>TouchList createTouchList()</dt>
-        <dd>
-          Creates a <a>TouchList</a> object containing the specified
-          <a>Touch</a> objects.
-          <dl class='parameters'>
-            <dt>Touch[] touches</dt> <dd></dd>
-          </dl>
-        </dd>
-
-        <dt>TouchList createTouchList()</dt>
-        <dd>
-          Creates a <a>TouchList</a> object containing a single <a>Touch</a>.
-          <dl class='parameters'>
-            <dt>Touch touch</dt> <dd></dd>
-          </dl>
-        </dd>
-      </dl>
-    </section>
-
-    <section id="mouse-events">
-      <h2>Interaction with Mouse Events</h2>
-      <p>
-        The user agent may dispatch both touch events and mouse events
-        [[!DOM-LEVEL-2-EVENTS]] in response to the same user input.  If the
-        user agent dispatches both touch events and mouse events in response to
-        a single user action, then the <a>touchstart</a> event type must be
-        dispatched before any mouse event types for that action.  If the
-        <a>preventDefault</a> method of <a>touchstart</a> or <a>touchmove</a>
-        is called, the user agent should not dispatch any mouse event that
-        would be a consequential result of the the prevented touch event.
-      </p>
-
-      <p class="note">
-        If a Web application can process touch events, it can intercept them, 
-        and no corresponding mouse events would need to be dispatched by the 
-        user agent. If the Web application is not specifically written for 
-        touch input devices, it can react to the subsequent mouse events instead.
-      </p>
-
-      <p>
-        If the user agent intreprets a sequence of touch events as a click,
-        then it should dispatch <a>mousemove</a>, <a>mousedown</a>,
-        <a>mouseup</a>, and <a>click</a> events (in that order) at the location
-        of the <a>touchend</a> event for the corresponding touch input.  If the
-        contents of the document have changed during processing of the touch
-        events, then the user agent may dispatch the mouse events to a
-        different target than the touch events.
-      </p>
-
-      <p>
-        The default actions and ordering of any further touch and mouse events
-        are implementation-defined, except as specified elsewhere.
-      </p>
-    </section>
-
-    <section>
-      <h2>Glossary</h2>
-
-      <dl>
-        <dt><dfn>active touch point</dfn></dt>
-        <dd>
-          A <a>touch point</a> which is currently on the screen and is being
-          tracked by the user agent.  The touch point becomes active when the
-          user agent first dispatches a <a>touchstart</a> event indicating its
-          appearance.  It ceases to be active after the user agent dispatches a
-          <a>touchend</a> or <a>touchcancel</a> event indicating that the touch
-          point is removed from the surface or no longer tracked.
-        </dd>
-
-        <dt><dfn>touch point</dfn></dt>
-        <dd>
-          The coordinate point at which a pointer (e.g finger or stylus)
-          intersects the target surface of an interface.  This may apply to a
-          finger touching a touch-screen, or an digital pen writing on a piece
-          of paper.
-        </dd>
-        
-        <dt><dfn>preventDefault</dfn></dt>
-        <dd>
-          If a event is cancelable, the preventDefault method is used to signify
-          that the event is to be canceled, and any default actions defined in the
-          user agent as a result of this event, or consequential events from the
-          canceled event will not occur. Calling this method on non-cancelable
-          events will have no effect.
-        </dd>        
-      </dl>
-    </section>
-
     <section id='issues' class='informative'>
       <h2>Issues</h2>
       <p>
         The working group maintains <a
-         href='http://www.w3.org/2010/webevents/track/products/2'
-        >a list of open issues in this specification</a>.  These issues may be
-        addressed in future revisions of the specification.
+         href='http://www.w3.org/2010/webevents/track/products/'
+        >a list of open issues for its documents</a>.
       </p>
     </section>
 
@@ -804,20 +192,9 @@
       <h2>Acknowledgements</h2>
       <p>
         Many thanks to the WebKit engineers for developing the model used as a
-        basis for this spec, Neil Roberts (SitePen) for his summary of WebKit
-        touch events, Peter-Paul Koch (PPK) for his write-ups and suggestions,
-        Robin Berjon for developing the <a
-          href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html"
-        >ReSpec.js spec authoring tool</a>, and the WebEvents WG for their many
-        contributions.
+        basis for this document and to the members of the Web Events Working Group.
       </p>
 
-      <p>
-        Many others have made additional comments as the spec developed, which
-        have led to steady improvements.  Among them are Matthew Schinckel,
-        Andrew Grieve, and Cathy Chan. If I inadvertently omitted your name,
-        please let me know.
-      </p>
     </section>
   </body>
 </html>
