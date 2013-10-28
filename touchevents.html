@@ -1,86 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" typeof="bibo:Document " about="" property="dcterms:language" content="en">
+<head>
     <title>Touch Events Extensions</title>
-    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <!--
       === NOTA BENE ===
       For the three scripts below, if your spec resides on dev.w3 you can check them
       out in the same tree and use relative links so that they'll work offline,
      -->
-    <script src='https://www.w3.org/Tools/respec/respec-w3c-common.js' class='remove'></script>
-    <script class='remove'>
-      var respecConfig = {
-          // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-          specStatus:           "WG-NOTE",
-
-          // the specification's short name, as in http://www.w3.org/TR/short-name/
-          shortName:            "touch-events-extensions",
-
-          // if your specification has a subtitle that goes below the main
-          // formal title, define it here
-          // subtitle   :  "W3C Working Group Note",
-
-          // if you wish the publication date to be other than today, set this
-          publishDate:  "2013-10-31",
-
-          // if the specification's copyright date is a range of years, specify
-          // the start date here:
-          // copyrightStart: "2005"
-
-          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
-          // and its maturity status
-          // previousPublishDate:  "1977-03-15",
-          // previousMaturity:  "WD",
-
-          // if there a publicly available Editor's Draft, this is the link
-          edDraftURI:           "http://dvcs.w3.org/hg/webevents/raw-file/default/touchevents.html",
-
-          // if this is a LCWD, uncomment and set the end of its review period
-          // lcEnd: "2009-08-05",
-
-          // if you want to have extra CSS, append them to this list
-          // it is recommended that the respec.css stylesheet be kept
-          // extraCSS:             ["http://www.w3.org/StyleSheets/TR/W3C-TR.css", "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
-
-          // editors, add as many as you like
-          // only "name" is required
-          editors:  [
-              { name: "Doug Schepers", url: "http://schepers.cc/",
-                company: "W3C", companyURL: "http://w3.org/" },
-              { name: "Sangwhan Moon", url: "http://sangwhan.com",
-                company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
-              { name: "Matt Brubeck", url: "http://limpet.net/mbrubeck/",
-                company: "Mozilla", companyURL: "http://www.mozilla.org/" },
-          ],
-
-          // authors, add as many as you like.
-          // This is optional, uncomment if you have authors as well as editors.
-          // only "name" is required. Same format as editors.
-
-          //authors:  [
-          //    { name: "Your Name", url: "http://example.org/",
-          //      company: "Your Company", companyURL: "http://example.com/" },
-          //],
-
-          // name of the WG
-          wg:           "Web Events Working Group",
-
-          // URI of the public WG page
-          wgURI:        "http://www.w3.org/2010/webevents/",
-
-          // name (with the @w3c.org) of the public mailing to which comments are due
-          wgPublicList: "public-webevents",
-
-          // URI of the patent status for this WG, for Rec-track documents
-          // !!!! IMPORTANT !!!!
-          // This is important for Rec-track documents, do not copy a patent URI from a random
-          // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
-          // Team Contact.
-          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
-      };
-    </script>
+    
+    
 
     <style type="text/css">
       .event {
@@ -92,9 +22,451 @@
         white-space: pre-wrap;
       }
     </style>
-  </head>
-  <body>
-    <section id='abstract'>
+  <style>/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #ff4500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+</style><style>/* --- ISSUES/NOTES --- */
+div.issue-title, div.note-title {
+    padding-right:  1em;
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.issue-title { color: #e05252; }
+div.note-title { color: #2b2; }
+div.issue-title span, div.note-title span {
+    text-transform: uppercase;
+}
+div.note, div.issue {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.note > p:first-child, .issue > p:first-child { margin-top: 0 }
+.issue, .note {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+div.issue, div.note {
+    padding: 1em 1.2em 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+span.note, span.issue { padding: .1em .5em .15em; }
+
+.issue {
+    border-color: #e05252;
+    background: #fbe9e9;
+}
+.note {
+    border-color: #52e052;
+    background: #e9fbe9;
+}
+
+
+</style><style>/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID, .idlDictionaryID, .idlCallbackID, .idlEnumID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+a.idlEnumItem {
+    color:  #000;
+    border-bottom:  1px dotted #ccc;
+    text-decoration: none;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType, .idlFieldType, .idlMemberType {
+    color:  #005a9c;
+}
+.idlAttrName, .idlFieldName, .idlMemberName {
+    color:  #ff4500;
+}
+.idlAttrName a, .idlFieldName a, .idlMemberName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType, .idlCallbackType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlCtor*/
+.idlCtorName {
+    color:  #ff4500;
+}
+.idlCtorName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName, .idlDefaultValue {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlSectionComment*/
+.idlSectionComment {
+    color: gray;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants, dl.constructors, dl.fields, dl.dictionary-members {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt, .constructors dt, .fields dt, .dictionary-members dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code, .constructors dt code, .fields dt code, .dictionary-members dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code, .fields dt code, .dictionary-members dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code, .fields dt .idlFieldType code, .dictionary-members dt .idlMemberType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.constructors dt code {
+    background:  #cfc;
+}
+
+.attributes dd, .methods dd, .constants dd, .constructors dd, .fields dd, .dictionary-members dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-WG-NOTE"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ui/save-html" src="https://raw.github.com/darobin/respec/gh-pages/js/ui/save-html.js"></script></head>
+  <body class="h-entry" style="" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
+  <p>
+    
+      <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
+    
+  </p>
+  <h1 class="title p-name" id="title" property="dcterms:title">Touch Events Extensions</h1>
+  
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-10-31T04:00:00.000Z" id="w3c-working-group-note-31-october-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Working Group Note <time class="dt-published" datetime="2013-10-31">31 October 2013</time></h2>
+  <dl>
+    
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2013/NOTE-touch-events-extensions-20131031/">http://www.w3.org/TR/2013/NOTE-touch-events-extensions-20131031/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/touch-events-extensions/">http://www.w3.org/TR/touch-events-extensions/</a></dd>
+    
+    
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="http://dvcs.w3.org/hg/webevents/raw-file/default/touchevents.html">http://dvcs.w3.org/hg/webevents/raw-file/default/touchevents.html</a></dd>
+    
+    
+    
+    
+    
+      <dt>Previous version:</dt>
+      <dd>None</dd>
+    
+    
+    <dt>Editors:</dt>
+    <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><a class="u-url url p-name fn" rel="foaf:homepage" property="foaf:name" content="Doug Schepers" href="http://schepers.cc/">Doug Schepers</a>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a></span>
+</dd>
+<dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><a class="u-url url p-name fn" rel="foaf:homepage" property="foaf:name" content="Sangwhan Moon" href="http://sangwhan.com">Sangwhan Moon</a>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.opera.com/">Opera Software ASA</a></span>
+</dd>
+<dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><a class="u-url url p-name fn" rel="foaf:homepage" property="foaf:name" content="Matt Brubeck" href="http://limpet.net/mbrubeck/">Matt Brubeck</a>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.mozilla.org/">Mozilla</a></span>
+</dd>
+
+    
+    
+  </dl>
+  
+  
+  
+  
+    
+      <p class="copyright">
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
+        2013
+        
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+        (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+        <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), 
+        
+        All Rights Reserved.
+        
+        <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+        
+          <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+        
+        rules apply.
+      </p>
+    
+  
+  <hr>
+</div>
+    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2>
         <p>This document defines <em>extensions</em> to the 
         <a href="http://www.w3.org/TR/touch-events/">Touch Events</a> specification
         that have been implemented by one or more browsers.</p>
@@ -106,93 +478,144 @@
         specification instead.</p>
 
         <p>This document is no longer being developed.</p>
-    </section>
+    </section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
+  
+    
+      
+        <p>
+          <em>This section describes the status of this document at the time of its publication. Other
+          documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision
+          of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports
+          index</a> at http://www.w3.org/TR/.</em>
+        </p>
+        
+        <p>
+          This document was published by the <a href="http://www.w3.org/2010/webevents/">Web Events Working Group</a> as a Working Group Note.
+          
+          
+          If you wish to make comments regarding this document, please send them to 
+          <a href="mailto:public-webevents@w3.org">public-webevents@w3.org</a> 
+          (<a href="mailto:public-webevents-request@w3.org?subject=subscribe">subscribe</a>,
+          <a href="http://lists.w3.org/Archives/Public/public-webevents/">archives</a>).
+          
+          
+          
+          
+            All comments are welcome.</p>
+          
+        
+          <p>
+            Publication as a Working Group Note does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership.
+            This is a draft document and may be updated, replaced or obsoleted by other documents at 
+            any time. It is inappropriate to cite this document as other than work in progress.
+          </p>
+        
+        
+        <p>
+          
+            This document was produced by a group operating under the 
+             
+                <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+            
+          
+          
+          
+            
+              <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/45559/status" rel="disclosure">public list of any patent disclosures</a> 
+            
+            made in connection with the deliverables of the group; that page also includes instructions for 
+            disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the
+            information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+            6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+          
+          
+        </p>
+        
+      
+    
+  
+</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#touch-interface" class="tocxref"><span class="secno">2. </span><span class="formerLink"><code>Touch</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#attributes" class="tocxref"><span class="secno">2.1 </span>Attributes</a></li></ul></li><li class="tocline"><a href="#touchlist-interface" class="tocxref"><span class="secno">3. </span><span class="formerLink"><code>TouchList</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#methods" class="tocxref"><span class="secno">3.1 </span>Methods</a></li></ul></li><li class="tocline"><a href="#issues" class="tocxref"><span class="secno">4. </span>Issues</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li></ul></li></ul></section>
 
 
-    <section id='introduction' class='informative'>
-      <h2>Introduction</h2>
+    <section id="introduction" class="informative" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_introduction"><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
 
       <p>This document defines <em>extensions</em> to the 
        <a href="http://www.w3.org/TR/touch-events/">Touch Events</a> specification
        that have been implemented by one or more browsers.</p>
     </section>
 
-    <section>
-      <h2><a>Touch</a> Interface</h2>
+    <section id="touch-interface">
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_touch-interface"><span class="secno">2. </span><a href="#idl-def-Touch" class="idlType"><code>Touch</code></a> Interface</h2>
       <p>
-        This section defines <em>extensions</em> to the <a>Touch</a> interface
-	defined in [[!TOUCH-EVENTS]].
+        This section defines <em>extensions</em> to the <a href="#idl-def-Touch" class="idlType"><code>Touch</code></a> interface
+	defined in [<cite><a class="bibref" href="#bib-TOUCH-EVENTS">TOUCH-EVENTS</a></cite>].
       </p>
 
-      <dl title='partial interface Touch' class='idl'>
-
-        <dt>readonly attribute long radiusX</dt>
-        <dd>
-          the radius of the ellipse which most closely circumscribes the
-          touching area (e.g. finger, stylus) along the x-axis, in CSS pixels of
-          the same scale as <a>screenX</a>; <code>1</code> if no value is
-          known.  The value must be positive.
-        </dd>
-        <dt>readonly attribute long radiusY</dt>
-        <dd>
-          the radius of the ellipse which most closely circumscribes the
-          touching area (e.g. finger, stylus) along the y-axis, in CSS pixels of
-          the same scale as <a>screenY</a>; <code>1</code> if no value is
-          known.  The value must be positive.
-        </dd>
-
-        <dt>readonly attribute float force</dt>
-        <dd>
+      <pre class="idl"><span class="idlInterface" id="idl-def-Touch">partial interface <span class="idlInterfaceID">Touch</span> {
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType">long</span>  <span class="idlAttrName"><a href="#widl-Touch-radiusX">radiusX</a></span>;</span>
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType">long</span>  <span class="idlAttrName"><a href="#widl-Touch-radiusY">radiusY</a></span>;</span>
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType">float</span> <span class="idlAttrName"><a href="#widl-Touch-force">force</a></span>;</span>
+};</span></pre><section id="attributes"><h3 aria-level="2" role="heading" id="h3_attributes"><span class="secno">2.1 </span>Attributes</h3><dl class="attributes"><dt id="widl-Touch-force"><code>force</code> of type <span class="idlAttrType">float</span>, readonly   </dt><dd>
           a relative value of pressure applied, in the range <code>0</code> to
           <code>1</code>, where <code>0</code> is no pressure, and
           <code>1</code> is the highest level of pressure the touch device is
           capable of sensing; <code>0</code> if no value is known.  In
-          environments where <a>force</a> is known, the absolute pressure
-          represented by the <a>force</a> attribute, and the sensitivity in
+          environments where force is known, the absolute pressure
+          represented by the force attribute, and the sensitivity in
           levels of pressure, may vary.
 
-          <p class="issue" id="issue-inkml">
+          <div class="issue"><div class="issue-title" aria-level="3" role="heading" id="h_issue_1"><span>Issue 1</span></div><p class="" id="issue-inkml">
             <strong>Issue:</strong>
             Consider aligning with other "channels" and values from
             <a href="http://www.w3.org/TR/InkML/#channelContents">Ink Markup
-            Language (InkML)</a>, in addition to <a>force</a>, e.g. adding
-            <a>angle</a>, <a>clientZ</a>, <a>rotation</a>, etc.
-          </p>
-        </dd>
-      </dl>
+            Language (InkML)</a>, in addition to force, e.g. adding
+            angle, clientZ, rotation, etc.
+          </p></div>
+        </dd><dt id="widl-Touch-radiusX"><code>radiusX</code> of type <span class="idlAttrType">long</span>, readonly   </dt><dd>
+          the radius of the ellipse which most closely circumscribes the
+          touching area (e.g. finger, stylus) along the x-axis, in CSS pixels of
+          the same scale as screenX; <code>1</code> if no value is
+          known.  The value must be positive.
+        </dd><dt id="widl-Touch-radiusY"><code>radiusY</code> of type <span class="idlAttrType">long</span>, readonly   </dt><dd>
+          the radius of the ellipse which most closely circumscribes the
+          touching area (e.g. finger, stylus) along the y-axis, in CSS pixels of
+          the same scale as screenY; <code>1</code> if no value is
+          known.  The value must be positive.
+        </dd></dl></section>
     </section>
 
-    <section>
-      <h2><a>TouchList</a> Interface</h2>
+    <section id="touchlist-interface">
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_touchlist-interface"><span class="secno">3. </span><a href="#idl-def-TouchList" class="idlType"><code>TouchList</code></a> Interface</h2>
       <p>
-        This section defines an <em>extension</em> to the <a>TouchList</a>
-	interface defined in [[!TOUCH-EVENTS]].
+        This section defines an <em>extension</em> to the <a href="#idl-def-TouchList" class="idlType"><code>TouchList</code></a>
+	interface defined in [<cite><a class="bibref" href="#bib-TOUCH-EVENTS">TOUCH-EVENTS</a></cite>].
       </p>
 
-      <dl title='partial interface TouchList' class='idl'>
-        <dt><a>Touch</a> identifiedTouch (in long identifier)</dt>
-        <dd>
-          returns the first <a>Touch</a> item in the list whose <a>identifier</a> property matches the specified identifier
-        </dd>
-      </dl>
+      <pre class="idl"><span class="idlInterface" id="idl-def-TouchList">partial interface <span class="idlInterfaceID">TouchList</span> {
+<span class="idlMethod">    <span class="idlMethType"><a href="#idl-def-Touch" class="idlType"><code>Touch</code>?</a></span> <span class="idlMethName"><a href="#widl-TouchList-identifiedTouch-Touch-long-identifier">identifiedTouch</a></span> (<span class="idlParam"><span class="idlParamType">long</span> <span class="idlParamName">identifier</span></span>);</span>
+};</span></pre><section id="methods"><h3 aria-level="2" role="heading" id="h3_methods"><span class="secno">3.1 </span>Methods</h3><dl class="methods"><dt id="widl-TouchList-identifiedTouch-Touch-long-identifier"><code>identifiedTouch</code></dt><dd>
+          returns the first <a href="#idl-def-Touch" class="idlType"><code>Touch</code></a> item in the list whose identifier property matches the specified identifier or null if there is no match
+        <table class="parameters"><tbody><tr><th>Parameter</th><th>Type</th><th>Nullable</th><th>Optional</th><th>Description</th></tr><tr><td class="prmName">identifier</td><td class="prmType"><code> <a>long</a></code></td><td class="prmNullFalse"><span role="img" aria-label="False">✘</span></td><td class="prmOptFalse"><span role="img" aria-label="False">✘</span></td><td class="prmDesc"></td></tr></tbody></table><div><em>Return type: </em><a href="#idl-def-Touch" class="idlType"><code> Touch</code></a>, <code>null</code></div></dd></dl></section>
     </section>
 
-    <section id='issues' class='informative'>
-      <h2>Issues</h2>
+    <section id="issues" class="informative" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_issues"><span class="secno">4. </span>Issues</h2><p><em>This section is non-normative.</em></p>
       <p>
-        The working group maintains <a
-         href='http://www.w3.org/2010/webevents/track/products/'
-        >a list of open issues for its documents</a>.
+        The working group maintains <a href="http://www.w3.org/2010/webevents/track/products/">a list of open issues for its documents</a>.
       </p>
     </section>
 
-    <section class='appendix informative'>
-      <h2>Acknowledgements</h2>
+    <section class="appendix informative" id="acknowledgements">
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_acknowledgements"><span class="secno">A. </span>Acknowledgements</h2><p><em>This section is non-normative.</em></p>
       <p>
         Many thanks to the WebKit engineers for developing the model used as a
         basis for this document and to the members of the Web Events Working Group.
       </p>
 
     </section>
-  </body>
-</html>
+  
+
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-TOUCH-EVENTS">[TOUCH-EVENTS]</dt><dd rel="dcterms:requires">Doug Schepers; Sangwhan Moon; Matt Brubeck; Arthur Barstow. <a href="http://www.w3.org/TR/touch-events/"><cite>Touch Events</cite></a>. 10 October 2013. W3C Recommendation. URL: <a href="http://www.w3.org/TR/touch-events/">http://www.w3.org/TR/touch-events/</a>
+</dd></dl></section></section></body></html>
