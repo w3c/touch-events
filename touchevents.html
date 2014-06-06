@@ -560,6 +560,7 @@ table.exceptions table {
       <pre class="idl"><span class="idlInterface" id="idl-def-Touch">partial interface <span class="idlInterfaceID">Touch</span> {
 <span class="idlAttribute">    readonly    attribute <span class="idlAttrType">long</span>  <span class="idlAttrName"><a href="#widl-Touch-radiusX">radiusX</a></span>;</span>
 <span class="idlAttribute">    readonly    attribute <span class="idlAttrType">long</span>  <span class="idlAttrName"><a href="#widl-Touch-radiusY">radiusY</a></span>;</span>
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType">float</span> <span class="idlAttrName"><a href="#widl-Touch-rotationAngle">rotationAngle</a></span>;</span>
 <span class="idlAttribute">    readonly    attribute <span class="idlAttrType">float</span> <span class="idlAttrName"><a href="#widl-Touch-force">force</a></span>;</span>
 };</span></pre><section id="attributes"><h3 aria-level="2" role="heading" id="h3_attributes"><span class="secno">2.1 </span>Attributes</h3><dl class="attributes"><dt id="widl-Touch-force"><code>force</code> of type <span class="idlAttrType">float</span>, readonly   </dt><dd>
           a relative value of pressure applied, in the range <code>0</code> to
@@ -579,14 +580,29 @@ table.exceptions table {
           </p></div>
         </dd><dt id="widl-Touch-radiusX"><code>radiusX</code> of type <span class="idlAttrType">long</span>, readonly   </dt><dd>
           the radius of the ellipse which most closely circumscribes the
-          touching area (e.g. finger, stylus) along the x-axis, in CSS pixels of
+          touching area (e.g. finger, stylus) along the axis indicated by rotationAngle, in CSS pixels of
           the same scale as screenX; <code>1</code> if no value is
           known.  The value must be positive.
         </dd><dt id="widl-Touch-radiusY"><code>radiusY</code> of type <span class="idlAttrType">long</span>, readonly   </dt><dd>
           the radius of the ellipse which most closely circumscribes the
-          touching area (e.g. finger, stylus) along the y-axis, in CSS pixels of
+          touching area (e.g. finger, stylus) along the axis perpendicular to that indicated by rotationAngle, in CSS pixels of
           the same scale as screenY; <code>1</code> if no value is
           known.  The value must be positive.
+        </dd><dt id="widl-Touch-rotationAngle"><code>rotationAngle</code> of type <span class="idlAttrType">float</span>, readonly   </dt><dd>
+          <p>
+            the angle (in degrees) that the ellipse described by <a>radiusX</a>
+            and <a>radiusY</a> is rotated clockwise about its center;
+            <code>0</code> if no value is known.  The value must be greater
+            than or equal to <code>0</code> and less than <code>90</code>.
+          </p>
+          <p>
+            If the ellipse described by <a>radiusX</a> and <a>radiusY</a> is
+            circular, then <a>rotationAngle</a> has no effect.  The user agent
+            may use <code>0</code> as the value in this case, or it may use any
+            other value in the allowed range.  (For example, the user agent may
+            use the <a>rotationAngle</a> value from the previous touch event,
+            to avoid sudden changes.)
+          </p>
         </dd></dl></section>
     </section>
 
