@@ -621,9 +621,13 @@
         </p>
 
         <p>
-          If <em>every</em> <a>touchmove</a> event of an <a>active touch point</a> is 
-          cancelled, it should prevent any default action caused by any <a>touchmove</a> event
-          associated with the same <a>active touch point</a>, such as scrolling.
+          A user agent should suppress the default action caused by
+          any <a>touchmove</a> event until at least one <a>touchmove</a> event
+          associated with the same <a>active touch point</a> is not
+          cancelled. Whether the default action is suppressed
+          for <a>touchmove</a> events after at least one <a>touchmove</a> event
+          associated with the same <a>active touch point</a> is not cancelled is
+          implementation dependent.
         </p>
       </section>
 
