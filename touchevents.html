@@ -598,6 +598,12 @@
           must not be included in the <a>touches</a> and <a>targetTouches</a>
           attributes.
         </p>
+
+        <p>
+          If this event is cancelled, any sequence of touch events that
+          includes this event must not be <a href="#click-events">interpreted
+          as a click</a>.
+        </p>
       </section>
 
       <section>
@@ -715,9 +721,10 @@
         user agent dispatches both touch events and mouse events in response to
         a single user action, then the <a>touchstart</a> event type must be
         dispatched before any mouse event types for that action.  If the
-        <a>preventDefault</a> method of <a>touchstart</a> or <a>touchmove</a>
-        is called, the user agent should not dispatch any mouse event that
-        would be a consequential result of the the prevented touch event.
+        <a>preventDefault</a> method of <a>touchstart</a>, <a>touchmove</a>, or
+        <a>touchend</a> is called, the user agent should not dispatch any mouse
+        event that would be a consequential result of the the prevented touch
+        event.
       </p>
 
       <p class="note">
@@ -727,7 +734,7 @@
         touch input devices, it can react to the subsequent mouse events instead.
       </p>
 
-      <p>
+      <p id="click-events">
         If the user agent intreprets a sequence of touch events as a click,
         then it should dispatch <a>mousemove</a>, <a>mousedown</a>,
         <a>mouseup</a>, and <a>click</a> events (in that order) at the location
