@@ -729,6 +729,12 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         touch input devices, it will react to the subsequent mouse events instead.
       </p>
 
+      <p class="note">
+        User agents will typically dispatch mouse and click events when there is only a single
+        <a>active touch point</a>. Multi-touch interactions – involving two or more
+        <a href="#dfn-active-touch-point">active touch points</a> – will usually only generate touch events.
+      </p>
+
       <p id="click-events">
         If the user agent interprets a sequence of touch events as a click,
         then it should dispatch <a><code>mousemove</code></a>, <a><code>mousedown</code></a>,
