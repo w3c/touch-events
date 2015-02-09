@@ -743,6 +743,30 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         The default actions and ordering of any further touch and mouse events
         are implementation-defined, except as specified elsewhere.
       </p>
+
+      <section class="note">
+      <p>The activation of an element (a tap) would typically produce the following event sequence
+      (though this may vary slightly, depending on specific user agent behavior):</p>
+      <ol data-class="note-list">
+          <li><code>touchstart</code></li>
+          <li>Zero or more <code>touchmove</code> events, depending on movement of the finger</li>
+          <li><code>touchend</code></li>
+          <li><code>mousemove</code> <small>(for compatibility with legacy mouse-specific code)</small></li>
+          <li><code>mousedown</code></li>
+          <li><code>mouseup</code></li>
+          <li><code>click</code></li>
+      </ol>
+      <p>If, however, either the <code>touchstart</code>, <code>touchmove</code> or <code>touchend</code>
+      event has been <a href="#dfn-canceled-event">canceled</a> during this interaction, no mouse or
+      click events will be fired, and the resulting sequence of events would simply be:
+      </p><ol data-class="note-list">
+          <li><code>touchstart</code></li>
+          <li>Zero or more <code>touchmove</code> events, depending on movement of the finger</li> 
+          <li><code>touchend</code></li>
+      </ol>           
+      </section>
+
+
     </section>
 
     <section>
