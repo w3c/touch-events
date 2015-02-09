@@ -493,7 +493,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
             The following table provides a summary of the types of possible
             <a><code>TouchEvent</code></a> types defined in this specification. All events
             should accomplish the bubbling phase. Some events are not cancelable
-            (see <a>preventDefault</a>).
+            (see <a>canceled event</a>).
           </p>
           
           <!--
@@ -568,7 +568,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         </p>
 
         <p>
-          If the <a><code>preventDefault</code></a> method is called on this event, it
+          If this event is <a href="#dfn-canceled-event">canceled</a>, it
           should prevent any default actions caused by any touch events
           associated with the same <a>active touch point</a>, including mouse
           events or scrolling.
@@ -599,7 +599,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         </p>
 
         <p>
-          If this event is cancelled, any sequence of touch events that
+          If this event is <a href="#dfn-canceled-event">canceled</a>, any sequence of touch events that
           includes this event must not be <a href="#click-events">interpreted
           as a click</a>.
         </p>
@@ -629,9 +629,9 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
           A user agent should suppress the default action caused by
           any <a><code>touchmove</code></a> event until at least one <a><code>touchmove</code></a> event
           associated with the same <a>active touch point</a> is not
-          cancelled. Whether the default action is suppressed
+          <a href="#dfn-canceled-event">canceled</a>. Whether the default action is suppressed
           for <a><code>touchmove</code></a> events after at least one <a><code>touchmove</code></a> event
-          associated with the same <a>active touch point</a> is not cancelled is
+          associated with the same <a>active touch point</a> is not <a href="#dfn-canceled-event">canceled</a> is
           implementation dependent.
         </p>
       </section>
@@ -719,9 +719,9 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         [[!DOM-LEVEL-2-EVENTS]] in response to the same user input. If the
         user agent dispatches both touch events and mouse events in response to
         a single user action, then the <a><code>touchstart</code></a> event type must be
-        dispatched before any mouse event types for that action. If the
-        <a><code>preventDefault</code></a> method of <a><code>touchstart</code></a>, <a><code>touchmove</code></a>, or
-        <a><code>touchend</code></a> is called, the user agent should not dispatch any mouse
+        dispatched before any mouse event types for that action.
+        If <a><code>touchstart</code></a>, <a><code>touchmove</code></a>, or <a><code>touchend</code></a>
+        are <a href="#dfn-canceled-event">canceled</a>, the user agent should not dispatch any mouse
         event that would be a consequential result of the the prevented touch
         event.
       </p>
@@ -771,13 +771,11 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
           of paper.
         </dd>
         
-        <dt><dfn><code>preventDefault</code></dfn></dt>
+        <dt><dfn>canceled event</dfn></dt>
         <dd>
-          If a event is cancelable, the <code>preventDefault</code> method is used to signify
-          that the event is to be canceled, and any default actions defined in the
-          user agent as a result of this event, or consequential events from the
-          canceled event will not occur. Calling this method on non-cancelable
-          events will have no effect.
+          An event whose default action was prevented by means of <code>preventDefault()</code>,
+          returning <code>false</code> in an event handler, or other means as defined by
+          [[!DOM-LEVEL-3-EVENTS]] and [[!HTML5]].
         </dd>        
       </dl>
     </section>
