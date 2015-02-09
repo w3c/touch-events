@@ -343,8 +343,8 @@
             points that just became active with the current event.  For the
             <a>touchmove</a> event this must be a list of the touch points that
             have moved since the last event.  For the <a>touchend</a> and 
-			<a>touchcancel</a> events this must be a list of the touch points 
-			that have just been removed from the surface.
+      <a>touchcancel</a> events this must be a list of the touch points 
+      that have just been removed from the surface.
           </p>
         </dd>
 
@@ -404,49 +404,49 @@
                 on the number of touch points on the touchable element and the document:
               </p>
       
-              <pre class="example">
-                  &lt;div id='touchable'&gt;
-                      This element is touchable.
-                  &lt;/div&gt;
-          
-                  document.getElementById('touchable').addEventListener('touchstart', function(ev) {
+<pre class="example">
+&lt;div id='touchable'&gt;This element is touchable.&lt;/div&gt;
 
-                      if (ev.touches.item(0) == ev.targetTouches.item(0))
-                      {
-                          /**
-                           * If the first touch on the surface is also targeting the
-                           * "touchable" element, the code below should execute.
-                           * Since targetTouches is a subset of touches which covers the
-                           * entire surface, TouchEvent.touches >= TouchEvents.targetTouches
-                           * is always true.
-                           */
+&lt;script&gt;
+document.getElementById('touchable').addEventListener('touchstart', function(ev) {
 
-                          document.write('Hello Touch Events!');
-                      }
+    if (ev.touches.item(0) == ev.targetTouches.item(0))
+    {
+        /**
+         * If the first touch on the surface is also targeting the
+         * "touchable" element, the code below should execute.
+         * Since targetTouches is a subset of touches which covers the
+         * entire surface, TouchEvent.touches >= TouchEvents.targetTouches
+         * is always true.
+         */
 
-                      if (ev.touches.length == ev.targetTouches.length)
-                      {
-                          /**
-                           * If all of the active touch points are on the "touchable"
-                           * element, the length properties should be the same.
-                           */
+        document.write('Hello Touch Events!');
+    }
 
-                          document.write('All points are on target element')
-                      }
+    if (ev.touches.length == ev.targetTouches.length)
+    {
+        /**
+         * If all of the active touch points are on the "touchable"
+         * element, the length properties should be the same.
+         */
 
-                      if (ev.touches.length > 1)
-                      {
-                          /**
-                           * On a single touch input device, there can only be one point
-                           * of contact on the surface, so the following code can only
-                           * execute when the terminal supports multiple touches.
-                           */
+        document.write('All points are on target element')
+    }
 
-                          document.write('Hello Multiple Touch!');
-                      }
+    if (ev.touches.length > 1)
+    {
+        /**
+         * On a single touch input device, there can only be one point
+         * of contact on the surface, so the following code can only
+         * execute when the terminal supports multiple touches.
+         */
 
-                  }, false);
-              </pre>
+        document.write('Hello Multiple Touch!');
+    }
+
+}, false);
+&lt;/script&gt;
+</pre>
           </section>
           
           <section>
@@ -459,29 +459,29 @@
                 from the defined touchable element:
               </p>
               
-              <pre class="example">
-                  &lt;div id='touchable'&gt;
-                      This element is touchable.
-                  &lt;/div&gt;
-              
-                  document.getElementById('touchable').addEventListener('touchend', function(ev) {
+<pre class="example">
+&lt;div id='touchable'&gt;This element is touchable.&lt;/div&gt;
 
-                      /**
-                       * Example output when three touch points are on the surface,
-                       * two of them being on the "touchable" element and one point
-                       * in the "touchable" element is lifted from the surface:
-                       *
-                       * Touch points removed: 1
-                       * Touch points left on element: 1
-                       * Touch points left on document: 2
-                       */
+&lt;script&gt;
+document.getElementById('touchable').addEventListener('touchend', function(ev) {
 
-                      document.write('Removed: ' + ev.changedTouches.length);
-                      document.write('Remaining on element: ' + ev.targetTouches.length);
-                      document.write('Remaining on document: ' + ev.touches.length);
+    /**
+     * Example output when three touch points are on the surface,
+     * two of them being on the "touchable" element and one point
+     * in the "touchable" element is lifted from the surface:
+     *
+     * Touch points removed: 1
+     * Touch points left on element: 1
+     * Touch points left on document: 2
+     */
 
-                  }, false);
-              </pre>
+    document.write('Removed: ' + ev.changedTouches.length);
+    document.write('Remaining on element: ' + ev.targetTouches.length);
+    document.write('Remaining on document: ' + ev.touches.length);
+
+}, false);
+&lt;/script&gt;
+</pre>
           </section>
               
       </section>
@@ -587,7 +587,7 @@
 
         <p>
           The <a>target</a> of this event must be the same <a>Element</a> on 
-		  which the <a>touch point</a> started when it was first
+      which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the <a>target</a> element.
         </p>
@@ -615,7 +615,7 @@
 
         <p>
           The <a>target</a> of this event must be the same <a>Element</a> on 
-		  which the <a>touch point</a> started when it was first
+      which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the <a>target</a> element.
         </p>
@@ -654,7 +654,7 @@
 
         <p>
           The <a>target</a> of this event must be the same <a>Element</a> on 
-		  which the <a>touch point</a> started when it was first
+      which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the <a>target</a> element.
         </p>
