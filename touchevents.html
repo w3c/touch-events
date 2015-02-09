@@ -727,14 +727,14 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
       </p>
 
       <p class="note">
-        If a Web application can process touch events, it can intercept them,
+        If a Web application can process touch events, it can <a href="#dfn-canceled-event">cancel</a> the events,
         and no corresponding mouse events would need to be dispatched by the
         user agent. If the Web application is not specifically written for
-        touch input devices, it can react to the subsequent mouse events instead.
+        touch input devices, it will react to the subsequent mouse events instead.
       </p>
 
       <p id="click-events">
-        If the user agent intreprets a sequence of touch events as a click,
+        If the user agent interprets a sequence of touch events as a click,
         then it should dispatch <a><code>mousemove</code></a>, <a><code>mousedown</code></a>,
         <a><code>mouseup</code></a>, and <a><code>click</code></a> events (in that order) at the location
         of the <a><code>touchend</code></a> event for the corresponding touch input. If the
