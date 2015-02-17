@@ -203,7 +203,10 @@
         </p>
 
         <p>
-          A conforming Web Events user agent must also be a <a href="http://www.w3.org/TR/WebIDL/#dfn-conforming-ECMAScript-implementation">conforming ECMAScript implementation</a> of this IDL fragments in this specification, with the following exception:</p>
+          A conforming Web Events user agent must also be a
+          <a href="http://www.w3.org/TR/WebIDL/#dfn-conforming-ECMAScript-implementation">conforming
+          ECMAScript implementation</a> of this IDL fragments in this specification, with
+          the following exception:</p>
 
         <ul>
           <li>
@@ -218,7 +221,16 @@
           </li>
         </ul>
       <p>
-        <strong>Note:</strong> Both ways of reflecting IDL attributes allow for simply getting and setting the property on the platform object to work. For example, given a <code>Touch</code> object <code>aTouch</code>, evaluating <code>aTouch.target</code> would return the <code>EventTarget</code> for the <code>Touch</code> object. If the user agent implements IDL attributes as accessor properties, then the property access invokes the getter which returns the <code>EventTarget</code>. If the user agent implements IDL attributes as data properties on the platform object with the same behavior as would be found with the accessor properties, then the object would appear to have an own property named <code>target</code> whose value is an <code>EventTarget</code> object, and the property access would return this value.
+        <strong>Note:</strong> Both ways of reflecting IDL attributes allow for simply getting
+        and setting the property on the platform object to work. For example, given a
+        <code>Touch</code> object <code>aTouch</code>, evaluating <code>aTouch.target</code>
+        would return the <code>EventTarget</code> for the <code>Touch</code> object. If the
+        user agent implements IDL attributes as accessor properties, then the property access
+        invokes the getter which returns the <code>EventTarget</code>. If the user agent implements
+        IDL attributes as data properties on the platform object with the same behavior as
+        would be found with the accessor properties, then the object would appear to have an
+        own property named <code>target</code> whose value is an <code>EventTarget</code> object,
+        and the property access would return this value.
       </p>
     </section>
 
