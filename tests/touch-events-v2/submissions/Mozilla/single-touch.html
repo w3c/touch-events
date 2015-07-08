@@ -35,7 +35,6 @@
 
         test(function() {
           assert_true(ev.target instanceof Element, "target must be an Element.");
-          assert_equals(ev.relatedTarget, null, "relatedTarget must be null for touchstart event.");
         }, "touchstart TouchEvent target attributes are correct.");
 
         test(function() {
@@ -70,17 +69,6 @@
         test(function() {
           assert_equals(ev.touches.identifiedTouch(touchstart_identifier), t, "touches.identifiedTouch is correct.");
         }, "identifiedTouch");
-
-        test(function() {
-          assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
-          assert_true(t.rotationAngle < 90, "rotationAngle must be > 90.");
-
-          assert_true(t.radiusX > 0, "radiusX is positive.");
-          assert_true(t.radiusY > 0, "radiusY is positive.");
-
-          assert_true(t.force >= 0, "force >= 0.");
-          assert_true(t.force <= 1, "force <= 1.");
-        }, "Touch attribute values are valid");
 
         test(function() {
           var attrs = ["screenX", "screenY", "clientX", "clientY",
@@ -151,17 +139,6 @@
         test(function() {
           assert_equals(t.identifier, touchstart_identifier, "changedTouches identifier matches.");
         }, "touchend identifier matches.");
-
-        test(function() {
-          assert_true(t.rotationAngle >= 0, "rotationAngle must be >= 0.");
-          assert_true(t.rotationAngle < 90, "rotationAngle must be > 90.");
-
-          assert_true(t.radiusX > 0, "radiusX is positive.");
-          assert_true(t.radiusY > 0, "radiusY is positive.");
-
-          assert_true(t.force >= 0, "force >= 0.");
-          assert_true(t.force <= 1, "force <= 1.");
-        }, "Touch attribute values are valid");
 
         test(function() {
           var attrs = ["screenX", "screenY", "clientX", "clientY",
