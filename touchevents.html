@@ -399,11 +399,6 @@
           returns the <a><code>Touch</code></a> at the specified index in the list or
           null if the index is not less than the length of the list. 
         </dd>
-        <dt>Touch? identifiedTouch (long identifier)</dt>
-        <dd>
-          returns the first <a>Touch</a> item in the list whose identifier
-          property matches the specified identifier or null if there is no match
-        </dd>
       </dl>
     </section>
 
@@ -962,22 +957,38 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
 
     <section class='appendix informative'>
       <h2>Changes Since Last Publication</h2>
-      <p>The following non-substantive changes were made since the 
-        <a href="http://www.w3.org/TR/2013/WD-touch-events-20130124/">
-         24 January 2013 Last Call Working Draft</a> was published:
+      <p>This is a summary of the major changes made since the  
+        <a href="http://www.w3.org/TR/touch-events/">
+         10 October 2013 Recommendation</a> was published.
+        <a href="https://github.com/w3c/touch-events/compare/v1...gh-pages">
+         Full commit history</a> is also available.
       </p>
       <ul>
-       <li>Added a non-normative note for implementers regarding event targets 
-          (<a href="https://dvcs.w3.org/hg/webevents/rev/6f2c52cd50f6">changeset</a>).</li>
-       <li>Added a non-normative note regarding mapping hardware events to touch events
-          (<a href="https://dvcs.w3.org/hg/webevents/rev/fe0ce5b66e4d">changeset</a>).</li>
-       <li>Minor Web IDL bug fixes and clarifications (changesets: 
-          <a href="https://dvcs.w3.org/hg/webevents/rev/67417356ff2a">1</a>,  
-          <a href="https://dvcs.w3.org/hg/webevents/rev/0edc668e7910">2</a>).</li>
-       <li>Added a non-normative note regarding the <code>initTouchEvent</code> method
-          that is not standardized (changesets: 
-          <a href="https://dvcs.w3.org/hg/webevents/rev/6294f7949a33">1</a>,  
-          <a href="https://dvcs.w3.org/hg/webevents/rev/a892e79887ab">2</a>).</li>
+       <li>
+         Added <a href="#widl-Touch-force">force</a> attribute to Touch
+         (<a href="https://github.com/w3c/touch-events/commit/303b36e1d188a380f9bc0861b175438e596a34b1">commit</a>)
+       </li>
+       <li>
+         Added <a href="#widl-Touch-radiusX">radiusX</a> and
+         <a href="#widl-Touch-radiusY">radiusY</a> attributes to Touch
+         (<a href="https://github.com/w3c/touch-events/commit/6d222fb7f106273bef847ad1d1d7a23569841954">commit</a>)
+       </li>
+       <li>
+         Added <a href="#widl-Touch-rotationAngle">rotationAngle</a> attribute to Touch
+         (<a href="https://github.com/w3c/touch-events/commit/487f6815a9590b72779d4820ff43c2b58d798f92">commit</a>)
+       </li>
+       <li>
+         Upgraded co-ordinates to double type instead of long
+         (<a href="https://github.com/w3c/touch-events/commit/006274ffada14de504f731afdb5ec1581ff327ca">commit</a>) 
+       </li>
+       <li>
+         Update touchmove behavior on preventDefault
+         (<a href="https://github.com/w3c/touch-events/commit/df620100e48111cf7a30592f344606f8c8b7fe22">commit</a>)
+       </li>
+       <li>
+         Clarify effect of canceling touchend event
+         (<a href="https://github.com/w3c/touch-events/commit/54a3d1668c4f727d9c6f6d729b28a036041e301f">commit</a>)
+       </li>
       </ul>
     </section>
 
