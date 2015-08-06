@@ -35,15 +35,11 @@
           previousMaturity:  "REC",
 
           // if there a publicly available Editor's Draft, this is the link
-          edDraftURI:           "http://rawgit.com/w3c/touch-events/v1-errata/touchevents.html",
+          edDraftURI:           "http://w3c.github.io/touch-events/touchevents.html",
 
           // if this is a LCWD, uncomment and set the end of its review period
           // lcEnd: "2013-02-14",
           // prEnd: "2013-06-06",
-
-          // if you want to have extra CSS, append them to this list
-          // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
 
           // editors, add as many as you like
           // only "name" is required
@@ -69,7 +65,7 @@
                 href: 'https://github.com/w3c/touch-events/issues'
             }, {
                 value: 'Commit history.',
-                href: 'https://github.com/w3c/touch-events/commits/v1-errata'
+                href: 'https://github.com/w3c/touch-events/commits/gh-pages'
             }, {
                 value: 'Mailing list.',
                 href: 'http://lists.w3.org/Archives/Public/public-touchevents/'
@@ -671,9 +667,9 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         </p>
 
         <p>
-          The target of this event must be an <a><code>Element</code></a>. If the touch
+          The target of this event must be an <code>Element</code>. If the touch
           point is within a frame, the event should be dispatched to an element
-          in the <a>child browsing context</a> of that frame.
+          in the child browsing context of that frame.
         </p>
 
         <p>
@@ -694,7 +690,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         </p>
 
         <p>
-          The target of this event must be the same <a><code>Element</code></a> on
+          The target of this event must be the same <code>Element</code> on
           which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the target element.
@@ -702,8 +698,10 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
 
         <p>
           The <a>touch point</a> or points that were removed must be included
-          in the <a><code>changedTouches</code></a> attribute of the <a><code>TouchEvent</code></a>, and
-          must not be included in the <a><code>touches</code></a> and <a><code>targetTouches</code></a>
+          in the <a href="#widl-TouchEvent-changedTouches"><code>changedTouches</code></a>
+          attribute of the <a><code>TouchEvent</code></a>, and must not be
+          included in the <a href="#widl-TouchEvent-touches"><code>touches</code></a>
+          and <a href="#widl-TouchEvent-targetTouches"><code>targetTouches</code></a>
           attributes.
         </p>
 
@@ -722,7 +720,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         </p>
 
         <p>
-          The target of this event must be the same <a><code>Element</code></a> on
+          The target of this event must be the same <code>Element</code> on
           which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the target element.
@@ -761,7 +759,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         </p>
 
         <p>
-          The target of this event must be the same <a><code>Element</code></a> on
+          The target of this event must be the same <code>Element</code> on
           which the <a>touch point</a> started when it was first
           placed on the surface, even if the <a>touch point</a> has since moved
           outside the interactive area of the target element.
@@ -769,8 +767,8 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
 
         <p>
           The <a>touch point</a> or points that were removed must be included
-          in the <a><code>changedTouches</code></a> attribute of the <a><code>TouchEvent</code></a>, and
-          must not be included in the <a><code>touches</code></a> and <a><code>targetTouches</code></a>
+          in the <a href="#widl-TouchEvent-changedTouches"><code>changedTouches</code></a> attribute of the <a><code>TouchEvent</code></a>, and
+          must not be included in the <a href="#widl-TouchEvent-touches"><code>touches</code></a> and <a href="#widl-TouchEvent-targetTouches"><code>targetTouches</code></a>
           attributes.
         </p>
       </section>
@@ -815,7 +813,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         <a><code>TouchEvent</code></a> interface. When this method is available, scripts
         can use it to initialize the properties of a <a><code>TouchEvent</code></a> object,
         including its <a><code>TouchList</code></a> properties (which can be initialized
-        with values returned from <a><code>createTouchList</code></a>). The
+        with values returned from <a href="#widl-Document-createTouchList-TouchList-Touch-touches"><code>createTouchList</code></a>). The
         <a><code>initTouchEvent</code></a> method is not yet standardized and will
         eventually be superceded by the <code>TouchEvent</code> constructor.
       </p>
@@ -850,8 +848,8 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
 
       <p id="click-events">
         If the user agent interprets a sequence of touch events as a click,
-        then it should dispatch <a><code>mousemove</code></a>, <a><code>mousedown</code></a>,
-        <a><code>mouseup</code></a>, and <a><code>click</code></a> events (in that order) at the location
+        then it should dispatch <code>mousemove</code>, <code>mousedown</code>,
+        <code>mouseup</code>, and <code>click</code> events (in that order) at the location
         of the <a><code>touchend</code></a> event for the corresponding touch input. If the
         contents of the document have changed during processing of the touch
         events, then the user agent may dispatch the mouse events to a
