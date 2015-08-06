@@ -262,7 +262,7 @@
         attributes must not change.
       </p>
 
-      <dl title='interface Touch' class='idl'>
+      <dl title='[Constructor(TouchInit touchInitDict)] interface Touch' class='idl' data-merge='TouchInit'>
         <dt>readonly attribute long identifier</dt>
         <dd>
           An identification number for each <a>touch point</a>.
@@ -348,6 +348,29 @@
           the sensitivity in levels of pressure, may vary.
         </dd>
       </dl>
+
+      <dl title='dictionary TouchInit' class='idl'>
+        <dt>required long identifier</dt>
+        <dd>Initializes the <code>identifier</code> property of the <code>Touch</code> object.</dd>
+        <dt>required EventTarget target</dt>
+        <dd>Initializes the <code>target</code> property of the <code>Touch</code> object.</dd>
+        <dt>double clientX = 0</dt>
+        <dd>Initializes the <code>clientX</code> and <code>pageX</code> properties of the <code>Touch</code> object.</dd>
+        <dt>double clientY = 0</dt>
+        <dd>Initializes the <code>clientY</code> and <code>pageY</code> properties of the <code>Touch</code> object.</dd>
+        <dt>double screenX = 0</dt>
+        <dd>Initializes the <code>screenX</code> property of the <code>Touch</code> object.</dd>
+        <dt>double screenY = 0</dt>
+        <dd>Initializes the <code>screenY</code> property of the <code>Touch</code> object.</dd>
+        <dt>float radiusX = 0</dt>
+        <dd>Initializes the <code>radiusX</code> property of the <code>Touch</code> object.</dd>
+        <dt>float radiusY = 0</dt>
+        <dd>Initializes the <code>radiusY</code> property of the <code>Touch</code> object.</dd>
+        <dt>float rotationAngle = 0</dt>
+        <dd>Initializes the <code>rotationAngle</code> property of the <code>Touch</code> object.</dd>
+        <dt>float force = 0</dt>
+        <dd>Initializes the <code>force</code> property of the <code>Touch</code> object.</dd>
+      </dl>
     </section>
 
     <section>
@@ -384,7 +407,7 @@
         initialized, its attributes must not change.
       </p>
 
-      <dl title='interface TouchEvent : UIEvent' class='idl'>
+      <dl title='[Constructor(DOMString type, optional TouchEventInit eventInitDict)] interface TouchEvent : UIEvent' class='idl' data-merge='TouchEventInit'>
         <dt>readonly attribute <a><code>TouchList</code></a> touches</dt>
         <dd>
           a list of <a><code>Touch</code></a> objects for every point of contact currently
@@ -434,6 +457,23 @@
           <code>true</code> if the shift (Shift) key modifier is activated;
           otherwise <code>false</code>
         </dd>
+      </dl>
+
+      <dl title='dictionary TouchEventInit : UIEventInit' class='idl'>
+        <dt>sequence&lt;Touch&gt; touches = []</dt>
+        <dd>Initializes the <code>touches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
+        <dt>sequence&lt;Touch&gt; targetTouches = []</dt>
+        <dd>Initializes the <code>targetTouches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
+        <dt>sequence&lt;Touch&gt; changedTouches = []</dt>
+        <dd>Initializes the <code>changedTouches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
+        <dt>boolean altKey</dt>
+        <dd>Initializes the <code>altKey</code> property of the <code>TouchEvent</code> object.</dd>
+        <dt>boolean metaKey</dt>
+        <dd>Initializes the <code>metaKey</code> property of the <code>TouchEvent</code> object.</dd>
+        <dt>boolean ctrlKey</dt>
+        <dd>Initializes the <code>ctrlKey</code> property of the <code>TouchEvent</code> object.</dd>
+        <dt>boolean shiftKey</dt>
+        <dd>Initializes the <code>shiftKey</code> property of the <code>TouchEvent</code> object.</dd>
       </dl>
 
       <section class="informative">
@@ -774,8 +814,8 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         can use it to initialize the properties of a <a><code>TouchEvent</code></a> object,
         including its <a><code>TouchList</code></a> properties (which can be initialized
         with values returned from <a href="#widl-Document-createTouchList-TouchList-Touch-touches"><code>createTouchList</code></a>). The
-        <code>initTouchEvent</code> method is not yet standardized, but it may appear
-        in some form in a future specification.
+        <a><code>initTouchEvent</code></a> method is not standardized and is
+        superseded by the <code>TouchEvent</code> constructor.
       </p>
     </section>
 
@@ -946,6 +986,11 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
        <li>
          Clarify effect of canceling touchend event
          (<a href="https://github.com/w3c/touch-events/commit/54a3d1668c4f727d9c6f6d729b28a036041e301f">commit</a>)
+       </li>
+       <li>
+         Add constructor for <a href="#idl-def-TouchEventInit">TouchEvent</a>
+         and <a href="#idl-def-TouchInit">Touch</a>
+         (<a href="https://github.com/w3c/touch-events/commit/219546b80cd148543a5ece656d81ba3c901d2106">commit</a>)
        </li>
       </ul>
     </section>
