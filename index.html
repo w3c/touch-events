@@ -819,6 +819,31 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
       </p>
     </section>
 
+    <section>
+      <h2>Extensions to the <code>GlobalEventHandlers</code> interface</h2>
+      <p>The following section describes extensions to the existing <code>GlobalEventHandlers</code> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
+        <dl class="idl" title="partial interface GlobalEventHandlers">
+
+          <dt>attribute EventHandler ontouchstart</dt>
+          <dd>
+            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchstart</code> event type.
+          </dd>
+          <dt>attribute EventHandler ontouchend</dt>
+          <dd>
+            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchend</code> event type.
+          </dd>
+          <dt>attribute EventHandler ontouchmove</dt>
+          <dd>
+            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchmove</code> event type.
+          </dd>
+          <dt>attribute EventHandler ontouchcancel</dt>
+          <dd>
+            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchcancel</code> event type.
+          </dd>
+        </dl>
+      </div>
+    </section>
+
     <section id="mouse-events">
       <h2>Interaction with Mouse Events and <code>click</code></h2>
       <p>
