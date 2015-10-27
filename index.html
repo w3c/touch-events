@@ -584,9 +584,9 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
      * Touch points left on document: 2
      */
 
-    document.write('Removed: ' + ev.changedTouches.length);
-    document.write('Remaining on element: ' + ev.targetTouches.length);
-    document.write('Remaining on document: ' + ev.touches.length);
+    document.write('Touch points removed: ' + ev.changedTouches.length);
+    document.write('Touch points left on element: ' + ev.targetTouches.length);
+    document.write('Touch points left on document: ' + ev.touches.length);
 
 }, false);
 &lt;/script&gt;
