@@ -848,7 +848,7 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         user agent dispatches both touch events and mouse events in response to
         a single user action, then the <a><code>touchstart</code></a> event type must be
         dispatched before any mouse event types for that action.
-        If <a><code>touchstart</code></a>, <a><code>touchmove</code></a>, or <a><code>touchend</code></a>
+        If <a><code>touchstart</code></a> or <a><code>touchend</code></a>
         are <a href="#dfn-canceled-event">canceled</a>, the user agent should not dispatch any mouse
         event that would be a consequential result of the the prevented touch
         event.
