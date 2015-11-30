@@ -803,16 +803,6 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
           </dl>
         </dd>
       </dl>
-
-      <p class="note">
-        Some user agents implement an <code>initTouchEvent</code> method as part of the
-        <a><code>TouchEvent</code></a> interface. When this method is available, scripts
-        can use it to initialize the properties of a <a><code>TouchEvent</code></a> object,
-        including its <a><code>TouchList</code></a> properties (which can be initialized
-        with values returned from <a href="#widl-Document-createTouchList-TouchList-Touch-touches"><code>createTouchList</code></a>). The
-        <a><code>initTouchEvent</code></a> method is not standardized and is
-        superseded by the <code>TouchEvent</code> constructor.
-      </p>
     </section>
 
     <section>
@@ -947,6 +937,29 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
         >a list of open issues in this specification</a>. These issues may be
         addressed in future revisions of the specification.
       </p>
+    </section>
+
+    <section class='appendix'>
+      <h2>Legacy Event Initializers</h2>
+      <p>
+        <em>The following features are obsolete and should only be implemented by user agents that require compatibility with legacy software.</em>
+      </p>
+
+      <section>
+        <h3>Initializers for interface TouchEvent</h3>
+        <p class="note">
+          The argument list to this legacy TouchEvent initializer includes 6 unused arguments
+          which have no defined semantics and are only for compatibility with existing implementations.
+          The <a><code>initTouchEvent</code></a> method is superseded by the <code>TouchEvent</code> constructor.
+        </p>
+        <pre class='idl'>
+          partial interface TouchEvent {
+            // Deprecated in this specification
+            void initTouchEvent (DOMString type, boolean bubbles, boolean cancelable, Window? view, long detail, long unused1, long unused2, long unused3, long unused4, boolean ctrlKey, boolean altKey, boolean shiftKey, boolean metaKey, TouchList touches, TouchList targetTouches, TouchList changedTouches, float unused5, float unused6);
+          };
+        </pre>
+      </section>
+
     </section>
 
     <section class='appendix informative'>
