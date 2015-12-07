@@ -771,41 +771,6 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
     </section>
 
     <section>
-      <h2>Extensions to the <a><code>Document</code></a> Interface</h2>
-      <p>
-        The <a><code>Document</code></a> interface [[!DOM-LEVEL-3-CORE]] contains methods
-        by which the user can create <a><code>Touch</code></a> and <a><code>TouchList</code></a>
-        objects.
-      </p>
-
-      <dl title='partial interface Document' class='idl'>
-        <dt><code>Touch createTouch()</code></dt>
-        <dd>
-          Creates a <a><code>Touch</code></a> object with the specified attributes.
-          <dl class='parameters'>
-            <dt>WindowProxy <code>view</code></dt> <dd></dd>
-            <dt>EventTarget <code>target</code></dt> <dd></dd>
-            <dt>long <code>identifier</code></dt> <dd></dd>
-            <dt>double <code>pageX</code></dt> <dd></dd>
-            <dt>double <code>pageY</code></dt> <dd></dd>
-            <dt>double <code>screenX</code></dt> <dd></dd>
-            <dt>double <code>screenY</code></dt> <dd></dd>
-          </dl>
-        </dd>
-
-        <dt><code>TouchList createTouchList()</code></dt>
-        <dd>
-          Creates a <a><code>TouchList</code></a> object consisting of zero or more <a><code>Touch</code></a> objects.
-          Calling this method with no arguments creates a <a><code>TouchList</code></a> with no objects in it
-          and length 0 (zero). 
-          <dl class='parameters'>
-            <dt><code>Touch</code>... touches</dt> <dd></dd>
-          </dl>
-        </dd>
-      </dl>
-    </section>
-
-    <section>
       <h2>Extensions to the <code>GlobalEventHandlers</code> interface</h2>
       <p>The following section describes extensions to the existing <code>GlobalEventHandlers</code> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
         <dl class="idl" title="partial interface GlobalEventHandlers">
@@ -944,6 +909,36 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
       <p>
         <em>The following features are obsolete and should only be implemented by user agents that require compatibility with legacy software.</em>
       </p>
+
+      <section>
+        <h3>Extensions to the <a><code>Document</code></a> Interface</h3>
+        <p>
+          The <a><code>Document</code></a> interface [[!DOM-LEVEL-3-CORE]] contains methods
+          by which the user can create <a><code>Touch</code></a> and <a><code>TouchList</code></a>
+          objects.
+        </p>
+
+        <section class="note">
+          <p>
+            <a><code>Document.createTouch</code></a> is superseded by the <a><code>Touch</code></a> constructor.
+          </p>
+          <p>
+            <a><code>Document.createTouchList</code></a> creates a <a><code>TouchList</code></a> object
+            consisting of zero or more <a><code>Touch</code></a> objects. <a><code>Document.createTouchList</code></a>
+            is superseded by passing sequences of <a><code>Touch</code></a> objects directly to the
+            <a><code>TouchEvent</code></a> constructor.
+          </p>
+        </section>
+
+        <pre class="idl">
+          partial interface Document {
+            // Deprecated in this specification
+            Touch createTouch (WindowProxy view, EventTarget target, long identifier, double pageX, double pageY, double screenX, double screenY);
+            // Deprecated in this specification
+            TouchList createTouchList (Touch... touches);
+          };
+        </pre>
+      </section>
 
       <section>
         <h3>Initializers for interface <a><code>TouchEvent</code></a></h3>
