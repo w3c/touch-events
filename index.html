@@ -408,7 +408,18 @@
         This interface defines the <a><code>touchstart</code></a>, <a><code>touchend</code></a>,
         <a><code>touchmove</code></a>, and <a><code>touchcancel</code></a> event types.
         <a><code>TouchEvent</code></a> objects are immutable; after one is created and
-        initialized, its attributes must not change.
+        initialized, its attributes must not change.  <code>TouchEvent</code> inherits
+        from the <code>UIEvent</code> interface defined in [[!DOM-LEVEL-3-EVENTS]].
+      </p>
+      <p>
+        The <code>TouchEventInit</code> dictionary is used by the
+        <code>TouchEvent</code> interface's constructor to provide a
+        mechanism by which to construct untrusted (synthetic) touch events.
+        It inherits from the <code>EventModifierInit</code> dictionary defined in
+        [[!DOM-LEVEL-3-EVENTS]]. The steps for constructing an event are
+        defined in [[!DOM4]]. See the <a href="#firing-a-synthetic-touchevent-from-script"
+        title="examples">example</a> for sample code demonstrating how to fire
+        an untrusted touch event.
       </p>
 
       <dl title='[Constructor(DOMString type, optional TouchEventInit eventInitDict)] interface TouchEvent : UIEvent' class='idl' data-merge='TouchEventInit'>
@@ -582,6 +593,43 @@ document.getElementById('touchable').addEventListener('touchend', function(ev) {
 
 }, false);
 &lt;/script&gt;
+</pre>
+          </section>
+
+          <section>
+              <h3>Firing a synthetic <a><code>TouchEvent</code></a> from script</h3>
+
+              <p>
+                This example demonstrates how to create and fire a <a><code>TouchEvent</code></a> from script.
+              </p>
+
+<pre class="example">
+
+if (Touch.length < 1 || TouchEvent.length < 1)
+  throw "TouchEvent constructors not supported";
+
+var touch = new Touch({
+    identifier: 42,
+    target: document.body,
+    clientX: 200,
+    clientY: 200,
+    screenX: 300,
+    screenY: 300,
+    pageX: 200,
+    pageY: 200,
+    radiusX: 5,
+    radiusY: 5
+});
+
+var touchEvent = new TouchEvent("touchstart", {
+    cancelable: true,
+    bubbles: true,
+    touches: [touch],
+    targetTouches: [touch],
+    changedTouches: [touch]
+});
+
+document.body.dispatchEvent(touchEvent);
 </pre>
           </section>
               
