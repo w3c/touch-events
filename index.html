@@ -483,6 +483,17 @@
         <dd>Initializes the <code>changedTouches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
       </dl>
 
+      <p class="note">
+        Some user agents implement an <code>initTouchEvent</code> method as part of the
+        <a><code>TouchEvent</code></a> interface. When this method is available, scripts
+        can use it to initialize the properties of a <a><code>TouchEvent</code></a> object,
+        including its <a><code>TouchList</code></a> properties (which can be initialized
+        with values returned from <a><code>Document.createTouchList</code></a>). The
+        <code>initTouchEvent</code> method is not standardized because the signature varies
+        between user agents in completely incompatible ways. It is superseded by the
+        <a><code>TouchEvent</code></a> constructor.
+      </p>
+
       <section class="informative">
        <h2>TouchEvent Implementer's Note</h2>
        <div class="note">
@@ -988,21 +999,6 @@ document.body.dispatchEvent(touchEvent);
         </pre>
       </section>
 
-      <section>
-        <h3>Initializers for interface <a><code>TouchEvent</code></a></h3>
-        <p class="note">
-          The argument list to this legacy TouchEvent initializer includes 6 unused arguments
-          which have no defined semantics and are only for compatibility with existing implementations.
-          The <a><code>TouchEvent.initTouchEvent</code></a> method is superseded by the <a><code>TouchEvent</code></a> constructor.
-        </p>
-        <pre class='idl'>
-          partial interface TouchEvent {
-            // Deprecated in this specification
-            void initTouchEvent (DOMString type, boolean bubbles, boolean cancelable, Window? view, long detail, long unused1, long unused2, long unused3, long unused4, boolean ctrlKey, boolean altKey, boolean shiftKey, boolean metaKey, TouchList touches, TouchList targetTouches, TouchList changedTouches, float unused5, float unused6);
-          };
-        </pre>
-      </section>
-
     </section>
 
     <section class='appendix informative'>
@@ -1068,10 +1064,6 @@ document.body.dispatchEvent(touchEvent);
          Add constructor for <a href="#idl-def-TouchEventInit">TouchEvent</a>
          and <a href="#idl-def-TouchInit">Touch</a>
          (<a href="https://github.com/w3c/touch-events/commit/219546b80cd148543a5ece656d81ba3c901d2106">commit</a>)
-       </li>
-       <li>
-         Added legacy event initializer <a href="#h-initializers-for-interface-touchevent">initTouchEvent</a>
-         (<a href="https://github.com/w3c/touch-events/commit/50f51ccacb0d5ad06f9cf6ed44f853d6a3616d10">commit</a>)
        </li>
       </ul>
     </section>
