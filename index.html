@@ -652,8 +652,7 @@ document.body.dispatchEvent(touchEvent);
           <p>
             The following table provides a summary of the
             <a><code>TouchEvent</code></a> event types defined in this specification. All events
-            should accomplish the bubbling phase. Some events are not cancelable
-            (see <a>canceled event</a>).
+            should accomplish the bubbling phase.
           </p>
           
           <!--
@@ -678,7 +677,7 @@ document.body.dispatchEvent(touchEvent);
               <td>Yes</td> 
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
-              <td>Yes</td> 
+              <td><a href="#cancelability">Varies</a></td>
               <td>undefined</td> 
           </tr>
           <tr> 
@@ -687,7 +686,7 @@ document.body.dispatchEvent(touchEvent);
               <td>Yes</td> 
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
-              <td>Yes</td> 
+              <td><a href="#cancelability">Varies</a></td>
               <td>
                 Varies: user agents may dispatch <a href="#mouse-events">mouse and click events</a>
               </td> 
@@ -698,7 +697,7 @@ document.body.dispatchEvent(touchEvent);
               <td>Yes</td> 
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
-              <td>Yes</td> 
+              <td><a href="#cancelability">Varies</a></td>
               <td>undefined</td> 
           </tr>
           <tr> 
@@ -712,7 +711,26 @@ document.body.dispatchEvent(touchEvent);
           </tr>
           </table>
       </section>
- 
+
+      <section>
+        <h3 id="cancelability">Cancelability of touch events</h3>
+        <p>
+          <a href="#dfn-canceled-event">Canceling</a> a touch event can prevent or otherwise
+          interrupt scrolling (which could be happening in parallel with script execution).
+          For maximum scroll performance, a user agent may not wait for each touch event
+          associated with the scroll to be processed to see if it will be canceled.  In such cases
+          the user agent should generate touch events whose <code>cancelable</code> property
+          is <code>false</code>, indicating that <code>preventDefault</code> cannot be used
+          to prevent or interrupt scrolling.  Otherwise <code>cancelable</code> will be
+          <code>true</code>.
+        </p> 
+        <p>
+          In particular, a user agent may generate only uncancelable touch events when it
+          <a href="https://dom.spec.whatwg.org/#observing-event-listeners">observes that there
+          are no non-passive listeners</a> for the event.
+        </p>
+      </section>
+
       <section>
         <h3 id="event-touchstart">The <dfn class="event"><code>touchstart</code></dfn>
         event</h3>
@@ -1064,6 +1082,13 @@ document.body.dispatchEvent(touchEvent);
          Add constructor for <a href="#idl-def-TouchEventInit">TouchEvent</a>
          and <a href="#idl-def-TouchInit">Touch</a>
          (<a href="https://github.com/w3c/touch-events/commit/219546b80cd148543a5ece656d81ba3c901d2106">commit</a>)
+       </li>
+       <li>
+         Added legacy event initializer <a href="#h-initializers-for-interface-touchevent">initTouchEvent</a>
+         (<a href="https://github.com/w3c/touch-events/commit/50f51ccacb0d5ad06f9cf6ed44f853d6a3616d10">commit</a>)
+       </li>
+       <li>
+         <a href="https://github.com/w3c/touch-events/pull/59">Added support</a> for <a href="#cancelability">uncancelable touch events</a> and described scroll performance implications.
        </li>
       </ul>
     </section>
