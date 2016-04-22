@@ -876,14 +876,14 @@ document.body.dispatchEvent(touchEvent);
     <section id="mouse-events">
       <h2>Interaction with Mouse Events and <code>click</code></h2>
       <p>
-        The user agent may dispatch both touch events and mouse events
+        The user agent may dispatch both touch events and (for compatibility with web content not designed for touch) mouse events
         [[!DOM-LEVEL-2-EVENTS]] in response to the same user input. If the
         user agent dispatches both touch events and mouse events in response to
         a single user action, then the <a><code>touchstart</code></a> event type must be
         dispatched before any mouse event types for that action.
         If <a><code>touchstart</code></a>, <a><code>touchmove</code></a>, or <a><code>touchend</code></a>
         are <a href="#dfn-canceled-event">canceled</a>, the user agent should not dispatch any mouse
-        event that would be a consequential result of the the prevented touch
+        event that would be a consequential result of the prevented touch
         event.
       </p>
 
@@ -895,13 +895,12 @@ document.body.dispatchEvent(touchEvent);
       </p>
 
       <p class="note">
-        User agents will typically dispatch mouse and click events when there is only a single
-        <a>active touch point</a>. Multi-touch interactions – involving two or more
+        User agents will typically dispatch mouse and click events only for single-finger activation gestures (like tap and long press). Gestures involving movement of the touch point or multi-touch interactions – with two or more
         <a href="#dfn-active-touch-point">active touch points</a> – will usually only generate touch events.
       </p>
 
       <p id="click-events">
-        If the user agent interprets a sequence of touch events as a click,
+        If the user agent interprets a sequence of touch events as a tap gesture,
         then it should dispatch <code>mousemove</code>, <code>mousedown</code>,
         <code>mouseup</code>, and <code>click</code> events (in that order) at the location
         of the <a><code>touchend</code></a> event for the corresponding touch input. If the
