@@ -638,6 +638,7 @@ var touch = new Touch({
 var touchEvent = new TouchEvent("touchstart", {
     cancelable: true,
     bubbles: true,
+    composed: true,
     touches: [touch],
     targetTouches: [touch],
     changedTouches: [touch]
@@ -655,7 +656,7 @@ document.body.dispatchEvent(touchEvent);
           <p>
             The following table provides a summary of the
             <a><code>TouchEvent</code></a> event types defined in this specification. All events
-            should accomplish the bubbling phase.
+            should accomplish the bubbling phase. All events should be composed [[!WHATWG-DOM]] events.
           </p>
           
           <!--
@@ -669,6 +670,7 @@ document.body.dispatchEvent(touchEvent);
               <th>Event Type</th>
               <th>Sync / Async</th>
               <th>Bubbling phase</th>
+              <th>Composed</th>
               <th>Trusted proximal event target types</th>
               <th>DOM interface</th>
               <th>Cancelable</th>
@@ -678,6 +680,7 @@ document.body.dispatchEvent(touchEvent);
               <td><a><code>touchstart</code></a></td> 
               <td>Sync</td> 
               <td>Yes</td> 
+              <td>Yes</td>
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
               <td><a href="#cancelability">Varies</a></td>
@@ -687,6 +690,7 @@ document.body.dispatchEvent(touchEvent);
               <td><a><code>touchend</code></a></td> 
               <td>Sync</td> 
               <td>Yes</td> 
+              <td>Yes</td>
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
               <td><a href="#cancelability">Varies</a></td>
@@ -698,6 +702,7 @@ document.body.dispatchEvent(touchEvent);
               <td><a><code>touchmove</code></a></td> 
               <td>Sync</td> 
               <td>Yes</td> 
+              <td>Yes</td>
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
               <td><a href="#cancelability">Varies</a></td>
@@ -707,6 +712,7 @@ document.body.dispatchEvent(touchEvent);
               <td><a><code>touchcancel</code></a></td> 
               <td>Sync</td> 
               <td>Yes</td> 
+              <td>Yes</td>
               <td><code>Document</code>, <code>Element</code></td> 
               <td><a><code>TouchEvent</code></a></td> 
               <td>No</td> 
