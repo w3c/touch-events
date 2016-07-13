@@ -264,119 +264,117 @@
         event. <a><code>Touch</code></a> objects are immutable; after one is created, its
         attributes must not change.
       </p>
+      <pre class="idl">
+dictionary TouchInit {
+    required long        identifier;
+    required EventTarget target;
+             double      clientX = 0;
+             double      clientY = 0;
+             double      screenX = 0;
+             double      screenY = 0;
+             double      pageX = 0;
+             double      pageY = 0;
+             float       radiusX = 0;
+             float       radiusY = 0;
+             float       rotationAngle = 0;
+             float       force = 0;
+};
 
-      <dl title='[Constructor(TouchInit touchInitDict)] interface Touch' class='idl' data-merge='TouchInit'>
-        <dt>readonly attribute long identifier</dt>
+[Constructor(TouchInit touchInitDict)]
+interface Touch {
+    readonly        attribute long        identifier;
+    readonly        attribute EventTarget target;
+    readonly        attribute double      screenX;
+    readonly        attribute double      screenY;
+    readonly        attribute double      clientX;
+    readonly        attribute double      clientY;
+    readonly        attribute double      pageX;
+    readonly        attribute double      pageY;
+    readonly        attribute float       radiusX;
+    readonly        attribute float       radiusY;
+    readonly        attribute float       rotationAngle;
+    readonly        attribute float       force;
+};
+      </pre>
+      <dl dfn-for="Touch" link-for="Touch">
+        <dt><dfn>identifier</dfn></dt>
         <dd>
-          An identification number for each <a>touch point</a>.
-
-          When a touch point becomes active, it must be assigned an
+          <p>An identification number for each <a>touch point</a>.</p>
+          <p>When a touch point becomes active, it must be assigned an
           <a>identifier</a> that is distinct from any other <a>active touch
           point</a>. While the touch point remains active, all events that
-          refer to it must assign it the same <a>identifier</a>.
+          refer to it must assign it the same <a>identifier</a>.</p>
         </dd>
 
-        <dt>readonly attribute EventTarget target</dt>
+        <dt><dfn>target</dfn></dt>
         <dd>
-          The <a><code>EventTarget</code></a> on which the <a>touch point</a> started when it
+          <p>The <code>EventTarget</code> on which the <a>touch point</a> started when it
           was first placed on the surface, even if the <a>touch point</a> has
-          since moved outside the interactive area of that element.
+          since moved outside the interactive area of that element.</p>
         </dd>
 
-        <dt>readonly attribute double screenX</dt>
+        <dt><dfn>screenX</dfn></dt>
         <dd>
-          The horizontal coordinate of point relative to the screen in pixels
+          <p>The horizontal coordinate of point relative to the screen in pixels</p>
         </dd>
-        <dt>readonly attribute double screenY</dt>
+        <dt><dfn>screenY</dfn></dt>
         <dd>
-          The vertical coordinate of point relative to the screen in pixels
-        </dd>
-
-        <dt>readonly attribute double clientX</dt>
-        <dd>
-          The horizontal coordinate of point relative to the viewport in pixels,
-          excluding any scroll offset
-        </dd>
-        <dt>readonly attribute double clientY</dt>
-        <dd>
-          The vertical coordinate of point relative to the viewport in pixels,
-          excluding any scroll offset
+          <p>The vertical coordinate of point relative to the screen in pixels</p>
         </dd>
 
-        <dt>readonly attribute double pageX</dt>
+        <dt><dfn>clientX</dfn></dt>
         <dd>
-          The horizontal coordinate of point relative to the viewport in pixels,
-          including any scroll offset
+          <p>The horizontal coordinate of point relative to the viewport in pixels, excluding any scroll offset</p>
         </dd>
-        <dt>readonly attribute double pageY</dt>
+        <dt><dfn>clientY</dfn></dt>
         <dd>
-          The vertical coordinate of point relative to the viewport in pixels,
-          including any scroll offset
+          <p>The vertical coordinate of point relative to the viewport in pixels, excluding any scroll offset</p>
         </dd>
-        <dt>readonly attribute float radiusX</dt>
+
+        <dt><dfn>pageX</dfn></dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the
+          <p>The horizontal coordinate of point relative to the viewport in pixels, including any scroll offset</p>
+        </dd>
+        <dt><dfn>pageY</dfn></dt>
+        <dd>
+          <p>The vertical coordinate of point relative to the viewport in pixels, including any scroll offset</p>
+        </dd>
+        <dt><dfn>radiusX</dfn></dt>
+        <dd>
+          <p>The radius of the ellipse which most closely circumscribes the
           touching area (e.g. finger, stylus) along the axis indicated by
           rotationAngle, in CSS pixels (as defined by [[!CSS-VALUES]]) of the same scale as screenX;
-          <code>0</code> if no value is known. The value must not be negative.
+          <code>0</code> if no value is known. The value must not be negative.</p>
         </dd>
-        <dt>readonly attribute float radiusY</dt>
+        <dt><dfn>radiusY</dfn></dt>
         <dd>
-          the radius of the ellipse which most closely circumscribes the
+          <p>The radius of the ellipse which most closely circumscribes the
           touching area (e.g. finger, stylus) along the axis perpendicular to
           that indicated by rotationAngle, in CSS pixels (as defined by [[!CSS-VALUES]]) of the same scale as
-          screenY; <code>0</code> if no value is known. The value must not be
-          negative.
+          screenY; <code>0</code> if no value is known. The value must not be negative.</p>
         </dd>
-        <dt>readonly attribute float rotationAngle</dt>
+        <dt><dfn>rotationAngle</dfn></dt>
         <dd>
-          the angle (in degrees) that the ellipse described by radiusX and
+          <p>The angle (in degrees) that the ellipse described by radiusX and
           radiusY is rotated clockwise about its center; <code>0</code> if no
           value is known. The value must be greater than or equal to
-          <code>0</code> and less than <code>90</code>.
+          <code>0</code> and less than <code>90</code>.</p>
 
-          If the ellipse described by radiusX and radiusY is circular, then
+          <p>If the ellipse described by radiusX and radiusY is circular, then
           rotationAngle has no effect. The user agent may use <code>0</code> as
           the value in this case, or it may use any other value in the allowed
           range. (For example, the user agent may use the rotationAngle value
-          from the previous touch event, to avoid sudden changes.)
+          from the previous touch event, to avoid sudden changes.)</p>
         </dd>
-        <dt>readonly attribute float force</dt>
+        <dt><dfn>force</dfn></dt>
         <dd>
-          a relative value of pressure applied, in the range <code>0</code> to
+          <p>A relative value of pressure applied, in the range <code>0</code> to
           <code>1</code>, where <code>0</code> is no pressure, and <code>1</code>
           is the highest level of pressure the touch device is capable of sensing;
           <code>0</code> if no value is known. In environments where force is
           known, the absolute pressure represented by the force attribute, and
-          the sensitivity in levels of pressure, may vary.
+          the sensitivity in levels of pressure, may vary.</p>
         </dd>
-      </dl>
-
-      <dl title='dictionary TouchInit' class='idl'>
-        <dt>required long identifier</dt>
-        <dd>Initializes the <code>identifier</code> property of the <code>Touch</code> object.</dd>
-        <dt>required EventTarget target</dt>
-        <dd>Initializes the <code>target</code> property of the <code>Touch</code> object.</dd>
-        <dt>double clientX = 0</dt>
-        <dd>Initializes the <code>clientX</code> properties of the <code>Touch</code> object.</dd>
-        <dt>double clientY = 0</dt>
-        <dd>Initializes the <code>clientY</code> properties of the <code>Touch</code> object.</dd>
-        <dt>double screenX = 0</dt>
-        <dd>Initializes the <code>screenX</code> property of the <code>Touch</code> object.</dd>
-        <dt>double screenY = 0</dt>
-        <dd>Initializes the <code>screenY</code> property of the <code>Touch</code> object.</dd>
-        <dt>double pageX = 0</dt>
-        <dd>Initializes the <code>pageX</code> property of the <code>Touch</code> object.</dd>
-        <dt>double pageY = 0</dt>
-        <dd>Initializes the <code>pageY</code> property of the <code>Touch</code> object.</dd>
-        <dt>float radiusX = 0</dt>
-        <dd>Initializes the <code>radiusX</code> property of the <code>Touch</code> object.</dd>
-        <dt>float radiusY = 0</dt>
-        <dd>Initializes the <code>radiusY</code> property of the <code>Touch</code> object.</dd>
-        <dt>float rotationAngle = 0</dt>
-        <dd>Initializes the <code>rotationAngle</code> property of the <code>Touch</code> object.</dd>
-        <dt>float force = 0</dt>
-        <dd>Initializes the <code>force</code> property of the <code>Touch</code> object.</dd>
       </dl>
     </section>
 
@@ -391,16 +389,21 @@
         A <code>TouchList</code> object's <em>supported property indices</em> ([[!WEBIDL]])
         are the numbers in the range 0 to one less than the length of the list. 
       </p>
-
-      <dl title='interface TouchList' class='idl'>
-        <dt>readonly attribute unsigned long length</dt>
+      <pre class="idl">
+interface TouchList {
+    readonly        attribute unsigned long length;
+    getter Touch? item (unsigned long index);
+};
+      </pre>
+      <dl dfn-for="TouchList" link-for="TouchList">
+        <dt><dfn>length</dfn></dt>
         <dd>
-          returns the number of <a><code>Touch</code></a> objects in the list
+          <p>Returns the number of <a><code>Touch</code></a> objects in the list</p>
         </dd>
-        <dt>getter <a><code>Touch</code></a>? item (in unsigned long index)</dt>
+        <dt><dfn>item</dfn></dt>
         <dd>
-          returns the <a><code>Touch</code></a> at the specified index in the list or
-          null if the index is not less than the length of the list. 
+          <p>Returns the <a><code>Touch</code></a> at the specified index in the list or
+          null if the index is not less than the length of the list. </p>
         </dd>
       </dl>
     </section>
@@ -424,66 +427,70 @@
         title="examples">example</a> for sample code demonstrating how to fire
         an untrusted touch event.
       </p>
+      <pre class="idl">
+dictionary TouchEventInit : EventModifierInit {
+             sequence&lt;Touch&gt; touches = [];
+             sequence&lt;Touch&gt; targetTouches = [];
+             sequence&lt;Touch&gt; changedTouches = [];
+};
 
-      <dl title='[Constructor(DOMString type, optional TouchEventInit eventInitDict)] interface TouchEvent : UIEvent' class='idl' data-merge='TouchEventInit'>
-        <dt>readonly attribute <a><code>TouchList</code></a> touches</dt>
+[Constructor(DOMString type, optional TouchEventInit eventInitDict)]
+interface TouchEvent : UIEvent {
+    readonly        attribute TouchList touches;
+    readonly        attribute TouchList targetTouches;
+    readonly        attribute TouchList changedTouches;
+    readonly        attribute boolean   altKey;
+    readonly        attribute boolean   metaKey;
+    readonly        attribute boolean   ctrlKey;
+    readonly        attribute boolean   shiftKey;
+};
+      </pre>
+      <dl dfn-for="TouchEvent" link-for="TouchEvent">
+        <dt><dfn>touches</dfn></dt>
         <dd>
-          a list of <a><code>Touch</code></a> objects for every point of contact currently
-          touching the surface.
+          <p>A list of <a><code>Touch</code></a> objects for every point of contact currently
+          touching the surface.</p>
         </dd>
-        <dt>readonly attribute <a><code>TouchList</code></a> <code>targetTouches</code></dt>
+        <dt><dfn>targetTouches</dfn></dt>
         <dd>
-          a list of <a><code>Touch</code></a> objects for every point of contact that is touching
+          <p>A list of <a><code>Touch</code></a> objects for every point of contact that is touching
           the surface <em>and</em> started on the element that is the
-          target of the current event.
+          target of the current event.</p>
         </dd>
-        <dt>readonly attribute <a><code>TouchList</code></a> <code>changedTouches</code></dt>
+        <dt><dfn>changedTouches</dfn></dt>
         <dd>
-          <p>
-            a list of <a><code>Touch</code></a> objects for every point of contact which contributed
-            to the event.
-          </p>
-          <p>
-            For the <a><code>touchstart</code></a> event this must be a list of the touch
+            <p>A list of <a><code>Touch</code></a> objects for every point of contact which contributed
+            to the event.</p>
+            <p>For the <a><code>touchstart</code></a> event this must be a list of the touch
             points that just became active with the current event. For the
             <a><code>touchmove</code></a> event this must be a list of the touch points that
             have moved since the last event. For the <a><code>touchend</code></a> and
             <a><code>touchcancel</code></a> events this must be a list of the touch points
             that have just been removed from the surface, with the last known coordinates
-            of the touch points before they were removed.
-          </p>
+            of the touch points before they were removed.</p>
         </dd>
 
-        <dt>readonly attribute boolean <code>altKey</code></dt>
+        <dt><dfn>altKey</dfn></dt>
         <dd>
-          <code>true</code> if the alt (Alternate) key modifier is activated;
-          otherwise <code>false</code>
+          <p><code>true</code> if the alt (Alternate) key modifier is activated;
+          otherwise <code>false</code></p>
         </dd>
-        <dt>readonly attribute boolean <code>metaKey</code></dt>
+        <dt><dfn>metaKey</dfn></dt>
         <dd>
-          <code>true</code> if the meta (Meta) key modifier is activated;
+          <p><code>true</code> if the meta (Meta) key modifier is activated;
           otherwise <code>false</code>. On some platforms this attribute may
-          map to a differently-named key modifier.
+          map to a differently-named key modifier.</p>
         </dd>
-        <dt>readonly attribute boolean <code>ctrlKey</code></dt>
+        <dt><dfn>ctrlKey</dfn></dt>
         <dd>
-          <code>true</code> if the ctrl (Control) key modifier is activated;
-          otherwise <code>false</code>
+          <p><code>true</code> if the ctrl (Control) key modifier is activated;
+          otherwise <code>false</code></p>
         </dd>
-        <dt>readonly attribute boolean <code>shiftKey</code></dt>
+        <dt><dfn>shiftKey</dfn></dt>
         <dd>
-          <code>true</code> if the shift (Shift) key modifier is activated;
-          otherwise <code>false</code>
+          <p><code>true</code> if the shift (Shift) key modifier is activated;
+          otherwise <code>false</code></p>
         </dd>
-      </dl>
-
-      <dl title='dictionary TouchEventInit : EventModifierInit' class='idl'>
-        <dt>sequence&lt;Touch&gt; touches = []</dt>
-        <dd>Initializes the <code>touches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
-        <dt>sequence&lt;Touch&gt; targetTouches = []</dt>
-        <dd>Initializes the <code>targetTouches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
-        <dt>sequence&lt;Touch&gt; changedTouches = []</dt>
-        <dd>Initializes the <code>changedTouches</code> property of the <code>TouchEvent</code> object with each element from the sequence.</dd>
       </dl>
 
       <p class="note">
@@ -859,23 +866,31 @@ document.body.dispatchEvent(touchEvent);
     <section>
       <h2>Extensions to the <code>GlobalEventHandlers</code> interface</h2>
       <p>The following section describes extensions to the existing <code>GlobalEventHandlers</code> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
-        <dl class="idl" title="partial interface GlobalEventHandlers">
+      <pre class="idl">
+partial interface GlobalEventHandlers {
+                    attribute EventHandler ontouchstart;
+                    attribute EventHandler ontouchend;
+                    attribute EventHandler ontouchmove;
+                    attribute EventHandler ontouchcancel;
+};
+      </pre>
+        <dl dfn-for="GlobalEventHandlers" link-for="GlobalEventHandlers">
 
-          <dt>attribute EventHandler ontouchstart</dt>
+          <dt><dfn>ontouchstart</dfn></dt>
           <dd>
-            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchstart</code> event type.
+            <p>The event handler IDL attribute (see [[!HTML5]]) for the <code>touchstart</code> event type.</p>
           </dd>
-          <dt>attribute EventHandler ontouchend</dt>
+          <dt><dfn>ontouchend</dfn></dt>
           <dd>
-            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchend</code> event type.
+            <p>The event handler IDL attribute (see [[!HTML5]]) for the <code>touchend</code> event type.</p>
           </dd>
-          <dt>attribute EventHandler ontouchmove</dt>
+          <dt><dfn>ontouchmove</dfn></dt>
           <dd>
-            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchmove</code> event type.
+            <p>The event handler IDL attribute (see [[!HTML5]]) for the <code>touchmove</code> event type.</p>
           </dd>
-          <dt>attribute EventHandler ontouchcancel</dt>
+          <dt><dfn>ontouchcancel</dfn></dt>
           <dd>
-            The event handler IDL attribute (see [[!HTML5]]) for the <code>touchcancel</code> event type.
+            <p>The event handler IDL attribute (see [[!HTML5]]) for the <code>touchcancel</code> event type.</p>
           </dd>
         </dl>
       </div>
