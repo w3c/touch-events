@@ -960,7 +960,41 @@ partial interface GlobalEventHandlers {
       </ol>           
       </section>
 
+      <section class="note">
+      <p>Even if a user agent supports Touch Events, this does not necessarily mean that a touchscreen is the only input mechanism available to users. Particularly in the case of touch-enabled laptops, or traditional "touch only" devices (such as phones and tablets) with paired external input devices, users may use the touchscreen in conjunction with a trackpad, mouse or keyboard. For this reason, developers should avoid binding event listeners with "either touch or mouse/keyboard" conditional code, as this results in sites/application that become touch-exclusive, preventing users from being able to use any other input mechanism.</p>
+<pre class="example"><code>
+// conditional "touch OR mouse/keyboard" event binding
+// DON'T DO THIS, as it makes interactions touch-exclusive
+// on devices that have both touch and mouse/keyboard
 
+if ('ontouchstart' in window) {
+  // set up event listeners for touch
+  target.addEventListener('touchend', ...);
+  ...
+} else {
+  // set up event listeners for mouse/keyboard
+  target.addEventListener('click', ...);
+  ...
+}
+</code></pre>
+      <p>Instead, developers should handle different forms of input concurrently.</p>
+<pre class="example"><code>
+// concurrent "touch AND mouse/keyboard" event binding
+
+// set up event listeners for touch
+target.addEventListener('touchend', function(e) {
+  // prevent compatibility mouse events and click
+  e.preventDefault();
+  ...
+});
+...
+
+// set up event listeners for mouse/keyboard
+target.addEventListener('click', ...);
+...
+</code></pre>      
+      <p>To avoid processing the same interaction twice for touch (once for the touch event, and once for the compatibility mouse events), developers should make sure to <a href="#dfn-canceled-event">cancel</a> the touch event, suppressing the generation of any further mouse or click events. Alternatively, see the <a href="http://wicg.github.io/InputDeviceCapabilities/">InputDeviceCapabilities API</a> for a way to detect mouse events that were generated as a result of touch events.</p>
+    </section>
     </section>
 
     <section>
@@ -1115,6 +1149,9 @@ partial interface GlobalEventHandlers {
        </li>
        <li>
          <a href="https://github.com/w3c/touch-events/pull/67">Indicate that all events should be "composed".</a>
+       </li>
+       <li>
+        <a href="https://github.com/w3c/touch-events/pull/72">Note about avoiding conditional "touch OR mouse/keyboard" event handling</a>
        </li>
       </ul>
     </section>
