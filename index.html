@@ -864,6 +864,43 @@ document.body.dispatchEvent(touchEvent);
     </section>
 
     <section>
+      <h2>Retargeting</h2>
+      <p>
+        The following section describes <a href="https://dom.spec.whatwg.org/#event-retargeting-steps">retargeting steps</a>,
+        defined in [[!WHATWG-DOM]].
+      </p>
+
+      <p>
+        <code>Touch</code> object has an associated <dfn>unadjustedTarget</dfn> (null or <code>EventTarget</code>).
+        Unless stated otherwise it is null.
+      </p>
+
+      <p>
+        <code>TouchEvent</code>'s <a href="https://dom.spec.whatwg.org/#event-retargeting-steps">retargeting steps</a>,
+        given a <var>touchEvent</var>, must run these steps:
+      </p>
+      <ol>
+        <li>
+          <p>
+            For each <a><code>Touch</code></a> <var>touch</var> in <var>touchEvent</var>'s <code>touches</code>,
+            <code>targetTouches</code>, and <code>changedTouches</code> members:
+          </p>
+          <ol>
+            <li>
+              Set <van>touch</var>'s <code>unadjustedTarget</code> to <var>touch</var>'s <code>target</code>
+              if <var>touch</var>'s <code>unadjustedTarget</code> is null.
+            </li>
+            <li>
+              Set <var>touch</var>'s <code>target</code> to the result of invoking
+              <a href="https://dom.spec.whatwg.org/#retarget">retargeting</a> <var>touch</var>'s <var>unadjustedTarget</var>
+              againt <var>touchEvent</var>'s <code>target</code>.
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </section>
+
+    <section>
       <h2>Extensions to the <code>GlobalEventHandlers</code> interface</h2>
       <p>The following section describes extensions to the existing <code>GlobalEventHandlers</code> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
       <pre class="idl">
@@ -1152,6 +1189,9 @@ target.addEventListener('click', ...);
        </li>
        <li>
         <a href="https://github.com/w3c/touch-events/pull/72">Note about avoiding conditional "touch OR mouse/keyboard" event handling</a>
+       </li>
+       <li>
+         <a href="https://github.com/w3c/touch-events/pull/73">Added TouchEvent's retargeting steps</a>
        </li>
       </ul>
     </section>
