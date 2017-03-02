@@ -734,7 +734,10 @@ document.body.dispatchEvent(touchEvent);
           <a href="#dfn-canceled-event">Canceling</a> a touch event can prevent or otherwise
           interrupt scrolling (which could be happening in parallel with script execution).
           For maximum scroll performance, a user agent may not wait for each touch event
-          associated with the scroll to be processed to see if it will be canceled.  In such cases
+          associated with the scroll to be processed to see if it will be canceled. In
+          particular, User Agents may not suspend the motion of an element which is currently
+          moving due to a touch scroll, either as a result of an earlier event in the touch
+          sequence, or due to momentum left over from a previous touch sequence. In such cases
           the user agent should generate touch events whose <code>cancelable</code> property
           is <code>false</code>, indicating that <code>preventDefault</code> cannot be used
           to prevent or interrupt scrolling.  Otherwise <code>cancelable</code> will be
