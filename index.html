@@ -138,7 +138,7 @@
       .event {
         font-family: monospace;
         color: #459900;
-      }
+      iec
 
       pre.idl {
         white-space: pre-wrap;
@@ -265,6 +265,11 @@
         attributes must not change.
       </p>
       <pre class="idl">
+enum TouchType {
+    "direct",
+    "stylus"
+};
+
 dictionary TouchInit {
     required long        identifier;
     required EventTarget target;
@@ -278,6 +283,9 @@ dictionary TouchInit {
              float       radiusY = 0;
              float       rotationAngle = 0;
              float       force = 0;
+             double      altitudeAngle = 0;
+             double      azimuthAngle = 0;
+             TouchType   typeType = "direct";
 };
 
 [Constructor(TouchInit touchInitDict)]
@@ -294,9 +302,12 @@ interface Touch {
     readonly        attribute float       radiusY;
     readonly        attribute float       rotationAngle;
     readonly        attribute float       force;
+    readonly        attribute float       altitudeAngle;
+    readonly        attribute float       azimuthAngle;
+    readonly        attribute TouchType   touchType;   
 };
       </pre>
-      <dl dfn-for="Touch" link-for="Touch">
+      <dl data-dfn-for="Touch" data-link-for="Touch">
         <dt><dfn>identifier</dfn></dt>
         <dd>
           <p>An identification number for each <a>touch point</a>.</p>
@@ -374,6 +385,43 @@ interface Touch {
           <code>0</code> if no value is known. In environments where force is
           known, the absolute pressure represented by the force attribute, and
           the sensitivity in levels of pressure, may vary.</p>
+        </dd>
+        <dt><dfn>altitudeAngle</dfn></dt>
+        <dd>
+          <p>The altitude (in radians) of a stylus, in the range <code>0</code>
+          (parallel to the surface) to <code>&pi;/2</code> (perpendicular to the
+          surface).  The value <code>0</code> should be used for devices which
+          do not support this property.</p>
+        </dd>
+        <dt><dfn>azimuthAngle</dfn></dt>
+        <dd>
+          <p>The azimuth angle (in radians) of a stylus, in the range <code>0</code>
+          <code>2&pi;</code>.  <code>0</code> represents a stylus whose cap is
+          pointing in the direction of increasing screenX values.
+          <code>&pi;/2</code> represents a stylus whose cap is pointing in the
+          direction of increasing screenY values.
+          The value <code>0</code> should be used for devices which
+          do not support this property.</p>
+        </dd>
+        <dt><dfn>touchType</dfn></dt>
+        <dd>
+          <p>The type of device used to trigger the touch.</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt><dfn>TouchType</dfn></dt>
+        <dd>
+          <p>An enumeration representing the different types of possible touch input.</p>
+        </dd>
+      </dl>
+      <dl data-dfn-for="TouchType" data-link-for="TouchType">
+        <dt><dfn>direct</dfn></dt>
+        <dd>
+          <p>A direct touch from a finger on the screen.</p>
+        </dd>
+        <dt><dfn>stylus</dfn></dt>
+        <dd>
+          <p>A touch from a stylus or pen device.</p>
         </dd>
       </dl>
     </section>
