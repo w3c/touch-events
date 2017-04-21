@@ -285,7 +285,7 @@ dictionary TouchInit {
              float       force = 0;
              double      altitudeAngle = 0;
              double      azimuthAngle = 0;
-             TouchType   typeType = "direct";
+             TouchType   touchType = "direct";
 };
 
 [Constructor(TouchInit touchInitDict)]
@@ -396,7 +396,7 @@ interface Touch {
         <dt><dfn>azimuthAngle</dfn></dt>
         <dd>
           <p>The azimuth angle (in radians) of a stylus, in the range <code>0</code>
-          <code>2&pi;</code>.  <code>0</code> represents a stylus whose cap is
+          to <code>2&pi;</code>.  <code>0</code> represents a stylus whose cap is
           pointing in the direction of increasing screenX values.
           <code>&pi;/2</code> represents a stylus whose cap is pointing in the
           direction of increasing screenY values.
