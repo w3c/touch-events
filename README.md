@@ -7,7 +7,7 @@ This is the document repository for the [Touch Events Community Group](http://ww
 
 Currently, this repo has two branches of note:
 
-1. gh-pages - this branch is active. It contains the [Touch Events Level 2](http://w3c.github.io/touch-events/) editors draft (which contains all the changes from an old v1-errata branch and the [Touch Events Extension Working Group Note] (http://www.w3.org/TR/touch-events-extensions/)).
+1. gh-pages - this branch is active. It contains the [Touch Events Level 2](http://w3c.github.io/touch-events/) editors draft (which contains all the changes from an old v1-errata branch and the [Touch Events Extension Working Group Note](http://www.w3.org/TR/touch-events-extensions/)).
 2. v1 - this branch is it not active. (It was the working branch for the v1 specification.)
 
 # Process for Landing Changes
