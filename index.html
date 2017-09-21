@@ -288,7 +288,7 @@ dictionary TouchInit {
              TouchType   touchType = "direct";
 };
 
-[Constructor(TouchInit touchInitDict)]
+[Constructor(TouchInit touchInitDict), Exposed=Window]
 interface Touch {
     readonly        attribute long        identifier;
     readonly        attribute EventTarget target;
@@ -482,7 +482,7 @@ dictionary TouchEventInit : EventModifierInit {
              sequence&lt;Touch&gt; changedTouches = [];
 };
 
-[Constructor(DOMString type, optional TouchEventInit eventInitDict)]
+[Constructor(DOMString type, optional TouchEventInit eventInitDict), Exposed=Window]
 interface TouchEvent : UIEvent {
     readonly        attribute TouchList touches;
     readonly        attribute TouchList targetTouches;
