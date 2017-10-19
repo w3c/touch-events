@@ -17,3 +17,12 @@ Per the group's [2015-Jan-27 agreement](http://www.w3.org/2015/01/27-touchevents
 * Submit a pull request and post the PR's link to the [public-touchevents](https://lists.w3.org/Archives/Public/public-touchevents/) e-mail list asking for feedback.
 * As soon as one of the listed spec editors approves the PR it can be merged.
 * If there's debate over a PR that has already landed, it may be reverted until consensus is reached.
+
+## Tests
+
+For normative changes, a corresponding
+[web-platform-tests](https://github.com/w3c/web-platform-tests) PR is highly appreciated. Typically,
+both PRs will be merged at the same time. Note that a test change that contradicts the spec should
+not be merged before the corresponding spec change. If testing is not practical, please explain why
+and if appropriate [file an issue](https://github.com/w3c/web-platform-tests/issues/new) to follow
+up later. Add the `type:untestable` or `type:missing-coverage` label as appropriate.
