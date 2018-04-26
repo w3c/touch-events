@@ -1123,44 +1123,6 @@ target.addEventListener('click', ...);
       </p>
     </section>
 
-    <section class='appendix'>
-      <h2>Legacy Event Initializers</h2>
-      <p>
-        <em>The following features are obsolete and should only be implemented by user agents that require compatibility with legacy software.</em>
-      </p>
-
-      <section>
-        <h3>Extensions to the <a><code>Document</code></a> Interface</h3>
-        <p>
-          The <a><code>Document</code></a> interface [[!DOM-LEVEL-3-CORE]] contains methods
-          by which the user can create <a><code>Touch</code></a> and <a><code>TouchList</code></a>
-          objects.
-        </p>
-
-        <section class="note">
-          <p>
-            <a><code>Document.createTouch</code></a> is superseded by the <a><code>Touch</code></a> constructor.
-          </p>
-          <p>
-            <a><code>Document.createTouchList</code></a> creates a <a><code>TouchList</code></a> object
-            consisting of zero or more <a><code>Touch</code></a> objects. <a><code>Document.createTouchList</code></a>
-            is superseded by passing sequences of <a><code>Touch</code></a> objects directly to the
-            <a><code>TouchEvent</code></a> constructor.
-          </p>
-        </section>
-
-        <pre class="idl">
-          partial interface Document {
-            // Deprecated in this specification
-            Touch createTouch (WindowProxy view, EventTarget target, long identifier, double pageX, double pageY, double screenX, double screenY);
-            // Deprecated in this specification
-            TouchList createTouchList (Touch... touches);
-          };
-        </pre>
-      </section>
-
-    </section>
-
     <section class='appendix informative'>
       <h2>Acknowledgements</h2>
       <p>
