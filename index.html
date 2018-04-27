@@ -323,7 +323,10 @@ interface Touch {
           was first placed on the surface, even if the <a>touch point</a> has
           since moved outside the interactive area of that element.</p>
           <p class="note">
-            Some user agents may choose a target within the touching area instead of the element at touch point.
+            Some implementations alter the target element to correct for the imprecision of coarse input.
+            Therefore, the target element may not necessarily be the element directly at the coordinates
+            of the event. The methods used to target/disambiguate coarse input are out of scope for this
+            specification.
           </p>
         </dd>
 
