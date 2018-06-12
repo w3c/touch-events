@@ -21,8 +21,8 @@ Per the group's [2015-Jan-27 agreement](http://www.w3.org/2015/01/27-touchevents
 ## Tests
 
 For normative changes, a corresponding
-[web-platform-tests](https://github.com/w3c/web-platform-tests) PR is highly appreciated. Typically,
+[web-platform-tests](https://github.com/web-platform-tests/wpt) PR is highly appreciated. Typically,
 both PRs will be merged at the same time. Note that a test change that contradicts the spec should
 not be merged before the corresponding spec change. If testing is not practical, please explain why
-and if appropriate [file an issue](https://github.com/w3c/web-platform-tests/issues/new) to follow
+and if appropriate [file an issue](https://github.com/web-platform-tests/wpt/issues/new) to follow
 up later. Add the `type:untestable` or `type:missing-coverage` label as appropriate.
