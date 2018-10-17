@@ -706,7 +706,7 @@ document.body.dispatchEvent(touchEvent);
           <p>
             The following table provides a summary of the
             <a><code>TouchEvent</code></a> event types defined in this specification. All events
-            should accomplish the bubbling phase. All events should be composed [[!WHATWG-DOM]] events.
+            should accomplish the bubbling phase. All events should be composed [[WHATWG-DOM]] events.
           </p>
           
           <!--
@@ -830,10 +830,10 @@ document.body.dispatchEvent(touchEvent);
 
         <p>
           The <a>touch point</a> or points that were removed must be included
-          in the <a href="#widl-TouchEvent-changedTouches"><code>changedTouches</code></a>
+          in the <a><code>changedTouches</code></a>
           attribute of the <a><code>TouchEvent</code></a>, and must not be
-          included in the <a href="#widl-TouchEvent-touches"><code>touches</code></a>
-          and <a href="#widl-TouchEvent-targetTouches"><code>targetTouches</code></a>
+          included in the <a><code>touches</code></a>
+          and <a><code>targetTouches</code></a>
           attributes.
         </p>
 
@@ -899,8 +899,8 @@ document.body.dispatchEvent(touchEvent);
 
         <p>
           The <a>touch point</a> or points that were removed must be included
-          in the <a href="#widl-TouchEvent-changedTouches"><code>changedTouches</code></a> attribute of the <a><code>TouchEvent</code></a>, and
-          must not be included in the <a href="#widl-TouchEvent-touches"><code>touches</code></a> and <a href="#widl-TouchEvent-targetTouches"><code>targetTouches</code></a>
+          in the <a><code>changedTouches</code></a> attribute of the <a><code>TouchEvent</code></a>, and
+          must not be included in the <a><code>touches</code></a> and <a><code>targetTouches</code></a>
           attributes.
         </p>
       </section>
@@ -1017,31 +1017,31 @@ partial interface GlobalEventHandlers {
         are implementation-defined, except as specified elsewhere.
       </p>
 
-      <section class="note">
-      <p>The activation of an element (e.g., in some implementations, a tap)
-      would typically produce the following event sequence
-      (though this may vary slightly, depending on specific user agent behavior):</p>
-      <ol data-class="note-list">
-          <li><code>touchstart</code></li>
-          <li>Zero or more <code>touchmove</code> events, depending on movement of the finger</li>
-          <li><code>touchend</code></li>
-          <li><code>mousemove</code> <small>(for compatibility with legacy mouse-specific code)</small></li>
-          <li><code>mousedown</code></li>
-          <li><code>mouseup</code></li>
-          <li><code>click</code></li>
-      </ol>
-      <p>If, however, either the <code>touchstart</code>, <code>touchmove</code> or <code>touchend</code>
-      event has been <a href="#dfn-canceled-event">canceled</a> during this interaction, no mouse or
-      click events will be fired, and the resulting sequence of events would simply be:
-      </p><ol data-class="note-list">
-          <li><code>touchstart</code></li>
-          <li>Zero or more <code>touchmove</code> events, depending on movement of the finger</li> 
-          <li><code>touchend</code></li>
-      </ol>           
-      </section>
+      <div class="note">
+        <p>The activation of an element (e.g., in some implementations, a tap)
+        would typically produce the following event sequence
+        (though this may vary slightly, depending on specific user agent behavior):</p>
+        <ol data-class="note-list">
+            <li><code>touchstart</code></li>
+            <li>Zero or more <code>touchmove</code> events, depending on movement of the finger</li>
+            <li><code>touchend</code></li>
+            <li><code>mousemove</code> <small>(for compatibility with legacy mouse-specific code)</small></li>
+            <li><code>mousedown</code></li>
+            <li><code>mouseup</code></li>
+            <li><code>click</code></li>
+        </ol>
+        <p>If, however, either the <code>touchstart</code>, <code>touchmove</code> or <code>touchend</code>
+        event has been <a href="#dfn-canceled-event">canceled</a> during this interaction, no mouse or
+        click events will be fired, and the resulting sequence of events would simply be:
+        </p><ol data-class="note-list">
+            <li><code>touchstart</code></li>
+            <li>Zero or more <code>touchmove</code> events, depending on movement of the finger</li> 
+            <li><code>touchend</code></li>
+        </ol>           
+      </div>
 
-      <section class="note">
-      <p>Even if a user agent supports Touch Events, this does not necessarily mean that a touchscreen is the only input mechanism available to users. Particularly in the case of touch-enabled laptops, or traditional "touch only" devices (such as phones and tablets) with paired external input devices, users may use the touchscreen in conjunction with a trackpad, mouse or keyboard. For this reason, developers should avoid binding event listeners with "either touch or mouse/keyboard" conditional code, as this results in sites/application that become touch-exclusive, preventing users from being able to use any other input mechanism.</p>
+      <div class="note">
+        <p>Even if a user agent supports Touch Events, this does not necessarily mean that a touchscreen is the only input mechanism available to users. Particularly in the case of touch-enabled laptops, or traditional "touch only" devices (such as phones and tablets) with paired external input devices, users may use the touchscreen in conjunction with a trackpad, mouse or keyboard. For this reason, developers should avoid binding event listeners with "either touch or mouse/keyboard" conditional code, as this results in sites/application that become touch-exclusive, preventing users from being able to use any other input mechanism.</p>
 <pre class="example"><code>
 // conditional "touch OR mouse/keyboard" event binding
 // DON'T DO THIS, as it makes interactions touch-exclusive
@@ -1073,8 +1073,8 @@ target.addEventListener('touchend', function(e) {
 target.addEventListener('click', ...);
 ...
 </code></pre>      
-      <p>To avoid processing the same interaction twice for touch (once for the touch event, and once for the compatibility mouse events), developers should make sure to <a href="#dfn-canceled-event">cancel</a> the touch event, suppressing the generation of any further mouse or click events. Alternatively, see the <a href="http://wicg.github.io/InputDeviceCapabilities/">InputDeviceCapabilities API</a> for a way to detect mouse events that were generated as a result of touch events.</p>
-    </section>
+        <p>To avoid processing the same interaction twice for touch (once for the touch event, and once for the compatibility mouse events), developers should make sure to <a href="#dfn-canceled-event">cancel</a> the touch event, suppressing the generation of any further mouse or click events. Alternatively, see the <a href="http://wicg.github.io/InputDeviceCapabilities/">InputDeviceCapabilities API</a> for a way to detect mouse events that were generated as a result of touch events.</p>
+      </div>
     </section>
 
     <section>
@@ -1152,64 +1152,54 @@ target.addEventListener('click', ...);
          Full commit history</a> is also available.
       </p>
       <ul>
-       <li>
-         Added <a href="#widl-Touch-force">force</a> attribute to Touch
-         (<a href="https://github.com/w3c/touch-events/commit/303b36e1d188a380f9bc0861b175438e596a34b1">commit</a>)
-       </li>
-       <li>
-         Added <a href="#widl-Touch-radiusX">radiusX</a> and
-         <a href="#widl-Touch-radiusY">radiusY</a> attributes to Touch
-         (<a href="https://github.com/w3c/touch-events/commit/6d222fb7f106273bef847ad1d1d7a23569841954">commit</a>)
-       </li>
-       <li>
-         Added <a href="#widl-Touch-rotationAngle">rotationAngle</a> attribute to Touch
-         (<a href="https://github.com/w3c/touch-events/commit/487f6815a9590b72779d4820ff43c2b58d798f92">commit</a>)
-       </li>
-       <li>
-         Upgraded co-ordinates to double type instead of long
-         (<a href="https://github.com/w3c/touch-events/commit/006274ffada14de504f731afdb5ec1581ff327ca">commit</a>) 
-       </li>
-       <li>
-         Update touchmove behavior on preventDefault
-         (<a href="https://github.com/w3c/touch-events/commit/df620100e48111cf7a30592f344606f8c8b7fe22">commit</a>)
-       </li>
-       <li>
-         Clarify effect of canceling touchend event
-         (<a href="https://github.com/w3c/touch-events/commit/54a3d1668c4f727d9c6f6d729b28a036041e301f">commit</a>)
-       </li>
-       <li>
-         Add constructor for <a href="#idl-def-TouchEventInit">TouchEvent</a>
-         and <a href="#idl-def-TouchInit">Touch</a>
-         (<a href="https://github.com/w3c/touch-events/commit/219546b80cd148543a5ece656d81ba3c901d2106">commit</a>)
-       </li>
-       <li>
-         Added legacy event initializer <a href="#h-initializers-for-interface-touchevent">initTouchEvent</a>
-         (<a href="https://github.com/w3c/touch-events/commit/50f51ccacb0d5ad06f9cf6ed44f853d6a3616d10">commit</a>)
-       </li>
-       <li>
-         <a href="https://github.com/w3c/touch-events/pull/59">Added support</a> for <a href="#cancelability">uncancelable touch events</a> and described scroll performance implications.
-       </li>
-       <li>
-         <a href="https://github.com/w3c/touch-events/pull/67">Indicate that all events should be "composed".</a>
-       </li>
-       <li>
-        <a href="https://github.com/w3c/touch-events/pull/72">Note about avoiding conditional "touch OR mouse/keyboard" event handling</a>
-       </li>
-       <li>
-         <a href="https://github.com/w3c/touch-events/pull/73">Added TouchEvent's retargeting steps</a>
-       </li>
-       <li>
-         <a href="https://github.com/w3c/touch-events/pull/81">Add touchType, altitudeAngle, azimuthAngle (Safari iOS 10.3 extensions for stylus)</a>
-       </li>
-       <li>
-         <a href="https://github.com/w3c/touch-events/pull/88">Add [Exposed=Window] to Constructor</a>
-       </li>
-       <li>
-         <a href="https://github.com/w3c/touch-events/pull/95">Add note to mention UA might adjusting touch target</a>
-       </li>
-       <li>
-        <a href="https://github.com/w3c/touch-events/pull/96">Remove Legacy Event Initializers (createTouch and createTouchList)</a> and the <a href="https://github.com/w3c/touch-events/pull/100">note about initTouchEvent / createTouchList</a>
-       </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/303b36e1d188a380f9bc0861b175438e596a34b1">Added force attribute to Touch</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/6d222fb7f106273bef847ad1d1d7a23569841954">Added radiusX and radiusY attributes to Touch</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/487f6815a9590b72779d4820ff43c2b58d798f92">Added rotationAngle attribute to Touch</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/006274ffada14de504f731afdb5ec1581ff327ca">Upgraded co-ordinates to double type instead of long</a> 
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/df620100e48111cf7a30592f344606f8c8b7fe22">Update touchmove behavior on preventDefault</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/54a3d1668c4f727d9c6f6d729b28a036041e301f">Clarify effect of canceling touchend event</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/219546b80cd148543a5ece656d81ba3c901d2106">Add constructor for TouchEvent and Touch</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/commit/50f51ccacb0d5ad06f9cf6ed44f853d6a3616d10">Added legacy event initializer initTouchEvent</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/59">Added supportfor uncancelable touch events</a> and described scroll performance implications</a> 
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/67">Indicate that all events should be "composed".</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/72">Note about avoiding conditional "touch OR mouse/keyboard" event handling</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/73">Added TouchEvent's retargeting steps</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/81">Add touchType, altitudeAngle, azimuthAngle (Safari iOS 10.3 extensions for stylus)</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/88">Add [Exposed=Window] to Constructor</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/95">Add note to mention UA might adjusting touch target</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/96">Remove Legacy Event Initializers (createTouch and createTouchList)</a> and the <a href="https://github.com/w3c/touch-events/pull/100">note about initTouchEvent / createTouchList</a>
+        </li>
       </ul>
     </section>
 
