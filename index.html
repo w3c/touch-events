@@ -547,17 +547,6 @@ interface TouchEvent : UIEvent {
         </dd>
       </dl>
 
-      <p class="note">
-        Some user agents implement an <code>initTouchEvent</code> method as part of the
-        <a><code>TouchEvent</code></a> interface. When this method is available, scripts
-        can use it to initialize the properties of a <a><code>TouchEvent</code></a> object,
-        including its <a><code>TouchList</code></a> properties (which can be initialized
-        with values returned from <a><code>Document.createTouchList</code></a>). The
-        <code>initTouchEvent</code> method is not standardized because the signature varies
-        between user agents in completely incompatible ways. It is superseded by the
-        <a><code>TouchEvent</code></a> constructor.
-      </p>
-
       <section class="informative">
        <h2>TouchEvent Implementer's Note</h2>
        <div class="note">
