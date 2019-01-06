@@ -258,7 +258,7 @@
     </section>
 
     <section>
-      <h2><a><code>Touch</code></a> Interface</h2>
+      <h2><dfn>Touch</dfn> Interface</h2>
       <p>
         This interface describes an individual <a>touch point</a> for a touch
         event. <a><code>Touch</code></a> objects are immutable; after one is created, its
@@ -433,7 +433,7 @@ interface Touch {
     </section>
 
     <section>
-      <h2><a><code>TouchList</code></a> Interface</h2>
+      <h2><dfn>TouchList</dfn> Interface</h2>
       <p>
         This interface defines a list of individual points of contact for a
         touch event. <a><code>TouchList</code></a> objects are immutable; after one is
@@ -449,7 +449,7 @@ interface TouchList {
     getter Touch? item (unsigned long index);
 };
       </pre>
-      <dl dfn-for="TouchList" link-for="TouchList">
+      <dl data-dfn-for="TouchList" data-link-for="TouchList">
         <dt><dfn>length</dfn></dt>
         <dd>
           <p>Returns the number of <a><code>Touch</code></a> objects in the list</p>
@@ -463,7 +463,7 @@ interface TouchList {
     </section>
 
     <section>
-      <h2><a><code>TouchEvent</code></a> Interface</h2>
+      <h2><dfn>TouchEvent</dfn> Interface</h2>
       <p>
         This interface defines the <a><code>touchstart</code></a>, <a><code>touchend</code></a>,
         <a><code>touchmove</code></a>, and <a><code>touchcancel</code></a> event types.
@@ -472,7 +472,7 @@ interface TouchList {
         from the <code>UIEvent</code> interface defined in [[!DOM-LEVEL-3-EVENTS]].
       </p>
       <p>
-        The <code>TouchEventInit</code> dictionary is used by the
+        The <dfn>TouchEventInit</dfn> dictionary is used by the
         <code>TouchEvent</code> interface's constructor to provide a
         mechanism by which to construct untrusted (synthetic) touch events.
         It inherits from the <code>EventModifierInit</code> dictionary defined in
@@ -499,7 +499,7 @@ interface TouchEvent : UIEvent {
     readonly        attribute boolean   shiftKey;
 };
       </pre>
-      <dl dfn-for="TouchEvent" link-for="TouchEvent">
+      <dl data-dfn-for="TouchEvent" data-link-for="TouchEvent">
         <dt><dfn>touches</dfn></dt>
         <dd>
           <p>A list of <a><code>Touch</code></a> objects for every point of contact currently
@@ -812,7 +812,7 @@ document.body.dispatchEvent(touchEvent);
         </p>
       </section>
 
-      <section>
+      <section data-link-for="TouchEvent">
         <h3 id="event-touchend">The <dfn class="event"><code>touchend</code></dfn> event</h3>
         <p>
           A user agent must dispatch this event type to indicate when the user
@@ -875,7 +875,7 @@ document.body.dispatchEvent(touchEvent);
         </p>
       </section>
 
-      <section>
+      <section data-link-for="TouchEvent">
         <h3 id="event-touchcancel">The <dfn class="event"><code>touchcancel</code></dfn> event</h3>
         <p>
           A user agent must dispatch this event type to indicate when a touch
@@ -945,7 +945,7 @@ document.body.dispatchEvent(touchEvent);
 
     <section>
       <h2>Extensions to the <code>GlobalEventHandlers</code> interface</h2>
-      <p>The following section describes extensions to the existing <code>GlobalEventHandlers</code> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
+      <p>The following section describes extensions to the existing <dfn data-cite="HTML5#globaleventhandlers">GlobalEventHandlers</dfn> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
       <pre class="idl">
 partial interface GlobalEventHandlers {
                     attribute EventHandler ontouchstart;
@@ -954,7 +954,7 @@ partial interface GlobalEventHandlers {
                     attribute EventHandler ontouchcancel;
 };
       </pre>
-      <dl dfn-for="GlobalEventHandlers" link-for="GlobalEventHandlers">
+      <dl data-dfn-for="GlobalEventHandlers" data-link-for="GlobalEventHandlers">
 
         <dt><dfn>ontouchstart</dfn></dt>
         <dd>
