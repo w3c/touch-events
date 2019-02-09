@@ -944,10 +944,10 @@ document.body.dispatchEvent(touchEvent);
     </section>
 
     <section>
-      <h2>Extensions to the <code>GlobalEventHandlers</code> interface</h2>
-      <p>The following section describes extensions to the existing <dfn data-cite="HTML5#globaleventhandlers">GlobalEventHandlers</dfn> interface, defined in [[!HTML5]], to facilitate the event handler registration.</p>
+      <h2>Extensions to the <code>GlobalEventHandlers</code> mixin</h2>
+      <p>The following section describes extensions to the existing <dfn data-cite="HTML5#globaleventhandlers">GlobalEventHandlers</dfn> mixin, defined in [[!HTML5]], to facilitate the event handler registration.</p>
       <pre class="idl">
-partial interface GlobalEventHandlers {
+partial interface mixin GlobalEventHandlers {
                     attribute EventHandler ontouchstart;
                     attribute EventHandler ontouchend;
                     attribute EventHandler ontouchmove;
