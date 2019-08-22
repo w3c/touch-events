@@ -444,6 +444,7 @@ interface Touch {
         are the numbers in the range 0 to one less than the length of the list. 
       </p>
       <pre class="idl">
+[Exposed=Window]
 interface TouchList {
     readonly        attribute unsigned long length;
     getter Touch? item (unsigned long index);
@@ -488,7 +489,7 @@ dictionary TouchEventInit : EventModifierInit {
              sequence&lt;Touch&gt; changedTouches = [];
 };
 
-[Constructor(DOMString type, optional TouchEventInit eventInitDict), Exposed=Window]
+[Constructor(DOMString type, optional TouchEventInit eventInitDict = {}), Exposed=Window]
 interface TouchEvent : UIEvent {
     readonly        attribute TouchList touches;
     readonly        attribute TouchList targetTouches;
