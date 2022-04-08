@@ -167,7 +167,7 @@
         <a href="http://www.w3.org/TR/touch-events/">Level 1</a>, and
         incorporates the features previously published as
         <a href="http://www.w3.org/TR/touch-events-extensions/">Touch Event
-        Extentions</a>.
+        Extensions</a>.
       </p>
     </section>
 
@@ -953,7 +953,7 @@ document.body.dispatchEvent(touchEvent);
       <h2>Conditionally exposing legacy touch event APIs</h2>
       <p>User agents have an associated boolean <dfn>expose legacy touch event APIs</dfn> whose value is <a>implementation-defined</a>.</p>
 
-      <p class="note">Existing web content often use the existance of these APIs as a signal that the user agent is a touch-enabled "mobile" device, and therefore exposing these APIs on non-mobile devices, even if they are touch-enabled, could lead to a suboptimal user experience for such web content.</p>
+      <p class="note">Existing web content often use the existence of these APIs as a signal that the user agent is a touch-enabled "mobile" device, and therefore exposing these APIs on non-mobile devices, even if they are touch-enabled, could lead to a suboptimal user experience for such web content.</p>
     </section>
 
     <section>
@@ -1145,7 +1145,7 @@ target.addEventListener('click', ...);
       <p>
         Many others have made additional comments as the spec developed, which
         have led to steady improvements. Among them are Matthew Schinckel,
-        Andrew Grieve, Cathy Chan, Boris Zbarsky and Patrick H. Lauke.
+        Andrew Grieve, Cathy Chan, Boris Zbarsky, Patrick H. Lauke, and Simon Pieters.
         If we inadvertently omitted your name, please let me know.
       </p>
 
@@ -1211,6 +1211,9 @@ target.addEventListener('click', ...);
         </li>
         <li>
           <a href="https://github.com/w3c/touch-events/pull/96">Remove Legacy Event Initializers (createTouch and createTouchList)</a> and the <a href="https://github.com/w3c/touch-events/pull/100">note about initTouchEvent / createTouchList</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/111">Conditionally expose legacy touch events API</a>
         </li>
       </ul>
     </section>
