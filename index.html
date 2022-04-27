@@ -207,8 +207,7 @@
     <section id='conformance'>
       <p>
         This specification defines conformance criteria that apply to a single
-        product: the <dfn id="dfn-user-agent">user agent</dfn> that implements
-        the interfaces that it contains.
+        product: the user agent that implements the interfaces that it contains.
       </p>
 
       <p>
@@ -930,12 +929,12 @@ document.body.dispatchEvent(touchEvent);
           </p>
           <ol>
             <li>
-              Set <var>touch</var>'s <code>unadjustedTarget</code> to <var>touch</var>'s <code>target</code>
-              if <var>touch</var>'s <code>unadjustedTarget</code> is null.
+              Set <var>touch</var>'s <a><code>unadjustedTarget</code></a> to <var>touch</var>'s <code>target</code>
+              if <var>touch</var>'s <a><code>unadjustedTarget</code></a> is null.
             </li>
             <li>
               Set <var>touch</var>'s <code>target</code> to the result of invoking
-              <a href="https://dom.spec.whatwg.org/#retarget">retargeting</a> <var>touch</var>'s <var>unadjustedTarget</var>
+              <a href="https://dom.spec.whatwg.org/#retarget">retargeting</a> <var>touch</var>'s <a><code>unadjustedTarget</code></a>
               against <var>touchEvent</var>'s <code>target</code>.
             </li>
           </ol>
