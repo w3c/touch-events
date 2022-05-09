@@ -181,7 +181,7 @@
       <h2>Introduction</h2>
 
       <p>
-        User Agents that run on terminals which provide touch input to use web
+        User agents that run on terminals which provide touch input to use web
         applications typically use interpreted mouse events to allow users
         to access interactive web applications. However, these interpreted
         events, being normalized data based on the physical touch input, tend
@@ -775,9 +775,12 @@ document.body.dispatchEvent(touchEvent);
         <p>
           <a href="#dfn-canceled-event">Canceling</a> a touch event can prevent or otherwise
           interrupt scrolling (which could be happening in parallel with script execution).
-          For maximum scroll performance, a user agent may not wait for each touch event
-          associated with the scroll to be processed to see if it will be canceled.  In such cases
-          the user agent should generate touch events whose <code>cancelable</code> property
+          However, for maximum scroll performance, a user agent may decide to process touch events
+          associated with the scroll, without waiting to see if it will be canceled.
+          In particular, regardless of any canceled touch events, a user agents may continue an ongoing
+          scroll motion – caused by an earlier event in the touch sequence, or by momentum left over
+          from a previous touch sequence (e.g. a "fling" gesture) – rather than halting the scrolling.
+          In such cases the user agent should generate touch events whose <code>cancelable</code> property
           is <code>false</code>, indicating that <code>preventDefault</code> cannot be used
           to prevent or interrupt scrolling.  Otherwise <code>cancelable</code> will be
           <code>true</code>.
