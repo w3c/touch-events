@@ -496,6 +496,7 @@ interface TouchEvent : UIEvent {
     readonly        attribute boolean   metaKey;
     readonly        attribute boolean   ctrlKey;
     readonly        attribute boolean   shiftKey;
+    getter boolean getModifierState (DOMString keyArg);
 };
       </pre>
       <dl data-dfn-for="TouchEvent" data-link-for="TouchEvent">
@@ -543,6 +544,12 @@ interface TouchEvent : UIEvent {
         <dd>
           <p><code>true</code> if the shift (Shift) key modifier is activated;
           otherwise <code>false</code></p>
+        </dd>
+        <dt><dfn>getModifierState</dfn>(keyArg)</dt>
+        <dd>
+          <p>Queries the state of a modifier using a key value. Returns 
+            <code>true</code> if it is a modifier key and the modifier is
+            activated, <code>false</code> otherwise.</p>
         </dd>
       </dl>
 
