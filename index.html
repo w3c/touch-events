@@ -181,7 +181,7 @@
       <h2>Introduction</h2>
 
       <p>
-        User agents that run on terminals which provide touch input to use web
+        User Agents that run on terminals which provide touch input to use web
         applications typically use interpreted mouse events to allow users
         to access interactive web applications. However, these interpreted
         events, being normalized data based on the physical touch input, tend
@@ -496,7 +496,6 @@ interface TouchEvent : UIEvent {
     readonly        attribute boolean   metaKey;
     readonly        attribute boolean   ctrlKey;
     readonly        attribute boolean   shiftKey;
-    getter boolean getModifierState (DOMString keyArg);
 };
       </pre>
       <dl data-dfn-for="TouchEvent" data-link-for="TouchEvent">
@@ -544,12 +543,6 @@ interface TouchEvent : UIEvent {
         <dd>
           <p><code>true</code> if the shift (Shift) key modifier is activated;
           otherwise <code>false</code></p>
-        </dd>
-        <dt><dfn>getModifierState</dfn>(keyArg)</dt>
-        <dd>
-          <p>Queries the state of a modifier using a key value. Returns 
-            <code>true</code> if it is a modifier key and the modifier is
-            activated, <code>false</code> otherwise.</p>
         </dd>
       </dl>
 
@@ -782,12 +775,9 @@ document.body.dispatchEvent(touchEvent);
         <p>
           <a href="#dfn-canceled-event">Canceling</a> a touch event can prevent or otherwise
           interrupt scrolling (which could be happening in parallel with script execution).
-          However, for maximum scroll performance, a user agent may decide to process touch events
-          associated with the scroll, without waiting to see if it will be canceled.
-          In particular, regardless of any canceled touch events, a user agents may continue an ongoing
-          scroll motion – caused by an earlier event in the touch sequence, or by momentum left over
-          from a previous touch sequence (e.g. a "fling" gesture) – rather than halting the scrolling.
-          In such cases the user agent should generate touch events whose <code>cancelable</code> property
+          For maximum scroll performance, a user agent may not wait for each touch event
+          associated with the scroll to be processed to see if it will be canceled.  In such cases
+          the user agent should generate touch events whose <code>cancelable</code> property
           is <code>false</code>, indicating that <code>preventDefault</code> cannot be used
           to prevent or interrupt scrolling.  Otherwise <code>cancelable</code> will be
           <code>true</code>.
@@ -1217,6 +1207,9 @@ target.addEventListener('click', ...);
         </li>
         <li>
           <a href="https://github.com/w3c/touch-events/pull/111">Conditionally expose legacy touch events API</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/91">Add getModifierState definition to TouchEvent</a>
         </li>
       </ul>
     </section>
