@@ -414,7 +414,7 @@ interface Touch {
             and the values progressively increase when going clockwise
             (π/2 at "6 o'clock", π at "9 o'clock", 3π/2 at "12 o'clock").
             When the transducer is perfectly perpendicular to the surface (<code>altitudeAngle</code> of π/2), the value MUST be 0.
-            For hardware and platforms that do not report tilt or angle, the value should be 0.</p>
+            For hardware and platforms that do not report tilt or angle, the value MUST be 0.</p>
           <figure id="figure_azimuthAngle">
               <img src="images/azimuthAngle.png" alt="azimuthAngle explanation diagram">
               <figcaption>Example <code>azimuthAngle</code> of π/6 ("4 o'clock").</figcaption>
@@ -1182,6 +1182,12 @@ target.addEventListener('click', ...);
          Full commit history</a> is also available.
       </p>
       <ul>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/125">Reword altitudeAngle/azimuthAngle descriptions in line with PointerEvents, add illustrations</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/touch-events/pull/120">Add getModifierState definition</a>
+        </li>
         <li>
           <a href="https://github.com/w3c/touch-events/commit/303b36e1d188a380f9bc0861b175438e596a34b1">Added force attribute to Touch</a>
         </li>
