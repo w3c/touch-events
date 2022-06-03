@@ -392,20 +392,33 @@ interface Touch {
         </dd>
         <dt><dfn>altitudeAngle</dfn></dt>
         <dd>
-          <p>The altitude (in radians) of a stylus, in the range <code>0</code>
-          (parallel to the surface) to <code>&pi;/2</code> (perpendicular to the
-          surface).  The value <code>0</code> should be used for devices which
-          do not support this property.</p>
+          <p>The altitude (in radians) of the transducer (e.g. pen/stylus), in the range [0,π/2]
+            — where 0 is parallel to the surface (X-Y plane), and π/2 is perpendicular to the surface.
+            For hardware and platforms that do not report tilt or angle, the value MUST be 0.</p>
+            <div class="note">
+              The default value defined here for <code>altitudeAngle</code> is 0.
+              This differs from the <a href="https://w3c.github.io/pointerevents/">Pointer Events - Level 3</a> [[POINTEREVENTS]] specification's
+              definition for the <code>altitudeAngle</code> property, which has a default value of π/2,
+              which positions the transducer as being perpendicular to the surface.
+          </div>
+            <figure id="figure_altitudeAngle">
+              <img src="images/altitudeAngle.png" alt="altitudeAngle explanation diagram">
+              <figcaption>Example <code>altitudeAngle</code> of π/4 (45 degrees from the X-Y plane).</figcaption>
+          </figure>
         </dd>
         <dt><dfn>azimuthAngle</dfn></dt>
         <dd>
-          <p>The azimuth angle (in radians) of a stylus, in the range <code>0</code>
-          to <code>2&pi;</code>.  <code>0</code> represents a stylus whose cap is
-          pointing in the direction of increasing screenX values.
-          <code>&pi;/2</code> represents a stylus whose cap is pointing in the
-          direction of increasing screenY values.
-          The value <code>0</code> should be used for devices which
-          do not support this property.</p>
+          <p>The azimuth angle (in radians) of the transducer (e.g. pen/stylus),
+            in the range [0, 2π] — where 0 represents a transducer whose cap is pointing in the
+            direction of increasing X values (point to "3 o'clock" if looking straight down) on the X-Y plane,
+            and the values progressively increase when going clockwise
+            (π/2 at "6 o'clock", π at "9 o'clock", 3π/2 at "12 o'clock").
+            When the transducer is perfectly perpendicular to the surface (<code>altitudeAngle</code> of π/2), the value MUST be 0.
+            For hardware and platforms that do not report tilt or angle, the value should be 0.</p>
+          <figure id="figure_azimuthAngle">
+              <img src="images/azimuthAngle.png" alt="azimuthAngle explanation diagram">
+              <figcaption>Example <code>azimuthAngle</code> of π/6 ("4 o'clock").</figcaption>
+          </figure>
         </dd>
         <dt><dfn>touchType</dfn></dt>
         <dd>
