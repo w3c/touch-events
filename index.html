@@ -140,6 +140,7 @@
       pre.idl {
         white-space: pre-wrap;
       }
+      .simple th[scope=row] a { color: inherit;}
     </style>
   </head>
   <body>
@@ -721,19 +722,22 @@ document.body.dispatchEvent(touchEvent);
           // raw markup as a quick and dirty workaround.
           -->
 
-          <table class="parameters" id="table-event-summary">
+          <table class="simple" id="table-event-summary">
+	    <thead>
           <tr>
               <th>Event Type</th>
               <th>Sync / Async</th>
               <th>Bubbling phase</th>
               <th>Composed</th>
               <th>Trusted proximal event target types</th>
-              <th>DOM interface</th>
+              <th>Interface</th>
               <th>Cancelable</th>
               <th>Default Action</th>
           </tr>
+	    </thead>
+	    <tbody>
           <tr> 
-              <td><a><code>touchstart</code></a></td> 
+              <th scope=row><a><code>touchstart</code></a></th> 
               <td>Sync</td> 
               <td>Yes</td> 
               <td>Yes</td>
@@ -743,7 +747,7 @@ document.body.dispatchEvent(touchEvent);
               <td>undefined</td> 
           </tr>
           <tr> 
-              <td><a><code>touchend</code></a></td> 
+              <th scope=row><a><code>touchend</code></a></th> 
               <td>Sync</td> 
               <td>Yes</td> 
               <td>Yes</td>
@@ -755,7 +759,7 @@ document.body.dispatchEvent(touchEvent);
               </td> 
           </tr>
           <tr> 
-              <td><a><code>touchmove</code></a></td> 
+              <th scope=row><a><code>touchmove</code></a></th> 
               <td>Sync</td> 
               <td>Yes</td> 
               <td>Yes</td>
@@ -765,7 +769,7 @@ document.body.dispatchEvent(touchEvent);
               <td>undefined</td> 
           </tr>
           <tr> 
-              <td><a><code>touchcancel</code></a></td> 
+              <th scope=row><a><code>touchcancel</code></a></th> 
               <td>Sync</td> 
               <td>Yes</td> 
               <td>Yes</td>
@@ -774,6 +778,7 @@ document.body.dispatchEvent(touchEvent);
               <td>No</td> 
               <td>none</td> 
           </tr>
+	  </tbody>
           </table>
       </section>
 
