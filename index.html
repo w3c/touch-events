@@ -12,135 +12,135 @@
 	<script class="remove" defer src="https://www.w3.org/Tools/respec/respec-w3c">
 	</script>
 	<script class="remove">
-	     var respecConfig = {
-	         // specification status (e.g. WD, LC, NOTE, etc.). If in doubt use ED.
-	         specStatus:           "CG-DRAFT",
+  var respecConfig = {
+    // specification status (e.g. WD, LC, NOTE, etc.). If in doubt use ED.
+    specStatus:           "CG-DRAFT",
 
-	         // the specification's short name, as in http://www.w3.org/TR/short-name/
-	         shortName:            "touch-events",
+    // the specification's short name, as in http://www.w3.org/TR/short-name/
+    shortName:            "touch-events",
 
-	         // if your specification has a subtitle that goes below the main
-	         // formal title, define it here
-	         // subtitle   :  "an excellent document",
+    // if your specification has a subtitle that goes below the main
+    // formal title, define it here
+    // subtitle   :  "an excellent document",
 
-	         // if you wish the publication date to be other than today, set this
-	         // publishDate:  "2014-05-29",
+    // if you wish the publication date to be other than today, set this
+    // publishDate:  "2014-05-29",
 
-	         // if the specification's copyright date is a range of years, specify
-	         // the start date here:
-	         // copyrightStart: "2005"
+    // if the specification's copyright date is a range of years, specify
+    // the start date here:
+    // copyrightStart: "2005"
 
-	         // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
-	         // and its maturity status
-	         previousPublishDate:  "2013-10-10",
-	         previousMaturity:  "REC",
+    // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+    // and its maturity status
+    previousPublishDate:  "2013-10-10",
+    previousMaturity:  "REC",
 
-	         // if there a publicly available Editor's Draft, this is the link
-	         edDraftURI:           "https://w3c.github.io/touch-events/",
-	         license:      "w3c-software-doc",
+    // if there a publicly available Editor's Draft, this is the link
+    edDraftURI:           "https://w3c.github.io/touch-events/",
+    license:      "w3c-software-doc",
 
-	         // if this is a LCWD, uncomment and set the end of its review period
-	         // lcEnd: "2013-02-14",
-	         // prEnd: "2013-06-06",
+    // if this is a LCWD, uncomment and set the end of its review period
+    // lcEnd: "2013-02-14",
+    // prEnd: "2013-06-06",
 
-	         // editors, add as many as you like
-	         // only "name" is required
-	         editors:  [
-	             { name: "Doug Schepers", url: "http://schepers.cc/",
-	               company: "W3C", companyURL: "http://w3.org/" },
-	             { name: "Sangwhan Moon",
-	               company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
-	             { name: "Matt Brubeck", url: "http://limpet.net/mbrubeck/",
-	               company: "Mozilla", companyURL: "http://www.mozilla.org/" },
-	             { name: "Arthur Barstow", 
-	               company: "Invited Expert", companyURL: "https://twitter.com/afbarstow" },
-	             { name: "Rick Byers", url: "http://rbyers.net/",
-	               company: "Google", companyURL: "https://www.google.com/" },
-	             { name: "Patrick H. Lauke",
-	               company: "TetraLogical", companyURL: "https://tetralogical.com/" },                
-	         ],
-	         otherLinks: [{
-	               key: 'Repository',
-	               data: [{
-	               value: 'We are on Github.',
-	               href: 'https://github.com/w3c/touch-events'
-	           }, {
-	               value: 'File a bug.',
-	               href: 'https://github.com/w3c/touch-events/issues'
-	           }, {
-	               value: 'Commit history.',
-	               href: 'https://github.com/w3c/touch-events/commits/gh-pages'
-	           }, {
-	               value: 'Mailing list.',
-	               href: 'http://lists.w3.org/Archives/Public/public-touchevents/'
-	           }]
-	         }],
+    // editors, add as many as you like
+    // only "name" is required
+    editors:  [
+        { name: "Doug Schepers", url: "http://schepers.cc/",
+          company: "W3C", companyURL: "http://w3.org/" },
+        { name: "Sangwhan Moon",
+          company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
+        { name: "Matt Brubeck", url: "http://limpet.net/mbrubeck/",
+          company: "Mozilla", companyURL: "http://www.mozilla.org/" },
+        { name: "Arthur Barstow", 
+          company: "Invited Expert", companyURL: "https://twitter.com/afbarstow" },
+        { name: "Rick Byers", url: "http://rbyers.net/",
+          company: "Google", companyURL: "https://www.google.com/" },
+        { name: "Patrick H. Lauke",
+          company: "TetraLogical", companyURL: "https://tetralogical.com/" },                
+    ],
+    otherLinks: [{
+          key: 'Repository',
+          data: [{
+          value: 'We are on Github.',
+          href: 'https://github.com/w3c/touch-events'
+      }, {
+          value: 'File a bug.',
+          href: 'https://github.com/w3c/touch-events/issues'
+      }, {
+          value: 'Commit history.',
+          href: 'https://github.com/w3c/touch-events/commits/gh-pages'
+      }, {
+          value: 'Mailing list.',
+          href: 'http://lists.w3.org/Archives/Public/public-touchevents/'
+      }]
+    }],
 
-	         // authors, add as many as you like.
-	         // This is optional, uncomment if you have authors as well as editors.
-	         // only "name" is required. Same format as editors.
+    // authors, add as many as you like.
+    // This is optional, uncomment if you have authors as well as editors.
+    // only "name" is required. Same format as editors.
 
-	         //authors:  [
-	         //    { name: "Your Name", url: "http://example.org/",
-	         //      company: "Your Company", companyURL: "http://example.com/" },
-	         //],
+    //authors:  [
+    //    { name: "Your Name", url: "http://example.org/",
+    //      company: "Your Company", companyURL: "http://example.com/" },
+    //],
 
-	         // Name of the group
-	         group: "touchevents",
+    // Name of the group
+    group: "touchevents",
 
-	         // URI of the patent status for this WG, for Rec-track documents
-	         // !!!! IMPORTANT !!!!
-	         // This is important for Rec-track documents, do not copy a patent URI from a random
-	         // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
-	         // Team Contact.
-	         // wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
-	       
-	         // Enables automatic linking
-	         xref: ["html", "dom", "infra", "uievents"]
-	     };
+    // URI of the patent status for this WG, for Rec-track documents
+    // !!!! IMPORTANT !!!!
+    // This is important for Rec-track documents, do not copy a patent URI from a random
+    // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+    // Team Contact.
+    // wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45559/status",
+
+    // Enables automatic linking
+    xref: ["html", "dom", "infra", "uievents"]
+  };
 	</script>
 	<script id="fixuphook">
-	   (function () {
-	       // Hacky fix-up hook to patch up return types generated by respec.js, as special
-	       // operations like the ones in specialOps are not officially supported.
-	       var specialOps = ['getter ', 'setter ', 'creator ', 'deleter ', 'caller ', 'omittable '];
-	       var fixUpCaller = window.setInterval(function() {
-	           
-	           // Check if respec.js is done.
-	           var respecJS = document.querySelectorAll(".remove");
-	           if (respecJS.length > 0) return;
-	           
-	           else
-	           {
-	               // Performance-wise, this is a stupid idea. For long specs it's probably
-	               // going to take a *extremely* long time to finish. You have been warned.
-	               var tags = document.getElementsByTagName('a');
-	           
-	               for (var i = 0; i < tags.length; i++)
-	                   for (var j = 0; j < specialOps.length; j++)
-	                       if (tags[i].textContent.indexOf(specialOps[j]) === 0 &&
-	                           tags[i].parentNode.previousSibling.textContent.indexOf('Return type:') !== -1)
-	                           tags[i].textContent = tags[i].textContent.substring(specialOps[j].length - 1);
-	               
-	               // Clean-up script element and interval caller
-	               var fixUpEl = document.getElementById('fixuphook');
-	               fixUpEl.parentNode.removeChild(fixUpEl);
-	               
-	               window.clearInterval(fixUpCaller);
-	           }
-	       }, 100);
-	   })();
+    (function () {
+        // Hacky fix-up hook to patch up return types generated by respec.js, as special
+        // operations like the ones in specialOps are not officially supported.
+        var specialOps = ['getter ', 'setter ', 'creator ', 'deleter ', 'caller ', 'omittable '];
+        var fixUpCaller = window.setInterval(function() {
+            
+            // Check if respec.js is done.
+            var respecJS = document.querySelectorAll(".remove");
+            if (respecJS.length > 0) return;
+            
+            else
+            {
+                // Performance-wise, this is a stupid idea. For long specs it's probably
+                // going to take a *extremely* long time to finish. You have been warned.
+                var tags = document.getElementsByTagName('a');
+            
+                for (var i = 0; i < tags.length; i++)
+                    for (var j = 0; j < specialOps.length; j++)
+                        if (tags[i].textContent.indexOf(specialOps[j]) === 0 &&
+                            tags[i].parentNode.previousSibling.textContent.indexOf('Return type:') !== -1)
+                            tags[i].textContent = tags[i].textContent.substring(specialOps[j].length - 1);
+                
+                // Clean-up script element and interval caller
+                var fixUpEl = document.getElementById('fixuphook');
+                fixUpEl.parentNode.removeChild(fixUpEl);
+                
+                window.clearInterval(fixUpCaller);
+            }
+        }, 100);
+    })();
 	</script>
 	<style>
-	     .event {
-	       font-family: monospace;
-	       color: #459900;
-	     }
+      .event {
+        font-family: monospace;
+        color: #459900;
+      }
 
-	     pre.idl {
-	       white-space: pre-wrap;
-	     }
-	     .simple th[scope=row] a { color: inherit;}
+      pre.idl {
+        white-space: pre-wrap;
+      }
+      .simple th[scope=row] a { color: inherit;}
 	</style>
 </head>
 <body>
@@ -341,9 +341,9 @@ interface TouchList {
 		<p>The <dfn>TouchEventInit</dfn> dictionary is used by the <code>TouchEvent</code> interface's constructor to provide a mechanism by which to construct untrusted (synthetic) touch events. It inherits from the <code>EventModifierInit</code> dictionary defined in [[!DOM-LEVEL-3-EVENTS]]. The steps for constructing an event are defined in [[!DOM4]]. See the <a href="#firing-a-synthetic-touchevent-from-script" title="examples">example</a> for sample code demonstrating how to fire an untrusted touch event.</p>
 <pre class="idl">
 dictionary TouchEventInit : EventModifierInit {
-             sequence&lt;Touch&gt; touches = [];
-             sequence&lt;Touch&gt; targetTouches = [];
-             sequence&lt;Touch&gt; changedTouches = [];
+            sequence&lt;Touch&gt; touches = [];
+            sequence&lt;Touch&gt; targetTouches = [];
+            sequence&lt;Touch&gt; changedTouches = [];
 };
 
 [Exposed=Window]
